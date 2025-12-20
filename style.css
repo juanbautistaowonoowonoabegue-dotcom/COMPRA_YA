@@ -1,0 +1,673 @@
+/* Importar fuentes profesionales */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap');
+
+:root {
+    --rojo-principal: #d31212;
+    --negro-profundo: #1a1a1a;
+    --gris-suave: #f8f9fa;
+    --blanco: #ffffff;
+    --sombra-premium: 0 10px 30px rgba(0,0,0,0.08);
+}
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.producto-card {
+    background: var(--blanco);
+    border-radius: 12px; /* Menos redondeado para verse más moderno */
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: var(--sombra-premium);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.producto-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Imagen con zoom suave */
+.producto-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.producto-card:hover img {
+    transform: scale(1.05);
+}
+
+.info-producto {
+    padding: 20px;
+    text-align: left; /* Alineado a la izquierda es más profesional */
+}
+
+.precio {
+    color: var(--rojo-principal);
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+.btn-whatsapp-flotante {
+    background: var(--blanco);
+    color: var(--rojo-principal);
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--rojo-principal);
+    transition: all 0.3s ease;
+}
+/* Importación de fuentes de alta gama */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap');
+
+:root {
+    --primary: #d31212;      /* Tu rojo corporativo */
+    --accent: #1a1a1a;       /* Negro elegante */
+    --bg-light: #fdfdfd;     /* Blanco roto para no cansar la vista */
+    --text-main: #2d2d2d;    /* Gris muy oscuro para lectura */
+    --shadow: 0 20px 40px rgba(0,0,0,0.05);
+    --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.galeria-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 80px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(211, 18, 18, 0.1);
+}
+
+.card-img-container {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.card-price {
+    font-size: 1.6rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 15px 0;
+}
+.main-footer {
+    background: var(--primary);
+    color: white;
+    padding: 100px 0 40px;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin: 50px 0;
+}
+
+.social-item {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    opacity: 0.9;
+    text-align: center;
+}
+
+.social-item i {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.social-item:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* El botón de WhatsApp ahora es una "Píldora Flotante" */
+.cta-whatsapp {
+    background: white;
+    color: var(--primary);
+    padding: 20px 45px;
+    border-radius: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: var(--transition);
+}
+
+.cta-whatsapp:hover {
+    background: var(--accent);
+    color: white;
+}
+/* SECCIÓN DE BIENVENIDA PROFESIONAL */
+.bienvenida-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-tienda.jpg'); /* Fondo oscuro para que el texto resalte */
+    background-size: cover;
+    background-position: center;
+    height: 60vh; /* Ocupa el 60% de la altura de la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    margin-bottom: 50px; /* Espacio con la siguiente sección */
+/* 1. El contenedor del texto y el botón */
+.bienvenida-hero {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos uno debajo del otro */
+    align-items: center;    /* ESTA ES LA CLAVE: Centra todo horizontalmente */
+    justify-content: center;
+    text-align: center;     /* Centra las líneas de texto */
+    padding: 60px 20px;
+    width: 100%;
+}
+
+/* 2. Estilo del botón centralizado */
+.btn-rojo-central {
+    background-color: #d31212; /* Tu rojo ideal */
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;  /* Permite que el botón tome el tamaño justo */
+    margin-top: 30px;       /* Crea el espacio que pedías con el texto de arriba */
+    transition: transform 0.3s ease;
+}
+
+.btn-rojo-central:hover {
+    transform: scale(1.05); /* Efecto interactivo profesional */
+}
+}
+
+.titulo-principal {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* BOTONES INTERACTIVOS */
+.botones-hero {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-principal {
+    background-color: #d31212; /* Tu rojo corporativo */
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s;
+}
+/* --- CONFIGURACIÓN GLOBAL --- */
+:root {
+    --rojo-apple: #d31212;
+    --negro-tech: #1d1d1f;      /* El negro que usa Apple */
+    --gris-fondo: #f5f5f7;     /* Gris muy suave para el fondo */
+    --blanco: #ffffff;
+    --sombra-premium: 0 10px 30px rgba(0,0,0,0.06);
+    --curva: 18px;             /* Redondeado moderno */
+    --transicion: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+    background-color: var(--gris-fondo);
+    color: var(--negro-tech);
+    scroll-behavior: smooth;
+}
+
+/* --- TARJETAS DE PRODUCTO (LA JOYA) --- */
+.tarjeta-premium {
+    background: var(--blanco);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: var(--curva);
+    box-shadow: var(--sombra-premium);
+    transition: var(--transicion);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-premium:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* --- EFECTO EN LAS IMÁGENES --- */
+.tarjeta-premium img {
+    transition: var(--transicion);
+    filter: brightness(0.98);
+}
+
+.tarjeta-premium:hover img {
+    transform: scale(1.06);
+    filter: brightness(1);
+}
+
+/* --- BOTONES PROFESIONALES --- */
+.btn-whatsapp {
+    background: var(--negro-tech) !important;
+    color: var(--blanco) !important;
+    border-radius: 30px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: -0.2px;
+    transition: var(--transicion) !important;
+    border: none !important;
+}
+
+.btn-whatsapp:hover {
+    background: #25d366 !important; /* El verde solo aparece al interactuar */
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* --- TÍTULOS DE CATEGORÍA --- */
+.categoria-contenedor h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--negro-tech);
+    margin-left: 10px;
+    letter-spacing: -0.5px;
+}
+
+/* --- BADGES (OFERTA) --- */
+.badge-oferta {
+    background: var(--rojo-apple);
+    color: white;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-radius: 0 0 12px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+/* --- GRID DE PANTALLA COMPLETA --- */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 35px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px; /* Evita que en monitores gigantes se estire demasiado */
+    margin: 0 auto;
+}
+
+.btn-secundario {
+    background-color: white;
+    color: #333;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+/* Contenedor Principal de Bienvenida */
+.hero-section {
+    background-color: #f8f9fa; /* Un gris muy claro para que el rojo resalte */
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    text-align: center;
+    width: 100%;
+}
+
+.hero-container {
+    max-width: 800px; /* Evita que el texto se estire demasiado y se vea mal */
+    margin: 0 auto;
+}
+
+/* Título Impactante */
+.hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-title span {
+    color: #d31212; /* Tu rojo ideal */
+}
+
+/* Texto descriptivo bien distribuido */
+.hero-text {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    padding: 0 10px;
+}
+
+/* EL BOTÓN CENTRALIZADO */
+.btn-rojo-central {
+    background-color: #d31212; /* Tu rojo ideal */
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: inline-block; /* Importante para que respete el padding */
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(211, 18, 18, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-rojo-central:hover {
+    transform: translateY(-5px); /* Efecto de levitación */
+    background-color: #b00e0e;    /* Rojo un poco más oscuro al pasar el ratón */
+    box-shadow: 0 15px 25px rgba(211, 18, 18, 0.3);
+}
+
+.btn-principal:hover, .btn-secundario:hover {
+    transform: translateY(-5px); /* Efecto de levitación profesional */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.btn-whatsapp-flotante:hover {
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    box-shadow: 0 5px 15px rgba(211, 18, 18, 0.3);
+}
+
+/* Animación de pulso para el canal oficial */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.social-link i {
+    animation: pulse 2s infinite ease-in-out;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Fuente profesional y limpia */
+    background-color: var(--gris-suave);
+    color: var(--negro-profundo);
+    -webkit-font-smoothing: antialiased;
+}
+/* Limpieza total */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden; /* Evita que la página se mueva hacia los lados */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Esto evita que los elementos se salgan de su sitio */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* Evita el movimiento lateral molesto */
+}
+/* Contenedor de la galería */
+#galeria-productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 50px 20px;
+}
+
+/* La tarjeta del producto */
+.producto {
+    background: white;
+    border-radius: 20px;
+    width: 280px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease; /* Efecto al pasar el ratón */
+}
+
+.producto:hover {
+    transform: translateY(-10px); /* Sube un poquito al tocarlo */
+}
+
+/* Las imágenes dentro de las tarjetas */
+.producto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Esto evita que la imagen se vea estirada o cortada */
+}
+footer {
+    background-color: #d31212;
+    color: white;
+    width: 100vw; /* Ocupa el 100% del ancho del visor */
+    padding: 60px 0;
+    margin-top: 50px;
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffeb3b; /* Cambia a amarillo al pasar el ratón */
+}
+footer {
+    background-color: #d31212; /* El rojo de tu logo */
+    color: white;
+    width: 100vw; /* Ancho completo de la pantalla */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 60px 0;
+    clear: both; /* Se asegura de que no haya nada a sus lados */
+    display: block;
+}
+
+/* Contenedor interno para centrar solo el texto */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+/* Reset general para evitar bordes blancos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* FOOTER PROFESIONAL */
+.main-footer {
+    background-color: #d31212; /* Tu rojo corporativo */
+    color: white;
+    width: 100%;
+    padding: 60px 0 20px 0;
+    margin-top: 50px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.footer-tagline {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Botón de WhatsApp */
+.whatsapp-btn {
+    background-color: white;
+    color: #d31212;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Redes Sociales */
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.3s;
+}
+
+.social-link i {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.social-link:hover {
+    opacity: 0.7;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px;
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
