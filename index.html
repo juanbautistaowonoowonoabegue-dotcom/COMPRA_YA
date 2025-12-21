@@ -1,14 +1,22 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta charset="UTF-8">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPRA YA!! | Ofertas Imbatibles</title>
+    <meta name="description" content="Las mejores ofertas en teléfonos y ordenadores en COMPRA YA!!">
+    
+    <link rel="icon" href="logo.JPEG" type="image/JPEG">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* 1. Fuente y General - Usando sistema de Apple/Google */
+        /* Variables y estilos generales */
         :root {
             --rojo-premium: #d31212;
             --oscuro-apple: #1d1d1f;
@@ -17,657 +25,539 @@
             --sombra-suave: 0 8px 30px rgba(0,0,0,0.08);
             --transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-    
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
+            font-family: 'Poppins', sans-serif;
             background-color: var(--gris-fondo);
             color: var(--oscuro-apple);
             -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-    
-        /* 2. Tarjetas Pro (Estilo Tecnomas/Apple) */
+        
+        /* Tarjetas Premium */
         .tarjeta-premium {
-            background: var(--blanco-puro) !important;
-            border: 1px solid rgba(0,0,0,0.03) !important;
-            border-radius: 18px !important;
-            box-shadow: var(--sombra-suave) !important;
-            transition: var(--transicion) !important;
+            background: var(--blanco-puro);
+            border: 1px solid rgba(0,0,0,0.03);
+            border-radius: 18px;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
             overflow: hidden;
+            position: relative;
         }
-    
+        
         .tarjeta-premium:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.12) !important;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
         }
-    
-        /* 3. Imágenes con Zoom Suave */
+        
         .tarjeta-premium img {
             transition: var(--transicion);
             border-bottom: 1px solid #f0f0f0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-    
+        
         .tarjeta-premium:hover img {
             transform: scale(1.05);
         }
-    
-        /* 4. Botones Estilo Minimalista */
+        
+        /* Botones */
         .btn-whatsapp {
-            background: var(--oscuro-apple) !important; /* Negro Apple para que se vea más serio */
-            color: white !important;
-            border-radius: 30px !important; /* Más redondeado = más moderno */
-            padding: 14px !important;
-            font-size: 0.95rem !important;
+            background: var(--oscuro-apple);
+            color: white;
+            border-radius: 30px;
+            padding: 14px;
+            font-size: 0.95rem;
             letter-spacing: 0.5px;
-            transition: var(--transicion) !important;
+            transition: var(--transicion);
             border: none;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-weight: bold;
         }
-    
+        
         .btn-whatsapp:hover {
-            background: #25d366 !important; /* Cambia a verde solo al pasar el mouse */
+            background: #25d366;
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
         }
-    
-        /* 5. Etiquetas de Descuento (Flotantes y Modernas) */
+        
+        /* Badge de oferta */
         .badge-oferta {
-            background: var(--rojo-premium) !important;
-            font-size: 0.75rem !important;
-            padding: 6px 12px !important;
-            border-radius: 8px !important;
-            top: 15px !important;
-            left: 15px !important;
-            transform: none !important; /* Quitamos la rotación vieja para que sea más limpio */
+            background: var(--rojo-premium);
+            color: white;
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
             font-weight: 700;
         }
-    </style>
-    <article class="tarjeta-premium" style="position: relative; text-align: center; padding-bottom: 25px;">
-        <div class="badge-oferta" style="position: absolute; color: white; z-index: 10;">OFERTA</div>
         
-        <div style="overflow: hidden; height: 250px;">
-            <img src="img/iphone.JPEG" alt="iphone" style="width: 100%; height: 100%; object-fit: contain; padding: 20px;">
-        </div>
+        /* Header */
+        header {
+            background: #d31212;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
         
-        <div style="padding: 15px 25px;">
-            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: #1d1d1f;">iPhone 11 Pro Max</h3>
-            <p style="color: #86868b; font-size: 0.85rem; margin-bottom: 15px;">Potencia y elegancia en cada detalle.</p>
-            
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px; margin-bottom: 20px;">
-                <span style="text-decoration: line-through; color: #bfbfbf; font-size: 0.9rem;">180.000 FCFA</span>
-                <span style="font-size: 1.6rem; font-weight: 700; color: #d31212;">160.000 FCFA</span>
-            </div>
-            
-            <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20el%20iPhone%2011" class="btn-whatsapp" style="text-decoration: none; display: block;">
-                Consultar Disponibilidad 📲
-            </a>
-        </div>
-    </article>
-    <title>COMPRA YA!! </title>
-    
-    <meta name="description" content="Las mejores ofertas en teléfonos y ordenadores en COMPRA YA!!">
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="icon" href="logo.JPEG" type="image/JPEG">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .logo {
+            color: white;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Evita que la pantalla se mueva de lado a lado */
         }
-    </style>
-    <head>
-
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>COMPRA YA!! | Ofertas Imbatibles</title>
         
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
         
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-        <style>
-            /* Desplazamiento suave al hacer clic en los enlaces */
-            html {
-                scroll-behavior: smooth;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .titulo-principal {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--oscuro-apple);
+        }
+        
+        .subtitulo {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .botones-hero {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .btn-hero {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .btn-rojo {
+            background: #d31212;
+            color: white;
+            box-shadow: 0 5px 15px rgba(211,18,18,0.4);
+        }
+        
+        .btn-verde {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 5px 15px rgba(37,211,102,0.3);
+        }
+        
+        /* Secciones generales */
+        section {
+            padding: 60px 20px;
+        }
+        
+        .seccion-titulo {
+            text-align: center;
+            color: var(--rojo-premium);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        
+        /* Grid de productos */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1d1d1f;
+            color: #f5f5f7;
+            padding: 60px 20px;
+        }
+        
+        .footer-contenido {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            /* Estilo base para que todo encaje */
-            body {
-                font-family: 'Poppins', sans-serif;
-                margin: 0;
-                overflow-x: hidden;
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
             }
-        </style>
-    </head>
-
-    <header style="background: #d31212; padding: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-        <nav style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto;">
-            <div style="color: white; font-family: 'Bebas Neue', cursive; font-size: 2rem;">COMPRA YA!!</div>
-            <ul style="list-style: none; display: flex; gap: 20px; margin: 0;">
-                <li><a href="#inicio" style="color: white; text-decoration: none; font-weight: bold;">Inicio</a></li>
-                <li><a href="#galeria-productos" style="color: white; text-decoration: none; font-weight: bold;">Productos</a></li>
-                <li><a href="#contacto" style="color: white; text-decoration: none; font-weight: bold;">Contacto</a></li>
+            
+            .botones-hero {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-hero {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .titulo-principal {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1 class="logo">COMPRA YA!!</h1>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#galeria-productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio" class="bienvenida-hero">
-        <div class="contenido-hero">
-            <h1 class="titulo-principal">¡Hola Jef@! <br>
-                 sea Bienvenido a COMPRA YA!!</h1>
-            <p class="subtitulo">La mejor tecnología de Malabo al alcance de un clic.</p>
-       <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 20px;">
-
-    <button onclick="window.location.href='#galeria-productos'" 
-        style="background: #d31212; color: white; border: none; padding: 15px 40px; font-size: 1.1rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(211,18,18,0.4); text-align: center; width: 280px;">
-        NUESTRO CATÁLOGO
-    </button>
-
-    <a href="#galeria-productos" 
-        style="display: inline-block; background: #d31212; color: white; text-decoration: none; padding: 15px 40px; font-size: 1.1rem; font-weight: bold; border-radius: 50px; text-align: center; width: 200px; box-shadow: 0 5px 15px rgba(211,18,18,0.2);">
-        VEA NUESTRA OFERTA
-    </a>
-
-    <a href="https://wa.me/240555391797?text=info%20vuestro%20canal" 
-        style="display: inline-block; background: #25d366; color: white; text-decoration: none; padding: 15px 40px; font-size: 1.1rem; font-weight: bold; border-radius: 50px; text-align: center; width: 200px; box-shadow: 0 5px 15px rgba(37,211,102,0.3);">
-        CONTÁCTANOS
-    </a>
-
-</div>
-
-    <div style="text-align: center; margin-top: 20px; opacity: 0.7;">
-        <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">🔒 Pago Seguro</span>
-        <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">⭐ Calidad Garantizada</span>
-        <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">🚀 Entrega Verificada</span>
-    </div>
-    <section style="display: flex; justify-content: space-around; padding: 40px; background: #fff; text-align: center; flex-wrap: wrap; gap: 20px;">
-        <div>
-            <h2 style="font-size: 2rem;">🚀</h2>
-            <h3 style="margin: 5px 0;">Entrega Rápida</h3>
-            <p style="color: #666; font-size: 0.9rem;">Tus equipos en tiempo récord.</p>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1 class="titulo-principal">¡Hola Jef@! <br>Sea Bienvenido a COMPRA YA!!</h1>
+        <p class="subtitulo">La mejor tecnología de Malabo al alcance de un clic.</p>
+        
+        <div class="botones-hero">
+            <button onclick="window.location.href='#galeria-productos'" class="btn-hero btn-rojo" style="width: 280px;">
+                NUESTRO CATÁLOGO
+            </button>
+            <a href="#galeria-productos" class="btn-hero btn-rojo" style="width: 200px;">
+                VEA NUESTRA OFERTA
+            </a>
+            <a href="https://wa.me/240555391797?text=info%20vuestro%20canal" class="btn-hero btn-verde" style="width: 200px;">
+                CONTÁCTANOS
+            </a>
         </div>
-        <div>
-            <h2 style="font-size: 2rem;">🛡️</h2>
-            <h3 style="margin: 5px 0;">Garantía Real</h3>
-            <p style="color: #666; font-size: 0.9rem;">Revisamos cada producto al 100%.</p>
-        </div>
-        <div>
-            <h2 style="font-size: 2rem;">💎</h2>
-            <h3 style="margin: 5px 0;">Mejor Precio</h3>
-            <p style="color: #666; font-size: 0.9rem;">Calidad premium a costo de amigo.</p>
+        
+        <div style="text-align: center; margin-top: 30px; opacity: 0.7;">
+            <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">🔒 Pago Seguro</span>
+            <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">⭐ Calidad Garantizada</span>
+            <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">🚀 Entrega Verificada</span>
         </div>
     </section>
-    
-    <section style="background: linear-gradient(45deg, #d31212, #000); color: white; padding: 50px 20px; text-align: center; margin: 20px 0; border-radius: 20px;">
+
+    <!-- Beneficios -->
+    <section style="background: #fff;">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center;">
+            <div>
+                <h2 style="font-size: 2rem;">🚀</h2>
+                <h3>Entrega Rápida</h3>
+                <p style="color: #666; font-size: 0.9rem;">Tus equipos en tiempo récord.</p>
+            </div>
+            <div>
+                <h2 style="font-size: 2rem;">🛡️</h2>
+                <h3>Garantía Real</h3>
+                <p style="color: #666; font-size: 0.9rem;">Revisamos cada producto al 100%.</p>
+            </div>
+            <div>
+                <h2 style="font-size: 2rem;">💎</h2>
+                <h3>Mejor Precio</h3>
+                <p style="color: #666; font-size: 0.9rem;">Calidad premium a costo de amigo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oferta de la semana -->
+    <section style="background: linear-gradient(45deg, #d31212, #000); color: white; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 1200px;">
         <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem;">⚡ OFERTA DE LA SEMANA ⚡</h2>
         <p style="font-size: 1.2rem;">Lleva tu <strong>iPhone 11</strong> por solo <span style="font-size: 2rem; color: #ffeb3b;">160.000 FCFA</span></p>
         <p>¡Solo quedan 3 unidades disponibles!</p>
-        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20aprovechar%20la%20oferta%20del%20iPhone%2011%20de%20160.000%20FCFA%20⚡" style="display: inline-block; background: white; color: #d31212; padding: 15px 30px; border-radius: 50px; font-weight: bold; text-decoration: none; margin-top: 20px;">👉 ENCARGAR AHORA</a>
+        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20aprovechar%20la%20oferta%20del%20iPhone%2011%20de%20160.000%20FCFA%20⚡" 
+           class="btn-hero" style="background: white; color: #d31212; display: inline-block; margin-top: 20px;">
+            👉 ENCARGAR AHORA
+        </a>
     </section>
-    
-    <section id="productos" style="padding: 50px 20px; background: #f0f0f0; font-family: sans-serif;">
-        <h2 style="text-align: center; color: #d31212; font-size: 2.5rem; margin-bottom: 40px; text-transform: uppercase;">🔥 Nuestras Joyas</h2>
+
+    <!-- Productos destacados -->
+    <section id="productos" style="background: #f0f0f0;">
+        <h2 class="seccion-titulo">🔥 Nuestras Joyas</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: auto;">
-            
-            <article class="tarjeta-premium" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.4s; position: relative; text-align: center; padding-bottom: 20px;">
-                <div style="background: #d31212; color: white; padding: 5px 15px; position: absolute; top: 15px; left: -10px; transform: rotate(-5deg); font-weight: bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">TOP VENTAS</div>
-                
-                <img src="img/iphon.JPEG" alt="Smartphone" style="width: 100%; height: 250px; object-fit: cover; transition: 0.5s;">
-                
-                <div style="padding: 20px;">
+        <div class="grid-productos">
+            <!-- iPhone/Samsung -->
+            <article class="tarjeta-premium">
+                <div class="badge-oferta">TOP VENTAS</div>
+                <div style="height: 250px; overflow: hidden;">
+                    <img src="img/iphon.JPEG" alt="Smartphone">
+                </div>
+                <div style="padding: 20px; text-align: center;">
                     <h3 style="margin: 10px 0; color: #333;">IPhone / Samsung</h3>
                     <p style="color: #666; font-size: 0.9rem;">Última tecnología en tu mano.</p>
                     <div style="font-size: 1.8rem; font-weight: bold; color: #d31212; margin: 15px 0;">Desde 100.000 FCFA</div>
-                    
-                    <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" style="display: block; background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
+                    <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" 
+                       class="btn-whatsapp">
                         💬 ¡Lo quiero YA!
                     </a>
                 </div>
             </article>
-    
-            <article class="tarjeta-premium" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.4s; position: relative; text-align: center; padding-bottom: 20px;">
-                <div style="background: #333; color: white; padding: 5px 15px; position: absolute; top: 15px; left: -10px; transform: rotate(-5deg); font-weight: bold;">POTENCIA PURA</div>
-                
-                <img src="img/laptopi.JPEG" alt="laptop" style="width: 100%; height: 250px; object-fit: cover;">
-                
-                <div style="padding: 20px;">
+            
+            <!-- Laptops -->
+            <article class="tarjeta-premium">
+                <div class="badge-oferta" style="background: #333;">POTENCIA PURA</div>
+                <div style="height: 250px; overflow: hidden;">
+                    <img src="img/laptopi.JPEG" alt="Laptop">
+                </div>
+                <div style="padding: 20px; text-align: center;">
                     <h3 style="margin: 10px 0; color: #333;">Laptops</h3>
                     <p style="color: #666; font-size: 0.9rem;">Ideal para diseño y trabajos de clase.</p>
                     <div style="font-size: 1.8rem; font-weight: bold; color: #d31212; margin: 15px 0;">Desde 100.000 FCFA</div>
-                    
-                    <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" style="display: block; background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
+                    <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" 
+                       class="btn-whatsapp">
                         💬 ¡Lo quiero Ya!
                     </a>
                 </div>
             </article>
-    
         </div>
     </section>
-   
-    
-    <section id="intercambios" style="background-color: #f9f9f9; padding: 40px 20px; border-top: 3px solid red;">
+
+    <!-- Intercambios -->
+    <section id="intercambios" style="background-color: #f9f9f9; border-top: 3px solid red;">
         <div style="text-align: center; max-width: 800px; margin: auto;">
-            <div> <h2 style="color: red; font-size: 2rem;">🔄 Plan Renove: Intercambio</h2></div>
-            <br>
-            <p>¿Quieres un móvil nuevo? 
-                <br>
-                <strong>trae tu movil antiguo (cualquier documentacion ) ➕ trae algo de dinero.</strong>
-                <br>
-                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-            </div>
-    </section>
-+
-    <section id="ordenadores" style="padding: 40px 20px;">
-        <h2 style="text-align: center;">💻 Ordenadores a Buen Precio</h2>
-        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
-            <div style="border: 1px solid #ddd; padding: 15px; width: 250px; text-align: center; border-radius: 10px;">
-                <img src="img/laptopelitebook.JPEG" alt="Laptop Oficina" style="width: 100%;">
-                <h3>Laptop Trabajo</h3>
-                <p>Perfecta para estudios y oficina.</p>
-                <span style="color: red; font-weight: bold; font-size: 1.2rem;">Oferta: 100.000 FCFA</span>
-            </div>
-            <div style="border: 1px solid #ddd; padding: 15px; width: 250px; text-align: center; border-radius: 10px;">
-                <img src="img/laptopa.JPEG" alt="Laptop Elitebook 840 G3" style="width: 100%;">
-                <h3>Laptop perfecto para estas navidades</h3>
-                <p>Perfecta para estudios y oficina.</p>
-                <span style="color: red; font-weight: bold; font-size: 1.2rem;">Oferta: 100.000 FCFA</span>
-            </div>
-            <div style="border: 1px solid #ddd; padding: 15px; width: 250px; text-align: center; border-radius: 10px;">
-                <img src="img/oferta.JPEG" alt="Hp Elitebook 840 G3" style="width: 100%;">
-                <h3>Hp Elitebook 840 G3</h3>
-                <p>Ventas al por mayor .</p>
-                <span style="color: red; font-weight: bold; font-size: 1.2rem;">Oferta: 150.000 FCFA </span>
-            </div>
-            <div style="border: 1px solid #ddd; padding: 15px; width: 250px; text-align: center; border-radius: 10px;">
-                <img src="img/laptopd.JPEG" alt="Dell Latitude 3310" style="width: 100%;">
-                <h3>256 GB SSD/8 GB RAM</h3>
-                <p>Máxima calidad a tu alcance.</p>
-                <span style="color: red; font-weight: bold; font-size: 1.2rem;">Oferta: 150.000 FCFA </span>
-            </div>
+            <h2 style="color: red; font-size: 2rem;">🔄 Plan Renove: Intercambio</h2>
+            <p style="font-size: 1.1rem;">
+                ¿Quieres un móvil nuevo?<br>
+                <strong>Trae tu móvil antiguo (cualquier documentación) + trae algo de dinero.</strong>
+            </p>
+            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio" 
+               class="btn-whatsapp" style="max-width: 300px; margin: 20px auto;">
+                Pedir por WhatsApp 📲
+            </a>
         </div>
     </section>
 
-    <section id="electro" style="padding: 40px 20px; background-color: #eee;">
-        <h2 style="text-align: center;">🏠 Electrodomésticos y Más</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-            <div style="background: white; padding: 10px; border-radius: 5px; text-align: center;">
-                <h4>Televisores Smart</h4>
-                <p>de varios tamaños"</p>
-            </div>
-            <div style="background: white; padding: 10px; border-radius: 5px; text-align: center;">
-                <h4>Microondas</h4>
-                <p>Nuevos y con garantía</p>
-            </div>
-            <div style="background: white; padding: 10px; border-radius: 5px; text-align: center;">
-                <h4>lavadoras</h4>
-                <p>Las mejores marcas (Sharp, midea,etc)</p>
+    <!-- Catálogo principal -->
+    <section id="galeria-productos" style="background-color: #f4f4f4;">
+        <h2 class="seccion-titulo">🛍️ Nuestro Catálogo</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 50px;">Haz clic en el botón de WhatsApp para consultar disponibilidad</p>
+        
+        <!-- Laptops -->
+        <div style="margin-bottom: 60px;">
+            <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 25px;">
+                💻 LAPTOPS
+            </h3>
+            <div class="grid-productos">
+                <!-- Producto 1 -->
+                <div class="tarjeta-premium">
+                    <img src="img/laptopd.JPEG" alt="Laptop Dell" style="height: 220px;">
+                    <div style="padding: 20px; text-align: center;">
+                        <h4 style="margin: 0;">DELL LATITUDE 3310</h4>
+                        <p style="color: #888; font-size: 0.9rem; margin: 10px 0;">8GB RAM - 256GB INTEL CORE</p>
+                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
+                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310" class="btn-whatsapp">
+                            Pedir por WhatsApp 📲
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="tarjeta-premium">
+                    <img src="img/laptopa.JPEG" alt="Laptop HP" style="height: 220px;">
+                    <div style="padding: 20px; text-align: center;">
+                        <h4 style="margin: 0;">HP ELITEBOOK 840 G1</h4>
+                        <p style="color: #888; font-size: 0.9rem; margin: 10px 0;">8GB RAM - 500GB INTEL CORE</p>
+                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
+                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20HP%20840" class="btn-whatsapp">
+                            Pedir por WhatsApp 📲
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="tarjeta-premium">
+                    <img src="img/laptopb.JPEG" alt="Laptop HP G5" style="height: 220px;">
+                    <div style="padding: 20px; text-align: center;">
+                        <h4 style="margin: 0;">HP ELITEBOOK 850 G5</h4>
+                        <p style="color: #888; font-size: 0.9rem; margin: 10px 0;">8GB RAM - 500GB SSD</p>
+                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">200.000 FCFA</p>
+                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20HP%20G5" class="btn-whatsapp">
+                            Pedir por WhatsApp 📲
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <section id="galeria-productos" style="padding: 60px 5%; background-color: #f4f4f4; font-family: 'Segoe UI', sans-serif; width: 100%; box-sizing: border-box;">
-    
-            <h2 style="text-align: center; color: #d31212; font-size: 2.8rem; margin-bottom: 10px; text-transform: uppercase; font-weight: 800;">
-                🛍️ Nuestro Catálogo
-            </h2>
-            <p style="text-align: center; color: #666; margin-bottom: 50px;">Haz clic en el botón de WhatsApp para consultar disponibilidad</p>
         
-            <div style="margin-bottom: 60px;">
-                <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 25px; box-shadow: 3px 3px 10px rgba(0,0,0,0.1);">
-                    💻 LAPTOPS
-                </h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-                    
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="img/laptopd.JPEG" alt="Laptop" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">DELL LATITUDE 3310</h4>
-                            <p style="color: #888; font-size: 0.9rem; margin: 10px 0;">8GB RAM - 256GB INTEL CORE</p>
-                            <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
-                            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                    </div>
-        
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="img/laptopa.JPEG" alt="Laptop" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">HP ELITEBOOK 840 G1</h4>
-                            <p style="color: #888; font-size: 0.9rem; margin: 10px 0;">8GB RAM - 500GB INTEL CORE</p>
-                            <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
-                            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20HP%20840" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                    </div>
-        
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="img/laptopb.JPEG" alt="Laptop" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">HP ELITEBOOK 850 G5</h4>
-                            <p style="color: #888; font-size: 0.9rem; margin: 10px 0;">8GB RAM - 500GB SSD</p>
-                            <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">200.000 FCFA</p>
-                            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20HP%20G5" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
+        <!-- Móviles -->
+        <div style="margin-bottom: 60px;">
+            <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 25px;">
+                📱 MÓVILES
+            </h3>
+            <div class="grid-productos">
+                <!-- iPhone -->
+                <div class="tarjeta-premium">
+                    <img src="img/iphone.JPEG" alt="iPhone" style="height: 220px;">
+                    <div style="padding: 20px; text-align: center;">
+                        <h4 style="margin: 0;">iPhone 11</h4>
+                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">160.000 FCFA</p>
+                        <a href="https://wa.me/240555391797?text=Info%20iPhone%2011" class="btn-whatsapp">
+                            Pedir por WhatsApp 📲
+                        </a>
                     </div>
                 </div>
             </div>
-        
-            <div style="margin-bottom: 60px;">
-                <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 25px;">
-                    📱 MÓVILES
-                </h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="img/iphone.JPEG" alt="iPhone" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">iPhone 11</h4>
-                            <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">160.000 FCFA</p>
-                            <a href="https://wa.me/240555391797?text=Info%20iPhone%2011" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                    </div>
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="img/iphon.JPEG" alt="iphone" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">Iphone 17</h4>
-                            <a href="https://wa.me/240555391797?text=Info%20Samsung" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            <div style="margin-bottom: 60px;">
-                <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 25px;">
-                    🏠 ELECTRODOMÉSTICOS
-                </h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="televisor.JPEG" alt="TV" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">SMART TV 4K</h4>
-                          <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">185.000 FCFA</p>
-                            <a href="https://wa.me/240555391797?text=Info%20TV" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-                        <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                            <img src="luces.JPEG" alt="Luces Led" style="width: 100%; height: 220px; object-fit: cover;">
-                            <div style="padding: 20px; text-align: center;">
-                                <h4 style="margin: 0;">LUCES LED</h4>
-                               <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">45.000 FCFA</p>
-                                <a href="https://wa.me/240555391797?text=Info%20LED" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                            </div>
-                        </div>
-                        </div> <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
-                            <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                                <img src="refrig.JPEG" alt="TV" style="width: 100%; height: 220px; object-fit: cover;">
-                                <div style="padding: 20px; text-align: center;">
-                                    <h4 style="margin: 0;">REFRIGERADORAS LG</h4>
-                                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">250.000 FCFA</p>
-                                   <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">280.000 FCFA</p>
-                                    <a href="https://wa.me/240555391797?text=InfoREFRIGE%" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                                </div>
-                            </div>
-                    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="lavado.JPEG" alt="Lavadora" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">LAVADORAS SOLSTAR</h4>
-                            <a href="https://wa.me/240555391797?text=Info%20Lavadora%20SOLSTAR" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                          <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                        <img src="neverah.JPEG" alt="Nevera" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">NEVERAS SOLSTAR</h4>
-                            <a href="https://wa.me/240555391797?text=Info%20Nevera%20SOLSTAR" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-
-                        <img src="estufa.JPEG" alt="Estufa" style="width: 100%; height: 220px; object-fit: cover;">
-                        <div style="padding: 20px; text-align: center;">
-                            <h4 style="margin: 0;">ESTUFA DE GAS DE 6 QUEMADORES</h4>
-                            <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">150.000 FCFA/250.000 FCFA</p>
-                            <a href="https://wa.me/240555391797?text=Info%20ESTUFA" style="background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; margin-top: 10px; font-weight: bold;">Pedir por WhatsApp 📲</a>
-                        </div>
-                          </div>
-                </div>
-            </div>
-        
-           <div style="display: flex; justify-content: center; width: 100%; padding: 20px 0;">
-    <div style="background: linear-gradient(145deg, #fff0f0, #ffffff); padding: 30px; border-radius: 30px; border: 3px dashed #d31212; max-width: 1000px; width: 90%;">
-        
-        <h3 style="color: #d31212; text-align: center; font-size: 2rem; margin-bottom: 25px;">💥 OFERTAS EXPLOSIVAS 💥</h3>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 320px)); gap: 30px; justify-content: center;">
-            
-            <div style="background: white; border-radius: 20px; overflow: hidden; border: 1px solid #ffcccc; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                <div style="background: #d31212; color: white; position: absolute; top: 0; left: 0; padding: 5px 15px; font-weight: bold; border-radius: 0 0 15px 0; z-index: 10;">OFERTA</div>
-                
-                <img src="freido.JPEG" alt="Oferta" style="width: 100%; height: 220px; object-fit: cover; display: block;">
-                
-                <div style="padding: 20px; text-align: center;">
-                    <h4 style="margin: 0; color: #333; font-size: 1.2rem;">FREIDORAS ELÉCTRICAS</h4>
-                    <p style="text-decoration: line-through; color: #999; margin: 10px 0 5px 0;">180.000 FCFA</p>
-                    <p style="color: #d31212; font-weight: bold; font-size: 1.4rem; margin-bottom: 15px;">140.000 FCFA</p>
-                    <a href="https://wa.me/240555391797?text=Oferta%20Freidora" style="background: #d31212; color: white; text-decoration: none; padding: 12px; border-radius: 10px; display: block; font-weight: bold; transition: 0.3s;">¡APROVECHAR! 🚀</a>
-                </div>
-            </div>
-
         </div>
-    </div>
-</div>    
-                </seccion>
-        <script>
-            document.oncontextmenu = function(){
-                alert("Contenido protegido por Compra Ya 🛡️");
-                return false;
-            };
-        </script>
-        <footer class="main-footer">
-                <div class="footer-container">
-                    <h2 class="footer-logo">COMPRA YA!!</h2>
-                    <p class="footer-tagline">Tu tienda de confianza en Guinea Ecuatorial. ¡Calidad garantizada!</p>
-            
-                    <div class="footer-contact">
-                        <a href="https://wa.me/240555391797" class="whatsapp-btn">
-                            <i class="fab fa-whatsapp"></i> WhatsApp: +240 555391797
-                        </a>
-                    </div>
-            
-                    <div class="footer-socials">
-                        <a href="https://www.instagram.com/historias_con_owono?igsh=MWc2b3M0MTVudnowNQ==" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                            <span>Instagram</span>
-                        </a>
-                        <a href="https://www.tiktok.com/@owonoowonoabegue?_r=1&_t=ZM-92LvYOQi47s" target="_blank" class="social-link">
-                            <i class="fab fa-tiktok"></i>
-                            <span>TikTok</span>
-                        </a>
-                        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank" class="social-link">
-                            <i class="fas fa-bullhorn"></i>
-                            <span>Canal Oficial</span>
-                        </a>
-                    </div>
-            
-                    <div class="footer-bottom">
-                        <p>&copy; 2025 COMPRA YA!! - Todos los derechos reservados.</p>
-                    </div>
-                </div>
-                <section id="terminos-seguridad" style="padding: 60px 20px; background-color: #fff; font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: auto; line-height: 1.6; color: #333;">
-    
-                    <div style="text-align: center; margin-bottom: 40px;">
-                        <h2 style="color: #d31212; font-size: 2.2rem; text-transform: uppercase;">🛡️ Compra Segura y Garantía</h2>
-                        <p style="color: #666;">Tu confianza es nuestro activo más valioso.</p>
-                    </div>
-                
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                        <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
-                            <h4 style="margin-top: 0;">✅ Verificación de Productos</h4>
-                            <p style="font-size: 0.9rem;">Todos nuestros equipos (Laptops, iPhones, Samsung) son revisados por técnicos expertos antes de ser entregados para asegurar su funcionamiento al 100%.</p>
-                        </div>
-                
-                        <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
-                            <h4 style="margin-top: 0;">📦 Envíos y Entregas</h4>
-                            <p style="font-size: 0.9rem;">Las entregas se coordinan vía WhatsApp. El pago se realiza generalmente contra entrega o mediante los métodos acordados para garantizar que recibas lo que pediste.</p>
-                        </div>
-                
-                        <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
-                            <h4 style="margin-top: 0;">🔄 Política de Garantía</h4>
-                            <p style="font-size: 0.9rem;">Ofrecemos garantía técnica limitada. En caso de fallos de fábrica, el cliente debe reportarlo en las primeras 48-72 horas para gestionar el soporte o cambio.</p>
-                        </div>
-                
-                        <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
-                            <h4 style="margin-top: 0;">🔒 Privacidad de Datos</h4>
-                            <p style="font-size: 0.9rem;">Tu número de teléfono y datos de contacto solo se utilizan para gestionar tu pedido. En Compra Ya no compartimos tu información con terceros.</p>
-                        </div>
-                    </div>
-                
-                    <p style="text-align: center; margin-top: 40px; font-weight: bold; color: #d31212;">
-                        Al realizar un pedido, aceptas nuestras condiciones de venta profesional.
-                    </p>
-                </section>
-       
-         </footer>
+    </section>
 
-         <footer style="background-color: #1d1d1f; color: #f5f5f7; padding: 60px 20px; font-family: 'Segoe UI', sans-serif;">
-            <div style="max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
-                
-                <div>
-                    <h3 style="color: #fff; margin-bottom: 20px; font-size: 1.5rem;">Compra Ya 🛒</h3>
-                    <p style="font-size: 0.9rem; line-height: 1.6; color: #a1a1a6;">
-                        Líderes en tecnología premium. Ofrecemos los mejores equipos con garantía real y entrega inmediata. Tu satisfacción es nuestra prioridad.
-                    </p>
-                </div>
+    <!-- Términos y seguridad -->
+    <section id="terminos-seguridad" style="background-color: #fff; max-width: 900px; margin: auto;">
+        <h2 class="seccion-titulo">🛡️ Compra Segura y Garantía</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">Tu confianza es nuestro activo más valioso.</p>
         
-                <div>
-                    <h4 style="color: #fff; margin-bottom: 20px;">Explorar</h4>
-                    <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
-                        <li style="margin-bottom: 10px;"><a href="#inicio" style="color: #a1a1a6; text-decoration: none;">Inicio</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#galeria-productos" style="color: #a1a1a6; text-decoration: none;">Productos</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#terminos-seguridad" style="color: #a1a1a6; text-decoration: none;">Términos y Condiciones</a></li>
-                    </ul>
-                </div>
-        
-                <div id=contacto
-                 style="text-align: center;">
-                    <h4 style="color: #fff; margin-bottom: 20px;">Síguenos</h4>
-                    <div style="display: flex; justify-content: center; gap: 20px;">
-                        
-                        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank" title="Canal de WhatsApp" style="transition: 0.3s; filter: grayscale(100%) invert(1);">
-                            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 30px; height: 30px;">
-                        </a>
-        
-                        <a href="https://www.tiktok.com/@owonoowonoabegue" target="_blank" title="TikTok" style="transition: 0.3s; filter: grayscale(100%) invert(1);">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" style="width: 30px; height: 30px;">
-                        </a>
-        
-                        <a href="https://www.instagram.com/historias_con_owono" target="_blank" title="Instagram" style="transition: 0.3s; filter: grayscale(100%) invert(1);">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 30px; height: 30px;">
-                        </a>
-        
-                    </div>
-                    <p style="margin-top: 20px; font-size: 0.8rem; color: #a1a1a6;">¡Entérate de las novedades primero!</p>
-                </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
+                <h4>✅ Verificación de Productos</h4>
+                <p>Todos nuestros equipos son revisados por técnicos expertos para asegurar su funcionamiento al 100%.</p>
             </div>
-        
-            <div style="max-width: 1200px; margin: 40px auto 0; border-top: 1px solid #424245; padding-top: 20px; text-align: center; font-size: 0.8rem; color: #86868b;">
-                <p>© 2024 Compra Ya. Todos los derechos reservados. Diseñado para ofrecer la mejor experiencia tecnológica.</p>
+            
+            <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
+                <h4>📦 Envíos y Entregas</h4>
+                <p>Entregas coordinadas vía WhatsApp. Pago contra entrega o mediante métodos acordados.</p>
             </div>
-       <script>
-    // 1. EFECTO DE APARICIÓN AL BAJAR (SCROLL REVEAL)
-    // Esto hace que las tarjetas de productos aparezcan suavemente
-    const observarElementos = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-            }
+            
+            <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
+                <h4>🔄 Política de Garantía</h4>
+                <p>Garantía técnica limitada. Reporte en las primeras 48-72 horas para soporte o cambio.</p>
+            </div>
+            
+            <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-left: 5px solid #d31212;">
+                <h4>🔒 Privacidad de Datos</h4>
+                <p>Tu información solo se utiliza para gestionar tu pedido. No compartimos datos con terceros.</p>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 40px; font-weight: bold; color: #d31212;">
+            Al realizar un pedido, aceptas nuestras condiciones de venta profesional.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-contenido">
+            <div>
+                <h3 style="color: #fff; margin-bottom: 20px;">Compra Ya 🛒</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: #a1a1a6;">
+                    Líderes en tecnología premium. Ofrecemos los mejores equipos con garantía real y entrega inmediata.
+                </p>
+            </div>
+            
+            <div>
+                <h4 style="color: #fff; margin-bottom: 20px;">Explorar</h4>
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                    <li style="margin-bottom: 10px;"><a href="#inicio" style="color: #a1a1a6; text-decoration: none;">Inicio</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#galeria-productos" style="color: #a1a1a6; text-decoration: none;">Productos</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#terminos-seguridad" style="color: #a1a1a6; text-decoration: none;">Términos</a></li>
+                </ul>
+            </div>
+            
+            <div id="contacto" style="text-align: center;">
+                <h4 style="color: #fff; margin-bottom: 20px;">Síguenos</h4>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank" style="color: #a1a1a6;">
+                        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@owonoowonoabegue" target="_blank" style="color: #a1a1a6;">
+                        <i class="fab fa-tiktok" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="https://www.instagram.com/historias_con_owono" target="_blank" style="color: #a1a1a6;">
+                        <i class="fab fa-instagram" style="font-size: 1.5rem;"></i>
+                    </a>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.8rem; color: #a1a1a6;">¡Entérate de las novedades primero!</p>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid #424245; padding-top: 20px; text-align: center; font-size: 0.8rem; color: #86868b; margin-top: 40px;">
+            <p>© 2024 Compra Ya. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll suave para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.tarjeta-premium, .categoria-contenedor').forEach(el => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(30px)";
-        el.style.transition = "all 0.8s ease-out";
-        observarElementos.observe(el);
-    });
-
-    // 2. NAVEGACIÓN SUAVE (SMOOTH SCROLL)
-    // Para que al pulsar "Inicio" o "Productos" la web se deslice elegantemente
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+        
+        // Efecto en botones de WhatsApp
+        document.querySelectorAll('.btn-whatsapp').forEach(boton => {
+            boton.addEventListener('click', function() {
+                this.style.transform = "scale(0.95)";
+                setTimeout(() => this.style.transform = "scale(1)", 100);
+            });
         });
-    });
-
-    // 3. SEGURIDAD: MENSAJE PERSONALIZADO AL CLIC DERECHO
-    document.oncontextmenu = function(e){
-        // Opcional: puedes quitar el alert si te parece molesto y solo dejar el return false
-        alert("🛡️ Contenido Protegido - Compra Ya");
-        return false;
-    };
-
-    console.log("¡Compra Ya Web: JavaScript cargado con éxito! 🚀");
-    / Efecto visual al pulsar botones
-            document.querySelectorAll('.btn-whatsapp').forEach(boton => {
-                boton.addEventListener('click', function() {
-                    this.style.transform = "scale(0.95)";
-                    setTimeout(() => this.style.transform = "scale(1)", 100);
-                });
-            });
-</script>
-        </footer>
         
-        <style>
-            /* Efecto de color al pasar el mouse por los iconos */
-            footer a:hover {
-                filter: none !important; /* Recupera su color original al pasar el mouse */
-                transform: translateY(-3px);
-            }
-        </style>
-        <script>
-            // 1. EFECTO DE APARICIÓN AL BAJAR (SCROLL REVEAL)
-            // Esto hace que las tarjetas de productos aparezcan suavemente
-            const observarElementos = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
-                    }
-                });
-            }, { threshold: 0.1 });
-        
-            document.querySelectorAll('.tarjeta-premium, .categoria-contenedor').forEach(el => {
-                el.style.opacity = "0";
-                el.style.transform = "translateY(30px)";
-                el.style.transition = "all 0.8s ease-out";
-                observarElementos.observe(el);
-            });
-        
-            // 2. NAVEGACIÓN SUAVE (SMOOTH SCROLL)
-            // Para que al pulsar "Inicio" o "Productos" la web se deslice elegantemente
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        
-            // 3. SEGURIDAD: MENSAJE PERSONALIZADO AL CLIC DERECHO
-            document.oncontextmenu = function(e){
-                // Opcional: puedes quitar el alert si te parece molesto y solo dejar el return false
-                alert("🛡️ Contenido Protegido - Compra Ya");
-                return false;
-            };
-        
-            console.log("¡Compra Ya Web: JavaScript cargado con éxito! 🚀");
-        </script>
-
+        // Protección contra clic derecho
+        document.oncontextmenu = function() {
+            alert("🛡️ Contenido Protegido - Compra Ya");
+            return false;
+        };
+    </script>
+</body>
 </html>
-
-
-
