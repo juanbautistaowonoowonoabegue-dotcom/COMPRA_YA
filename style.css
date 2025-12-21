@@ -21,6 +21,131 @@
     --transicion: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     --curva: 18px;
 }
+/* Asegura que todas las imágenes se comporten bien */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Clase para contenedores de producto */
+.contenedor-imagen-producto {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.contenedor-imagen-producto img {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+/* Imágenes de laptops */
+.imagen-laptop {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    padding: 20px;
+    background: linear-gradient(145deg, #f8f9fa, #ffffff);
+    border-bottom: 1px solid #eee;
+}
+
+/* Imágenes de móviles */
+.imagen-movil {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+    background-color: #000;
+}
+
+/* Imágenes de electrodomésticos */
+.imagen-electro {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+/* Placeholder si falla la imagen */
+.imagen-placeholder {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #f5f5f7, #e8e8e8);
+    color: #999;
+    font-size: 1.2rem;
+}
+/* Añade esto a tu CSS existente */
+:root {
+    --altura-imagen: 280px; /* Altura uniforme para todas */
+}
+
+/* Para productos electrónicos (laptops, móviles) */
+.imagen-electronico {
+    width: 100%;
+    height: var(--altura-imagen);
+    object-fit: contain; /* Muestra todo sin recortar */
+    background-color: #f5f5f7; /* Fondo gris si la imagen es más pequeña */
+    padding: 15px;
+}
+
+/* Para electrodomésticos grandes */
+.imagen-electrodomestico {
+    width: 100%;
+    height: var(--altura-imagen);
+    object-fit: cover; /* Llena el espacio, recortando si es necesario */
+    background-color: #f8f9fa;
+}
+
+/* Contenedor inteligente */
+.imagen-contenedor-inteligente {
+    width: 100%;
+    height: var(--altura-imagen);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f5f7, #ffffff);
+    overflow: hidden;
+}
+
+.imagen-contenedor-inteligente img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+.imagen-fondo {
+    width: 100%;
+    height: 250px;
+    background-size: cover; /* o contain */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.imagen-contenedor {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.imagen-ajustada {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Muestra toda la imagen */
+    /* o object-fit: cover; para llenar el espacio recortando */
+}
+.producto-imagen {
+    width: 100%;
+    height: 250px; /* Altura fija para uniformidad */
+    object-fit: cover; /* Ajusta manteniendo proporciones */
+}
 
 * {
     margin: 0;
@@ -474,3 +599,4 @@ h3 {
     font-size: 1rem;
     margin-right: 0.5rem;
 }
+
