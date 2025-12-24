@@ -181,6 +181,18 @@ h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
 }
+.seccion-titulo {
+    text-align: center !important;
+}
+.contenedor {
+    max-width: 100% !important;
+}
+.seccion-titulo {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
 
 h2 {
     font-size: 2.8rem;
@@ -599,4 +611,5 @@ h3 {
     font-size: 1rem;
     margin-right: 0.5rem;
 }
+
 
