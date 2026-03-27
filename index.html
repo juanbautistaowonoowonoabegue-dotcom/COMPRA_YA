@@ -67,29 +67,67 @@
 
     <!-- Hero Section -->
     <<!-- HERO SECTION (mantenido igual) -->
+<!-- HERO SECTION MEJORADA - CON BOTÓN IA -->
 <section id="inicio" class="hero">
     <h1 class="titulo-principal">¡Hola Jef@! <br>Sea Bienvenido a COMPRA YA!!</h1>
     <p class="subtitulo">La mejor tecnología de Malabo al alcance de un clic.</p>
     
     <div class="botones-hero">
-        <button onclick="window.location.href='#galeria-productos'" class="btn-hero btn-rojo" style="width: 280px;">
-            NUESTRO CATÁLOGO
+        <!-- Botón Catálogo -->
+        <button onclick="window.location.href='#galeria-productos'" 
+                class="btn-hero btn-rojo">
+            📋 NUESTRO CATÁLOGO
         </button>
-        <a href="#galeria-productos" class="btn-hero btn-rojo" style="width: 200px;">
-            VEA NUESTRA OFERTA
+        
+        <!-- Botón Oferta -->
+        <a href="#galeria-productos" 
+           class="btn-hero btn-rojo">
+            🔥 VEA NUESTRA OFERTA
         </a>
-        <a href="https://wa.me/240555391797?text=info%20vuestro%20canal" class="btn-hero btn-verde" style="width: 200px;">
-            CONTÁCTANOS
+        
+        <!-- Botón Contacto WhatsApp -->
+        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
+           class="btn-hero btn-verde">
+            💬 CONTÁCTANOS
         </a>
+        
+        <!-- Nuevo Botón Inteligencia Artificial -->
+        <button onclick="abrirModalIA()" 
+                class="btn-hero btn-ia">
+            🤖 Pregunta a la IA
+        </button>
     </div>
     
-    <div style="text-align: center; margin-top: 30px; opacity: 0.7;">
-        <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">🔒 Pago Seguro</span>
-        <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">⭐ Calidad Garantizada</span>
-        <span style="margin: 0 10px; font-size: 0.8rem; color: #666;">🚀 Entrega Verificada</span>
+    <div style="text-align: center; margin-top: 35px; opacity: 0.75;">
+        <span style="margin: 0 12px; font-size: 0.85rem; color: #555;">🔒 Pago Seguro</span>
+        <span style="margin: 0 12px; font-size: 0.85rem; color: #555;">⭐ Calidad Garantizada</span>
+        <span style="margin: 0 12px; font-size: 0.85rem; color: #555;">🚀 Entrega Verificada</span>
     </div>
 </section>
 
+<!-- MODAL INTELIGENCIA ARTIFICIAL -->
+<div id="modal-ia" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModalIA()">×</span>
+        <h2 style="text-align: center; color: #d31212;">🤖 Asistente Inteligente de Compra Ya</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 25px;">
+            Pregúntame por cualquier producto de nuestro catálogo
+        </p>
+        
+        <input type="text" id="busqueda-ia" 
+               placeholder="Ej: Quiero un iPhone, laptop Dell, G5..." 
+               style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 1.05rem; margin-bottom: 20px;">
+        
+        <button onclick="buscarConIA()" 
+                style="width: 100%; padding: 16px; background: #d31212; color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
+            Buscar con IA
+        </button>
+        
+        <div id="resultado-ia" style="margin-top: 25px; padding: 15px; background: #f9f9f9; border-radius: 12px; min-height: 80px; display: none;">
+            <!-- Los resultados aparecerán aquí -->
+        </div>
+    </div>
+</div>
 <!-- VIDEO DE PRESENTACIÓN (Publicidad estratégica) -->
 <section style="padding: 60px 20px; background: #fff; text-align: center;">
     <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: #d31212; margin-bottom: 30px;">
