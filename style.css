@@ -29,7 +29,114 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* ====================== HEADER PROFESIONAL CON LOGO DIFUMINADO ====================== */
 
+header {
+    background: #ffffff;
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.header-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Contenedor del logo con difuminado inferior */
+.logo-container {
+    position: relative;
+    max-width: 380px;           /* Ajusta este valor según el tamaño real de tu logo */
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 100%;
+    height: auto;
+    max-height: 78px;           /* Altura ideal para cabecera premium */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
+}
+
+/* Hover sutil en el logo */
+.logo-img:hover {
+    transform: scale(1.03);
+}
+
+/* DIFUMINADO PROFESIONAL EN LA PARTE INFERIOR DEL LOGO */
+.logo-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;               /* Altura del difuminado (ajusta si quieres más o menos suave) */
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 35%,
+        rgba(255, 255, 255, 0.75) 65%,
+        #ffffff 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Navegación */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #1d1d1f;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.02rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #d31212;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .header-content {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .nav-links {
+        gap: 18px;
+        justify-content: center;
+        width: 100%;
+        margin-top: 12px;
+    }
+    
+    .logo-img {
+        max-height: 65px;
+    }
+    
+    .logo-container::after {
+        height: 38px;
+    }
+}
 html {
     scroll-behavior: smooth;
 }
