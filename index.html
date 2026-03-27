@@ -1,121 +1,111 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    
-    <title>COMPRA YA!! | Ofertas Imbatibles</title>
-    <meta name="description" content="Las mejores ofertas en teléfonos y ordenadores en COMPRA YA!!">
-    
-    <link rel="icon" href="logo.JPEG" type="image/JPEG">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMPRA YA!!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body{font-family:Poppins;background:#f5f5f7;margin:0}
+
+/* HEADER PRO /
+header{position:relative}
+.header-img{height:180px;overflow:hidden}
+.header-img img{width:100%;height:100%;object-fit:cover}
+.fade{position:absolute;bottom:0;height:80px;width:100%;background:linear-gradient(to bottom,transparent,#fff)}
+nav{background:#fff;padding:15px;text-align:center}
+.logo{color:#d31212;font-family:'Bebas Neue';font-size:2rem}
+
+/ GRID /
+.grid-productos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:25px;padding:20px}
+
+/ TARJETAS /
+.tarjeta-premium{background:#fff;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:0.3s;overflow:hidden}
+.tarjeta-premium:hover{transform:translateY(-6px)}
+.tarjeta-premium img{width:100%;height:220px;object-fit:contain;background:#f5f5f7}
+
+.tarjeta-contenido{padding:15px;text-align:center}
+
+/ BOTÓN /
+.btn-whatsapp{
+background:#1d1d1f;color:#fff;padding:12px;border-radius:30px;text-decoration:none;display:block;margin-top:10px;font-weight:bold}
+.btn-whatsapp:hover{background:#25d366}
+
+/ OFERTA /
+.oferta{background:linear-gradient(45deg,#d31212,#000);color:#fff;text-align:center;padding:40px;margin:30px;border-radius:20px}
+
+/ BOTÓN FLOTANTE */
+.float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25d366;
+color:#fff;
+padding:15px 18px;
+border-radius:50%;
+font-size:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+text-decoration:none;
+}
+</style>
 </head>
 
 <body>
 
-<!-- BOTÓN CONTACTO -->
-<a href="https://wa.me/240555391797?text=info%20vuestro%20canal" class="btn-hero btn-verde">
-CONTÁCTANOS
-</a>
+<header>
+<div class="header-img">
+<img src="logotipo.JPEG">
+<div class="fade"></div>
+</div>
+<nav><h1 class="logo">COMPRA YA!!</h1></nav>
+</header>
 
-<!-- OFERTA -->
-<a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20aprovechar%20la%20oferta%20del%20iPhone%2011%20de%20160.000%20FCFA%20⚡">
-👉 ENCARGAR AHORA
+<section class="oferta">
+<h2>⚡ OFERTA DE LA SEMANA ⚡</h2>
+<p>HP G5 por <b style="font-size:2rem;color:#ffeb3b;">250.000 FCFA</b></p>
+<a href="https://wa.me/240555391797?text=Hola%20quiero%20la%20oferta%20del%20HP%20G5%20de%20250.000%20FCFA" class="btn-whatsapp">
+ENCARGAR AHORA
 </a>
+</section>
 
-<!-- PRODUCTOS -->
-<a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustaría%20ver%20el%20catálogo%20de%20iPhones%20y%20Samsung%20disponibles%20📱">
-💬 ¡Lo quiero YA!
-</a>
+<h2 style="text-align:center;color:#d31212;">💻 LAPTOPS</h2>
 
-<a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20información%20sobre%20las%20Laptops%20disponibles%20💻">
-💬 ¡Lo quiero Ya!
-</a>
+<div class="grid-productos">
 
-<!-- INTERCAMBIO -->
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio">
-Pedir por WhatsApp 📲
-</a>
+<!-- NUEVOS -->
+<div class="tarjeta-premium">
+<img src="Dell.JPG">
+<div class="tarjeta-contenido">
+<h4>DELL</h4>
+<p>160.000 FCFA</p>
+<a href="https://wa.me/240555391797?text=Quiero%20la%20Dell%20160.000" class="btn-whatsapp">Comprar</a>
+</div>
+</div>
 
-<!-- CATÁLOGO -->
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310">
-Pedir por WhatsApp 📲
-</a>
+<div class="tarjeta-premium">
+<img src="G5.JPEG">
+<div class="tarjeta-contenido">
+<h4>HP G5</h4>
+<p>250.000 FCFA</p>
+<a href="https://wa.me/240555391797?text=Quiero%20la%20HP%20G5%20250.000" class="btn-whatsapp">Comprar</a>
+</div>
+</div>
 
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20hp%tactil">
-Pedir por WhatsApp 📲
-</a>
+<div class="tarjeta-premium">
+<img src="probook.JPEG">
+<div class="tarjeta-contenido">
+<h4>HP PROBOOK</h4>
+<p>175.000 FCFA</p>
+<a href="https://wa.me/240555391797?text=Quiero%20la%20Probook%20175.000" class="btn-whatsapp">Comprar</a>
+</div>
+</div>
 
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20hp%elitebook820">
-Pedir por WhatsApp 📲
-</a>
+</div>
 
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20HP%20840">
-Pedir por WhatsApp 📲
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20HP%20G5">
-Pedir por WhatsApp 📲
-</a>
-
-<a href="https://wa.me/240555391797?text=Info%20iPhone%2011">
-Pedir por WhatsApp 📲
-</a>
-
-<!-- ELECTRO -->
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20el%20SMART%20TV%204K">
-Pedir por WhatsApp
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20las%20LUCES%20LED">
-Pedir por WhatsApp
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20REFRIGERADORA%20LG">
-Pedir por WhatsApp
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20LAVADORA%20SOLSTAR">
-Consultar Precio
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20NEVERA%20SOLSTAR">
-Consultar Precio
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20ESTUFA%20DE%20GAS">
-Pedir por WhatsApp
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20MICROONDAS">
-Consultar Modelos
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20TELEVISORES%20SMART">
-Ver Tamaños
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20LAVADORAS">
-Consultar Marcas
-</a>
-
-<!-- OFERTAS -->
-<a href="https://wa.me/240555391797?text=Hola%20quiero%20la%20OFERTA%20de%20la%20FREIDORA%20ELÉCTRICA%20por%20140.000%20FCFA%20🚀">
-¡APROVECHAR OFERTA!
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20quiero%20la%20OFERTA%20del%20iPhone%2011%20PRO%20MAX%20por%20160.000%20FCFA%20📱">
-¡COMPRAR AHORA!
-</a>
-
-<a href="https://wa.me/240555391797?text=Hola%20quiero%20la%20OFERTA%20de%20la%20LAPTOP%20HP%20por%20100.000%20FCFA%20💻">
-¡RESERVAR OFERTA!
-</a>
+<!-- BOTÓN FLOTANTE -->
+<a href="https://wa.me/240555391797?text=Hola%20quiero%20información" class="float">💬</a>
 
 </body>
 </html>
