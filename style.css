@@ -1,152 +1,29 @@
-/* CSS PROFESIONAL - COMPRA YA */
+/* ============================================ */
+/* CSS PROFESIONAL - COMPRA YA (Optimizado 2026) */
 /* ============================================ */
 
-/* 1. VARIABLES & RESET */
-/* ============================================ */
 :root {
-    /* Paleta de colores */
+    /* Paleta de colores premium */
     --rojo-principal: #d31212;
     --rojo-oscuro: #b00e0e;
-    --negro-profundo: #1a1a1a;
     --negro-tech: #1d1d1f;
     --gris-fondo: #f5f5f7;
-    --gris-suave: #f8f9fa;
     --blanco: #ffffff;
     --verde-whatsapp: #25d366;
     
-    /* Efectos visuales */
-    --sombra-suave: 0 10px 30px rgba(0,0,0,0.06);
-    --sombra-intensa: 0 20px 40px rgba(0,0,0,0.12);
-    --sombra-roja: 0 10px 30px rgba(211, 18, 18, 0.15);
-    --transicion: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Efectos */
+    --sombra-suave: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --sombra-intensa: 0 20px 50px rgba(0, 0, 0, 0.14);
+    --sombra-roja: 0 10px 30px rgba(211, 18, 18, 0.18);
+    --transicion: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     --curva: 18px;
-}
-/* Asegura que todas las imágenes se comporten bien */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Clase para contenedores de producto */
-.contenedor-imagen-producto {
-    width: 100%;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #f8f9fa;
+    
+    /* Tipografía */
+    --fuente-principal: 'Poppins', system-ui, sans-serif;
+    --fuente-titulos: 'Bebas Neue', sans-serif;
 }
 
-.contenedor-imagen-producto img {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-}
-/* Imágenes de laptops */
-.imagen-laptop {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    padding: 20px;
-    background: linear-gradient(145deg, #f8f9fa, #ffffff);
-    border-bottom: 1px solid #eee;
-}
-
-/* Imágenes de móviles */
-.imagen-movil {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    object-position: center;
-    background-color: #000;
-}
-
-/* Imágenes de electrodomésticos */
-.imagen-electro {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    background-color: #f0f0f0;
-}
-
-/* Placeholder si falla la imagen */
-.imagen-placeholder {
-    width: 100%;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(45deg, #f5f5f7, #e8e8e8);
-    color: #999;
-    font-size: 1.2rem;
-}
-/* Añade esto a tu CSS existente */
-:root {
-    --altura-imagen: 280px; /* Altura uniforme para todas */
-}
-
-/* Para productos electrónicos (laptops, móviles) */
-.imagen-electronico {
-    width: 100%;
-    height: var(--altura-imagen);
-    object-fit: contain; /* Muestra todo sin recortar */
-    background-color: #f5f5f7; /* Fondo gris si la imagen es más pequeña */
-    padding: 15px;
-}
-
-/* Para electrodomésticos grandes */
-.imagen-electrodomestico {
-    width: 100%;
-    height: var(--altura-imagen);
-    object-fit: cover; /* Llena el espacio, recortando si es necesario */
-    background-color: #f8f9fa;
-}
-
-/* Contenedor inteligente */
-.imagen-contenedor-inteligente {
-    width: 100%;
-    height: var(--altura-imagen);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #f5f5f7, #ffffff);
-    overflow: hidden;
-}
-
-.imagen-contenedor-inteligente img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-}
-.imagen-fondo {
-    width: 100%;
-    height: 250px;
-    background-size: cover; /* o contain */
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.imagen-contenedor {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    position: relative;
-}
-
-.imagen-ajustada {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Muestra toda la imagen */
-    /* o object-fit: cover; para llenar el espacio recortando */
-}
-.producto-imagen {
-    width: 100%;
-    height: 250px; /* Altura fija para uniformidad */
-    object-fit: cover; /* Ajusta manteniendo proporciones */
-}
-
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -155,65 +32,101 @@ img {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-family: var(--fuente-principal);
     background-color: var(--gris-fondo);
-    color: var(--negro-profundo);
+    color: var(--negro-tech);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    width: 100%;
 }
 
-/* 2. TIPOGRAFÍA & ENCABEZADOS */
-/* ============================================ */
+/* Tipografía */
 h1, h2, h3, h4 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--fuente-titulos);
     font-weight: 700;
     line-height: 1.2;
     color: var(--negro-tech);
 }
 
-h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-}
 .seccion-titulo {
-    text-align: center !important;
-}
-.contenedor {
-    max-width: 100% !important;
-}
-.seccion-titulo {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-h2 {
-    font-size: 2.8rem;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
+    font-size: 2.6rem;
+    text-align: center;
     color: var(--rojo-principal);
-}
-
-h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* 3. COMPONENTES REUTILIZABLES */
-/* ============================================ */
+/* Header con logo difuminado profesional */
+header {
+    background: var(--blanco);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
 
-/* Tarjetas de producto */
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    position: relative;
+    max-height: 70px;
+}
+
+.logo-img {
+    height: 65px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.logo-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: linear-gradient(to bottom, transparent, var(--blanco));
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Nav */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--negro-tech);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--rojo-principal);
+}
+
+/* Tarjetas Premium (estilo marketplace) */
 .tarjeta-premium {
     background: var(--blanco);
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
     border-radius: var(--curva);
     box-shadow: var(--sombra-suave);
     transition: var(--transicion);
@@ -225,391 +138,219 @@ h3 {
 }
 
 .tarjeta-premium:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
     box-shadow: var(--sombra-intensa);
 }
 
 .tarjeta-premium img {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #f8f9fa;
     transition: var(--transicion);
-    filter: brightness(0.98);
+    padding: 15px;
 }
 
 .tarjeta-premium:hover img {
-    transform: scale(1.08);
-    filter: brightness(1);
+    transform: scale(1.07);
 }
 
-/* Contenedor de imágenes */
+/* Contenedor de imagen (compatibilidad con tu HTML) */
 .imagen-contenedor {
     width: 100%;
     height: 250px;
     overflow: hidden;
     position: relative;
+    background: #f5f5f7;
 }
 
 /* Badge de oferta */
 .badge-oferta {
     background: var(--rojo-principal);
-    color: var(--blanco);
-    padding: 8px 20px;
-    font-size: 0.85rem;
-    font-weight: 800;
-    border-radius: 0 0 12px 0;
+    color: white;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border-radius: 8px;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 15px;
+    left: 15px;
     z-index: 10;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(211, 18, 18, 0.3);
 }
 
 /* Contenido de tarjeta */
 .tarjeta-contenido {
-    padding: 1.5rem;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    text-align: center;
 }
 
 .tarjeta-titulo {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
     color: var(--negro-tech);
 }
 
 .tarjeta-descripcion {
     color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    font-size: 0.92rem;
+    margin-bottom: 15px;
     flex-grow: 1;
 }
 
 .tarjeta-precio {
     color: var(--rojo-principal);
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 800;
-    margin: 1rem 0;
+    margin: 12px 0;
 }
 
-/* 4. BOTONES */
-/* ============================================ */
+/* Botones WhatsApp */
 .btn-whatsapp {
-    background: var(--negro-tech);
-    color: var(--blanco);
+    background: var(--verde-whatsapp);
+    color: white;
     border-radius: 50px;
-    padding: 14px 28px;
+    padding: 14px 20px;
     font-weight: 600;
     text-decoration: none;
-    border: none;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     transition: var(--transicion);
     font-size: 1rem;
     width: 100%;
-    text-align: center;
+    margin-top: auto;
+    border: none;
+    cursor: pointer;
 }
 
 .btn-whatsapp:hover {
-    background: var(--verde-whatsapp);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    background: #128c7e;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
 }
 
-.btn-principal {
-    background: var(--rojo-principal);
-    color: var(--blanco);
-    padding: 16px 40px;
+/* Botones hero y principales */
+.btn-hero, .btn-principal {
+    padding: 15px 40px;
     border-radius: 50px;
-    font-weight: 700;
+    font-weight: bold;
     text-decoration: none;
-    display: inline-block;
     transition: var(--transicion);
     border: none;
     cursor: pointer;
     font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-.btn-principal:hover {
-    background: var(--rojo-oscuro);
-    transform: translateY(-3px);
+.btn-rojo {
+    background: var(--rojo-principal);
+    color: white;
     box-shadow: var(--sombra-roja);
 }
 
-/* 5. LAYOUTS & GRIDS */
-/* ============================================ */
-.galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 35px;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 6. SECCIONES ESPECÍFICAS */
-/* ============================================ */
-
-/* Hero Section */
-.bienvenida-hero {
-    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('img/fondo-tienda.jpg') center/cover no-repeat;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--blanco);
-    padding: 4rem 2rem;
-    margin-bottom: 4rem;
-}
-
-.titulo-principal {
-    color: var(--blanco);
-    font-size: 3.5rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    margin-bottom: 1.5rem;
-}
-
-.subtitulo {
-    font-size: 1.3rem;
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Contenedor de botones hero */
-.botones-hero {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-}
-
-/* Sección de beneficios */
-.beneficios {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 4rem 2rem;
-    background: var(--blanco);
-    text-align: center;
-}
-
-.beneficio-item {
-    padding: 2rem;
-}
-
-.beneficio-icono {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-/* 7. FOOTER PROFESIONAL */
-/* ============================================ */
-.main-footer {
-    background: var(--negro-tech);
-    color: var(--blanco);
-    padding: 4rem 0 2rem;
-    margin-top: 4rem;
-    width: 100%;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-}
-
-.footer-logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--blanco);
-}
-
-.footer-tagline {
-    color: #a1a1a6;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-/* Redes sociales */
-.footer-socials {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.social-link {
-    color: var(--blanco);
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: var(--transicion);
-    opacity: 0.8;
-}
-
-.social-link:hover {
-    opacity: 1;
+.btn-rojo:hover {
+    background: var(--rojo-oscuro);
     transform: translateY(-3px);
 }
 
-.social-link i {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+.btn-verde {
+    background: var(--verde-whatsapp);
+    color: white;
 }
 
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 2rem;
-    margin-top: 2rem;
+/* Grid de productos */
+.grid-productos, .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
     text-align: center;
-    color: #86868b;
-    font-size: 0.9rem;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
 }
 
-/* 8. ANIMACIONES & EFECTOS */
-/* ============================================ */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Botón flotante WhatsApp */
+.whatsapp-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--verde-whatsapp);
+    color: white;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.1rem;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+    z-index: 9999;
+    transition: var(--transicion);
+    text-decoration: none;
 }
 
-.tarjeta-premium {
-    animation: fadeInUp 0.6s ease-out;
+.whatsapp-flotante:hover {
+    transform: scale(1.12);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
 }
 
-/* Efecto pulso para CTA */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+/* Footer */
+footer {
+    background-color: var(--negro-tech);
+    color: #f5f5f7;
+    padding: 60px 20px 30px;
 }
 
-.btn-principal:hover {
-    animation: pulse 0.5s ease-in-out;
+.footer-contenido {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
 }
 
-/* 9. RESPONSIVE DESIGN */
-/* ============================================ */
+/* Responsive */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
+    .seccion-titulo {
+        font-size: 2.1rem;
     }
     
-    h2 {
-        font-size: 2rem;
+    .grid-productos, .galeria-grid {
+        gap: 25px;
     }
     
-    .bienvenida-hero {
-        min-height: 60vh;
-        padding: 2rem 1rem;
+    .tarjeta-premium img {
+        height: 220px;
     }
     
-    .titulo-principal {
-        font-size: 2.2rem;
-    }
-    
-    .botones-hero {
+    .nav-links {
         flex-direction: column;
-        align-items: center;
-    }
-    
-    .btn-principal,
-    .btn-whatsapp {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .galeria-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-        padding: 1rem;
-    }
-    
-    .footer-container {
-        grid-template-columns: 1fr;
+        gap: 15px;
         text-align: center;
-        gap: 2rem;
     }
     
-    .footer-socials {
-        flex-wrap: wrap;
+    .hero {
+        padding: 60px 15px;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.6rem;
-    }
-    
-    .galeria-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .tarjeta-premium img {
         height: 200px;
     }
 }
 
-/* 10. UTILIDADES */
-/* ============================================ */
-.text-center {
-    text-align: center;
-}
-
-.text-rojo {
-    color: var(--rojo-principal);
-}
-
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
+/* Utilidades extras */
+.text-center { text-align: center; }
 .mb-3 { margin-bottom: 1.5rem; }
-.mb-4 { margin-bottom: 2rem; }
-
-.p-2 { padding: 1rem; }
-.p-3 { padding: 1.5rem; }
-.p-4 { padding: 2rem; }
-
-/* Precio tachado para mostrar descuento */
-.precio-tachado {
-    text-decoration: line-through;
-    color: #999;
-    font-size: 1rem;
-    margin-right: 0.5rem;
-}
-
-
