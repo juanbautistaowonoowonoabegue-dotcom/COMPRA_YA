@@ -76,79 +76,221 @@
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
              <li><a href="nuestrocatalogo.html">Catálogo</a></li>
-                <li><a href="#intercambios">Intercambios</a></li>
+                 <li><a href="veaoferta.html">Intercambio</a></li>
                 <li><a href="#terminos-seguridad">Seguridad</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<!-- Botón Catálogo que ahora abre la nueva página -->
-<button onclick="window.location.href='nuestrocatalogo.html'" 
-        class="btn-hero btn-rojo">
-    📋 VER CATÁLOGO COMPLETO
-</button>
+<style>
+    /* Contenedor principal */
+    .botones-container {
+        display: flex;
+        flex-direction: row; /* Por defecto uno al lado del otro */
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* Espacio entre botones */
+        padding: 20px;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
+    /* Estilo base de los botones */
+    .btn-hero {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 15px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: none;
+        flex: 1; /* Hace que ambos midan lo mismo */
+        text-align: center;
+        min-height: 60px;
+    }
 
+    .btn-hero:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Colores específicos */
+    .btn-rojo {
+        background-color: #e60000;
+        color: white;
+    }
+
+    .btn-verde {
+        background-color: #25D366;
+        color: white;
+    }
+
+    /* --- Adaptación para Móviles --- */
+    @media (max-width: 600px) {
+        .botones-container {
+            flex-direction: column; /* Se ponen uno arriba del otro */
+            gap: 12px;
+        }
         
-        <!-- Botón Contacto (WhatsApp) -->
-        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
-           target="_blank" 
-           class="btn-hero btn-verde">
-            💬 CONTÁCTANOS POR WHATSAPP
-        </a>
-        
-    </div>
-</section>
-        
-    <!-- Caja de búsqueda con IA -->
-<div class="ia-search-container" style="margin: 20px auto; max-width: 700px; text-align: center;">
-    <input type="text" id="ia-search-input" 
-           placeholder="¿Qué producto buscas? Ej: laptop G5, iPhone 11, Dell Latitude, MacBook, Samsung..."
-           class="ia-search-input"
-           style="width: 75%; padding: 15px; border: 2px solid #d31212; border-radius: 50px 0 0 50px; font-size: 1.1rem; outline: none;">
-    
-    
-    
-</div>
+        .btn-hero {
+            width: 100%; /* Ocupan todo el ancho disponible */
+            font-size: 14px;
+            padding: 18px;
+        }
+    }
+</style>
 
-<!-- Área donde aparecerá la respuesta de la IA -->
-<div id="ia-response" style="margin: 20px auto; max-width: 700px; min-height: 100px; padding: 15px; background: #f9f9f9; border-radius: 15px; display: none;"></div>
-
-    <div style="text-align: center; margin-top: 35px; opacity: 0.8;">
-        <span style="margin: 0 15px; font-size: 0.9rem;">🔒 Pago Seguro</span>
-        <span style="margin: 0 15px; font-size: 0.9rem;">⭐ Calidad Garantizada</span>
-        <span style="margin: 0 15px; font-size: 0.9rem;">🚀 Entrega Verificada</span>
-    </div>
-</section>
-
-<!-- MODAL INTELIGENCIA ARTIFICIAL -->
-<div id="modal-ia" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="cerrarModalIA()">×</span>
-        <h2 style="text-align: center; color: #d31212;">🤖 Asistente Inteligente de Compra Ya</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 25px;">
-            Pregúntame por cualquier producto de nuestro catálogo
-        </p>
-        
-        <input type="text" id="busqueda-ia" 
-               placeholder="Ej: Quiero un iPhone, laptop Dell, G5..." 
-               style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 1.05rem; margin-bottom: <div style="display: flex; max-width: 600px; margin: 0 auto;">
-    <input type="text" id="user-input" placeholder="¿Qué necesitas hoy?" 
-           style="flex: 1; padding: 15px; border: 2px solid #d31212; border-radius: 50px 0 0 50px; outline: none;">
-    
-    <button onclick="buscarConIA()" class="ia-search-btn"
-            style="padding: 15px 30px; background: #d31212; color: white; border: none; border-radius: 0 50px 50px 0; font-size: 1.1rem; cursor: pointer;">
-        🔎 Busque el producto aquí
+<div class="botones-container">
+    <button onclick="window.location.href='nuestrocatalogo.html'" class="btn-hero btn-rojo">
+        📋 VER CATÁLOGO COMPLETO
     </button>
+
+    <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
+       target="_blank" 
+       class="btn-hero btn-verde">
+        💬 CONTÁCTANOS POR WHATSAPP
+    </a>
 </div>
 
+</seccion>
         
-        <div id="resultado-ia" style="margin-top: 25px; padding: 15px; background: #f9f9f9; border-radius: 12px; min-height: 80px; display: none;">
-            <!-- Los resultados aparecerán aquí -->
-        </div>
+    <style>
+    /* Contenedor de Búsqueda IA */
+    .ia-search-wrapper {
+        display: flex;
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .ia-search-input {
+        flex: 1;
+        padding: 15px 20px;
+        border: 2px solid #d31212;
+        border-radius: 50px 0 0 50px;
+        font-size: 1.1rem;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .ia-search-btn {
+        padding: 15px 25px;
+        background: #d31212;
+        color: white;
+        border: none;
+        border-radius: 0 50px 50px 0;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-weight: bold;
+    }
+
+    .ia-search-btn:hover {
+        background: #a80e0e;
+    }
+
+    /* Área de Respuesta */
+    #ia-response {
+        margin: 20px auto;
+        max-width: 670px;
+        padding: 20px;
+        background: #ffffff;
+        border-left: 5px solid #d31212;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        display: none; /* Se activa al buscar */
+        line-height: 1.6;
+    }
+
+    /* Etiquetas de confianza */
+    .trust-badges {
+        text-align: center; 
+        margin-top: 35px; 
+        opacity: 0.9;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        color: #444;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Adaptación Móvil */
+    @media (max-width: 600px) {
+        .ia-search-wrapper {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .ia-search-input, .ia-search-btn {
+            border-radius: 12px;
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+
+<section>
+    <div class="ia-search-wrapper">
+        <input type="text" id="user-input-ia" 
+               placeholder="¿Qué buscas? Ej: Laptop HP, iPhone..." 
+               class="ia-search-input">
+        
+        <button onclick="buscarConIA()" class="ia-search-btn">
+            🔎 Buscar con IA
+        </button>
     </div>
-</div>
+
+    <div id="ia-response"></div>
+
+    <div class="trust-badges">
+        <span class="badge">🔒 Pago Seguro</span>
+        <span class="badge">⭐ Calidad Garantizada</span>
+        <span class="badge">🚀 Entrega Verificada</span>
+    </div>
+</section>
+
+<script>
+    function buscarConIA() {
+        const input = document.getElementById('user-input-ia').value;
+        const responseDiv = document.getElementById('ia-response');
+
+        if (input.trim() === "") {
+            alert("Por favor, escribe qué producto necesitas.");
+            return;
+        }
+
+        // Mostrar el cuadro de respuesta y poner un mensaje de carga
+        responseDiv.style.display = "block";
+        responseDiv.innerHTML = "🤖 <strong>Asistente Compra Ya:</strong> Analizando nuestro catálogo para encontrar el mejor " + input + "...";
+
+        // Aquí conectarías con tu lógica real de búsqueda o API. 
+        // Por ahora simulamos una respuesta:
+        setTimeout(() => {
+            responseDiv.innerHTML = `
+                <p>🤖 <strong>¡He encontrado opciones!</strong></p>
+                <p>Para "<strong>${input}</strong>", tenemos varias unidades disponibles con garantía técnica. 
+                ¿Te gustaría ver las especificaciones de los modelos en stock?</p>
+                <button onclick="window.location.href='nuestrocatalogo.html'" 
+                        style="padding: 10px; background: #d31212; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Ver en el catálogo
+                </button>
+            `;
+        }, 1500);
+    }
+</script>
+
 <!-- VIDEO DE PRESENTACIÓN (Publicidad estratégica) -->
 <section style="padding: 60px 20px; background: #fff; text-align: center;">
     <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: #d31212; margin-bottom: 30px;">
