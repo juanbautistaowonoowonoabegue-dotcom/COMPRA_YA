@@ -53,11 +53,10 @@
     <!-- Banner Publicitario Superior -->
     <div class="banner-publicidad">
         <div class="publicidad-contenido">
-            <span class="badge-top">🔥 TOP VENTAS</span>
             <h2 class="texto-publicidad">ESPACIO RESERVADO PARA PUBLICIDAD</h2>
-            <p class="subtexto-publicidad">Cambia esta imagen fácilmente con tus anuncios</p>
+            <p class="subtexto-publicidad"
         </div>
-        
+    
         <!-- Imagen publicitaria (aquí pones tus banners) -->
         <img id="banner-img" 
              src="https://via.placeholder.com/1200x250/000000/ffffff?text=PUBLICIDAD+COMPRA+YA" 
@@ -68,7 +67,7 @@
     <!-- Header Principal con Logo y Navegación -->
     <div class="header-contenido">
         <div class="header-full">
-            <img src="logotipo.JPEG" 
+            <img src="logotipo.JPG" 
                  alt="COMPRA YA!! Logo" 
                  class="logo-full">
         </div>
@@ -113,27 +112,21 @@
     </div>
 </section>
         
-        <!-- Botón Oferta -->
-        <a href="#galeria-productos" class="btn-hero btn-rojo">
-            🔥 VEA NUESTRA OFERTA
-        </a>
-        
-        <!-- Botón Contacto -->
-        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
-           class="btn-hero btn-verde">
-            💬 CONTÁCTANOS
-        </a>
-    </div>
+    <!-- Caja de búsqueda con IA -->
+<div class="ia-search-container" style="margin: 20px auto; max-width: 700px; text-align: center;">
+    <input type="text" id="ia-search-input" 
+           placeholder="¿Qué producto buscas? Ej: laptop G5, iPhone 11, Dell Latitude, MacBook, Samsung..."
+           class="ia-search-input"
+           style="width: 75%; padding: 15px; border: 2px solid #d31212; border-radius: 50px 0 0 50px; font-size: 1.1rem; outline: none;">
+    
+    <button onclick="buscarConIA()" class="ia-search-btn"
+            style="padding: 15px 30px; background: #d31212; color: white; border: none; border-radius: 0 50px 50px 0; font-size: 1.1rem; cursor: pointer;">
+        🔎 Buscar con IA
+    </button>
+</div>
 
-    <!-- Caja de búsqueda IA (nueva) -->
-    <div class="ia-search-container">
-        <input type="text" id="ia-search-input" 
-               placeholder="¿Qué producto buscas? Ej: laptop G5, iPhone 11, Dell..."
-               class="ia-search-input">
-        <button onclick="buscarConIA()" class="ia-search-btn">
-            🔎 Buscar
-        </button>
-    </div>
+<!-- Área donde aparecerá la respuesta de la IA -->
+<div id="ia-response" style="margin: 20px auto; max-width: 700px; min-height: 100px; padding: 15px; background: #f9f9f9; border-radius: 15px; display: none;"></div>
 
     <div style="text-align: center; margin-top: 35px; opacity: 0.8;">
         <span style="margin: 0 15px; font-size: 0.9rem;">🔒 Pago Seguro</span>
@@ -516,10 +509,7 @@ function buscarConIA() {
 }
 </script>
 
-// Cerrar modal al hacer clic fuera
-window.onclick = function(event) {
-    const modal = document.getElementById('modal-ia');
-    if (event.target === modal) cerrarModalIA();
+
 };
 </script>
    <!-- WIDGET CHATBOT WHATSAPP -->
@@ -687,6 +677,130 @@ function seleccionarOpcion(opcion) {
     setTimeout(() => {
         document.getElementById('chat-widget').style.display = 'none';
     }, 800);
+}
+<script>
+// ====================== BUSCADOR CON IA - VERSIÓN MEJORADA ======================
+
+function buscarConIA() {
+    const input = document.getElementById('ia-search-input');
+    const responseDiv = document.getElementById('ia-response');
+    
+    if (!input || !responseDiv) {
+        console.error("Elementos del buscador IA no encontrados");
+        return;
+    }
+
+    const consulta = input.value.trim();
+
+    // Validación
+    if (!consulta) {
+        responseDiv.innerHTML = `
+            <p style="color: #d31212; text-align: center; padding: 15px;">
+                ⚠️ Por favor, escribe qué producto estás buscando.
+            </p>`;
+        responseDiv.style.display = 'block';
+        return;
+    }
+
+    // Mostrar mensaje de carga
+    responseDiv.innerHTML = `
+        <div style="text-align: center; padding: 20px; color: #666;">
+            <p>🔍 Buscando en nuestro catálogo con IA...</p>
+            <p style="font-size: 0.95rem; margin-top: 8px;">Esto tomará solo un segundo</p>
+        </div>`;
+    responseDiv.style.display = 'block';
+
+    // Simulación de tiempo de respuesta (puedes quitar el setTimeout cuando conectes una IA real)
+    setTimeout(() => {
+        const respuestaHTML = generarRespuestaIA(consulta);
+        responseDiv.innerHTML = respuestaHTML;
+    }, 650);
+}
+
+// ====================== FUNCIÓN PRINCIPAL DE RESPUESTAS ======================
+function generarRespuestaIA(consulta) {
+    const q = consulta.toLowerCase().trim();
+    let html = '';
+
+    // === BÚSQUEDA DE iPhone / Apple ===
+    if (q.includes('iphone') || q.includes('ipone') || q.includes('apple') || q.includes('ios')) {
+        html = `
+            <h3 style="color: #d31212; margin-bottom: 12px;">📱 iPhones y Apple disponibles</h3>
+            <ul style="padding-left: 20px; margin: 15px 0;">
+                <li><strong>iPhone 11</strong> — 160.000 FCFA</li>
+                <li><strong>iPhone Última Generación</strong> — Desde 350.000 FCFA</li>
+            </ul>
+            <p>También disponemos de varios modelos Samsung de alta gama.</p>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" 
+               class="btn-whatsapp-response" target="_blank">
+               💬 Ver catálogo completo de móviles
+            </a>`;
+    } 
+
+    // === BÚSQUEDA DE Laptops ===
+    else if (q.includes('laptop') || q.includes('portatil') || q.includes('ordenador') || 
+             q.includes('notebook') || q.includes('computadora')) {
+        html = `
+            <h3 style="color: #d31212; margin-bottom: 12px;">💻 Laptops disponibles en Compra Ya</h3>
+            <ul style="padding-left: 20px; margin: 15px 0; line-height: 1.7;">
+                <li><strong>DELL Latitude 3310</strong> — 150.000 FCFA (8GB RAM - 256GB)</li>
+                <li><strong>DELL Latitude</strong> — 160.000 FCFA</li>
+                <li><strong>G5</strong> — 250.000 FCFA</li>
+                <li><strong>HP ProBook</strong> — 175.000 FCFA</li>
+                <li><strong>MacBook Pro / Air</strong> — Desde 200.000 FCFA</li>
+            </ul>
+            <p>Perfectas para estudio, trabajo de oficina y diseño.</p>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" 
+               class="btn-whatsapp-response" target="_blank">
+               💬 Consultar disponibilidad y stock actual
+            </a>`;
+    } 
+
+    // === BÚSQUEDA DE MacBook ===
+    else if (q.includes('macbook') || q.includes('mac')) {
+        html = `
+            <h3 style="color: #d31212; margin-bottom: 12px;">💻 MacBook en Compra Ya Malabo</h3>
+            <p><strong>MacBook Pro y MacBook Air</strong></p>
+            <p>Potencia máxima para estudios, ingeniería y diseño profesional.</p>
+            <p style="font-weight: bold; color: #d31212;">Desde 200.000 FCFA</p>
+            <a href="https://wa.me/+240555391797?text=Hola%2C%20me%20interesa%20una%20MacBook" 
+               class="btn-whatsapp-response" target="_blank">
+               💬 Quiero información sobre MacBook
+            </a>`;
+    } 
+
+    // === INTERCAMBIO / RENOVE ===
+    else if (q.includes('intercambio') || q.includes('renove') || q.includes('cambiar') || 
+             q.includes('trueque') || q.includes('cambio')) {
+        html = `
+            <h3 style="color: #d31212; margin-bottom: 12px;">🔄 Plan Renove - Intercambio</h3>
+            <p>¿Quieres un móvil o laptop nuevo?</p>
+            <p><strong>Trae tu equipo antiguo + diferencia en efectivo.</strong></p>
+            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio" 
+               class="btn-whatsapp-response" style="background:#d31212;" target="_blank">
+               📲 Consultar mi intercambio
+            </a>`;
+    } 
+
+    // === RESPUESTA GENÉRICA (cuando no encuentra coincidencia clara) ===
+    else {
+        html = `
+            <h3 style="color: #d31212;">🛍️ Buscando "${consulta}" en Compra Ya</h3>
+            <p>Actualmente disponemos de:</p>
+            <ul style="padding-left: 20px;">
+                <li>iPhones y Samsung</li>
+                <li>Laptops Dell, HP, G5 y MacBook</li>
+            </ul>
+            <p>✅ Precios desde 100.000 FCFA<br>
+               ✅ Tienda física en Malabo<br>
+               ✅ Entrega segura y garantía</p>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20busco%20${encodeURIComponent(consulta)}%20en%20Compra%20Ya" 
+               class="btn-whatsapp-response" target="_blank">
+               💬 Preguntar por este producto
+            </a>`;
+    }
+
+    return html;
 }
 </script>
 </body>
