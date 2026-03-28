@@ -408,12 +408,10 @@
         </div>
     </div>
 
-<!-- BOTÓN FLOTANTE WHATSAPP + CHATBOT -->
-<div class="whatsapp-flotante-container">
-    <button onclick="toggleChatWidget()" class="whatsapp-flotante" title="Chatea con Compra Ya">
-        <i class="fab fa-whatsapp"></i>
-    </button>
-</div>
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="#" onclick="toggleChatWidget(event)" class="whatsapp-flotante" title="Chatea con Compra Ya">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
     <script>
         // Scroll suave
@@ -571,6 +569,88 @@ setTimeout(() => {
         widget.style.display = 'block';
     }
 }, 7000);
-</script>      
+</script>   
+    <!-- WIDGET CHATBOT (se abre al pulsar el botón flotante) -->
+<div id="chat-widget" class="chat-widget">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+                <strong>Compra Ya - Asistente</strong><br>
+                <small>En línea • Respuesta inmediata</small>
+            </div>
+        </div>
+        <span onclick="toggleChatWidget()" class="close-chat">✕</span>
+    </div>
+    
+    <div class="chat-body">
+        <div class="chat-welcome">
+            ¡Hola! ¿Cómo te puedo ayudar hoy?
+        </div>
+        
+        <div class="chat-options">
+            <button onclick="seleccionarOpcion(1)">💻 Busco una laptop para trabajar/estudiar</button>
+            <button onclick="seleccionarOpcion(2)">🔥 Quiero ver los 'Nuevos Fichajes' de la semana</button>
+            <button onclick="seleccionarOpcion(3)">🔄 Plan Renove: Quiero entregar mi equipo</button>
+            <button onclick="seleccionarOpcion(4)">📱 ¿Tienen el iPhone 11 o similares en stock?</button>
+            <button onclick="seleccionarOpcion(5)">💼 Consultar HP EliteBook / Dell</button>
+            <button onclick="seleccionarOpcion(6)">👨‍💼 Asesoría Personalizada</button>
+        </div>
+    </div>
+</div>
+    <script>
+// Abrir / Cerrar el widget
+function toggleChatWidget(e) {
+    if (e) e.preventDefault();
+    const widget = document.getElementById('chat-widget');
+    widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
+}
+
+// Seleccionar opción
+function seleccionarOpcion(opcion) {
+    let mensaje = "";
+    let esCanal = false;
+
+    switch(opcion) {
+        case 1:
+            mensaje = "Busco una laptop para trabajar o estudiar. ¿Qué me recomiendas?";
+            esCanal = true;
+            break;
+        case 2:
+            mensaje = "Quiero ver los Nuevos Fichajes de la semana";
+            esCanal = true;
+            break;
+        case 3:
+            mensaje = "Estoy interesado en el Plan Renove. Quiero entregar mi equipo";
+            esCanal = true;
+            break;
+        case 4:
+            mensaje = "¿Tienen el iPhone 11 o similares en stock?";
+            break;
+        case 5:
+            mensaje = "Quiero consultar disponibilidad de HP EliteBook y Dell";
+            break;
+        case 6:
+            mensaje = "Hola, quiero asesoría personalizada";
+            break;
+    }
+
+    if (esCanal) {
+        // Abre el CANAL de WhatsApp
+        window.open("https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j", "_blank");
+    } else if (opcion === 6) {
+        // Abre WhatsApp privado
+        window.open(`https://wa.me/240555391797?text=${encodeURIComponent(mensaje)}`, "_blank");
+    } else {
+        // Va al catálogo de la página
+        document.getElementById('galeria-productos').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Cierra el widget
+    setTimeout(() => {
+        document.getElementById('chat-widget').style.display = 'none';
+    }, 800);
+}
+</script>
 </body>
 </html>
