@@ -9,107 +9,353 @@
 </head>
 <body>
 
- <!-- ====================== CATÁLOGO DINÁMICO CON CARRUSEL ====================== -->
+ <!-- ====================== CATÁLOGO COMPLETO DINÁMICO ====================== -->
 <section style="padding: 80px 20px; background: #f8f8f8;">
-    <div style="text-align: center; margin-bottom: 60px;">
-        <h1 style="font-size: 3.2rem; color: #d31212; margin-bottom: 10px;">🛍️ NUESTRO CATÁLOGO COMPLETO</h1>
-        <p style="font-size: 1.4rem; color: #555; max-width: 700px; margin: 0 auto;">
-            Desliza horizontalmente • Productos actualizados diariamente en Malabo
-        </p>
+
+    <div style="text-align: center; margin-bottom: 70px;">
+        <h1 style="font-size: 3.2rem; color: #d31212;">🛍️ NUESTRO CATÁLOGO COMPLETO</h1>
+        <!-- ====================== PANEL RÁPIDO DE PUBLICACIÓN (Auto-publicar desde WhatsApp) ====================== -->
+<div style="max-width: 900px; margin: 30px auto; background: white; padding: 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+    <h3 style="color: #d31212; text-align: center; margin-bottom: 20px;">📲 Publicar nuevo producto desde WhatsApp</h3>
+    
+    <form id="form-publicar">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <label><strong>Categoría</strong></label>
+                <select id="categoria" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #d31212;">
+                    <option value="laptops">💻 Laptops</option>
+                    <option value="moviles">📱 Móviles</option>
+                    <option value="destacados">🔥 Lo que vende más</option>
+                </select>
+            </div>
+            <div>
+                <label><strong>Nombre del producto</strong></label>
+                <input type="text" id="nombre" placeholder="Ej: iPhone 11" required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+            </div>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <label><strong>Precio</strong></label>
+            <input type="text" id="precio" placeholder="Ej: 160.000 FCFA" required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+        </div>
+
+        <div style="margin-top: 15px;">
+            <label><strong>Descripción corta</strong></label>
+            <textarea id="descripcion" placeholder="Ej: Última generación - Cámara profesional" rows="2" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;"></textarea>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <label><strong>URL de la imagen (sube a imgur.com o similar y pega el enlace directo)</strong></label>
+            <input type="text" id="imagen" placeholder="https://i.imgur.com/xxxxx.jpg" required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+        </div>
+
+        <button type="submit" 
+                style="margin-top: 20px; width: 100%; padding: 16px; background: #d31212; color: white; border: none; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer;">
+            🚀 PUBLICAR EN LA WEB AHORA
+        </button>
+    </form>
+</div>
+
+<p style="text-align: center; color: #666; font-size: 0.95rem;">
+    Publica primero en tu canal WhatsApp → luego rellena este formulario → la tarjeta aparece automáticamente en el carrusel.
+</p>
+        <p style="font-size: 1.35rem; color: #444;">Desliza para ver todas las ofertas • Actualizado en Malabo</p>
     </div>
 
-    <!-- CSS para el carrusel (puedes ponerlo en style.css también) -->
-    <style>
-        .carousel-grid {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 0;
-            scrollbar-width: none;
-        }
-        .carousel-grid::-webkit-scrollbar { display: none; }
+    <!-- OFERTA DE LA SEMANA -->
+    <section style="background: linear-gradient(45deg, #d31212, #000); color: white; text-align: center; border-radius: 20px; margin: 0 auto 80px; max-width: 1200px; padding: 50px 20px;">
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem;">⚡ OFERTA DE LA SEMANA ⚡</h2>
+        <p style="font-size: 1.3rem;">Lleva tu <strong>HP ELITEBOOK 840 G5</strong> por solo <span style="font-size: 2.2rem; color: #ffeb3b;">250.000 FCFA</span></p>
+        <p>¡Solo quedan unidades limitadas hasta el 20 de julio!</p>
+        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20aprovechar%20la%20oferta%20del%20G5%20de%20250.000%20FCFA%20⚡" 
+           class="btn-hero" style="background: white; color: #d31212; display: inline-block; margin-top: 25px; padding: 15px 40px; border-radius: 50px; font-weight: bold; text-decoration: none;">
+            👉 RESERVAR AHORA
+        </a>
+    </section>
 
-        .tarjeta-premium {
-            flex: 0 0 320px;
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-        }
-        .tarjeta-premium:hover {
-            transform: scale(1.07) translateY(-10px);
-            box-shadow: 0 20px 35px rgba(211, 18, 18, 0.3);
-        }
-        .tarjeta-premium img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        .btn-whatsapp {
-            display: inline-block;
-            background: #25D366;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-        .btn-whatsapp:hover {
-            background: #20ba5a;
-            transform: scale(1.05);
-        }
-    </style>
+    <!-- PRODUCTOS DESTACADOS (LO QUE VENDE MÁS) -->
+    <h2 style="text-align: center; font-size: 2.5rem; color: #d31212; margin: 60px 0 30px;">🔥 LO QUE VENDE MÁS</h2>
+    <div class="carousel-grid" id="carrusel-destacados">
+        <!-- Tarjeta 1 -->
+        <div class="tarjeta-premium">
+            <div class="badge-oferta">TOP VENTAS</div>
+            <img src="iphon.JPEG" alt="IPHONE" loading="lazy">
+            <div style="padding: 20px; text-align: center;">
+                <h3>IPhone / Samsung</h3>
+                <p>Última tecnología en tu mano.</p>
+                <div style="font-size: 1.8rem; font-weight: bold; color: #d31212; margin: 15px 0;">Desde 100.000 FCFA</div>
+                <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
+            </div>
+        </div>
 
-    <!-- LAPTOPS -->
+        <!-- Tarjeta 2 -->
+        <div class="tarjeta-premium">
+            <img src="laptopi.JPEG" alt="HP TACTIL" loading="lazy">
+            <div style="padding: 20px; text-align: center;">
+                <h3>ORDENADORES PORTÁTILES</h3>
+                <p>Ideal para diseño y trabajos de clase.</p>
+                <div style="font-size: 1.8rem; font-weight: bold; color: #d31212; margin: 15px 0;">Desde 100.000 FCFA</div>
+                <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" class="btn-whatsapp">💬 ¡Lo quiero Ya!</a>
+            </div>
+        </div>
+
+        <!-- Tarjeta MacBook -->
+        <div class="tarjeta-premium">
+            <img src="makbook.JPG" alt="MacBook" loading="lazy">
+            <div style="padding: 20px; text-align: center;">
+                <h3>MacBook Pro / Air</h3>
+                <p>Potencia máxima para estudios y proyectos de ingeniería o diseño.</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">200.000 FCFA</p>
+                <a href="https://wa.me/+240555391797" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLAN RENOVE - INTERCAMBIOS -->
+    <section id="intercambios" style="background-color: #f9f9f9; padding: 60px 20px; border-top: 3px solid red; margin: 80px 0;">
+        <div style="text-align: center; max-width: 800px; margin: auto;">
+            <h2 style="color: red; font-size: 2.4rem;">🔄 Plan Renove: Intercambio</h2>
+            <p style="font-size: 1.2rem;">¿Quieres un móvil nuevo?<br><strong>Trae tu móvil antiguo + algo de dinero.</strong></p>
+            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio" class="btn-whatsapp" style="max-width: 300px; margin: 25px auto; display: inline-block;">
+                Pedir por WhatsApp 📲
+            </a>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO PRINCIPAL - LAPTOPS -->
     <h2 style="background: #d31212; color: white; display: inline-block; padding: 12px 35px; border-radius: 0 50px 50px 0; margin: 40px 0 25px;">💻 LAPTOPS</h2>
     <div class="carousel-grid" id="carrusel-laptops">
-
         <div class="tarjeta-premium">
-            <img src="laptopd.JPEG" alt="DELL LATITUDE 3310" loading="lazy">
+            <img src="laptopd.JPEG" alt="DELL LATITUDE 3310">
             <div style="padding: 20px; text-align: center;">
                 <h4>DELL LATITUDE 3310</h4>
-                <p style="color: #888; font-size: 0.9rem;">8GB RAM - 256GB INTEL CORE</p>
+                <p style="color: #888;">8GB RAM - 256GB INTEL CORE</p>
                 <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
                 <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
             </div>
         </div>
 
         <div class="tarjeta-premium">
-            <img src="Dell.JPG" alt="Dell Laptop" loading="lazy">
+            <img src="Dell.JPG" alt="Dell Laptop">
             <div style="padding: 20px; text-align: center;">
                 <h4>DELL LATITUDE</h4>
-                <p style="color: #888; font-size: 0.9rem;">Laptop Dell de alto rendimiento</p>
+                <p style="color: #888;">Laptop Dell de alto rendimiento</p>
                 <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
-                <a href
+                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20Dell%20laptop%20de%20160.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
 
-    <!-- Footer (puedes copiar el mismo) -->
+        <div class="tarjeta-premium">
+            <img src="G5.JPEG" alt="G5 Laptop">
+            <div style="padding: 20px; text-align: center;">
+                <h4>G5</h4>
+                <p style="color: #888;">Laptop G5 potente y moderna</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">250.000 FCFA</p>
+                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20G5%20de%20250.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
 
-    <script>
-        // Carrusel automático suave (izquierda a derecha)
-        function autoScrollCarrusel() {
-            const carousels = document.querySelectorAll('.carousel-grid');
-            carousels.forEach(grid => {
-                let scrollAmount = 0;
-                const scrollSpeed = 1.5; // velocidad (px por frame)
+        <div class="tarjeta-premium">
+            <img src="probook.JPEG" alt="Probook Laptop">
+            <div style="padding: 20px; text-align: center;">
+                <h4>PROBOOK</h4>
+                <p style="color: #888;">HP ProBook confiable para trabajo</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">175.000 FCFA</p>
+                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20Probook%20de%20175.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
 
-                setInterval(() => {
-                    scrollAmount += scrollSpeed;
-                    grid.scrollLeft = scrollAmount;
+        <div class="tarjeta-premium">
+            <img src="laptopi.JPEG" alt="HP Táctil">
+            <div style="padding: 20px; text-align: center;">
+                <h4>ORDENADORES PORTÁTILES</h4>
+                <p>Ideal para diseño y trabajos de clase</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">Desde 100.000 FCFA</p>
+                <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
+    </div>
 
-                    // Reinicia cuando llega al final
-                    if (scrollAmount >= grid.scrollWidth - grid.clientWidth) {
-                        scrollAmount = 0;
-                    }
-                }, 30); // velocidad del movimiento
-            });
+    <!-- CATÁLOGO PRINCIPAL - MÓVILES -->
+    <h2 style="background: #d31212; color: white; display: inline-block; padding: 12px 35px; border-radius: 0 50px 50px 0; margin: 70px 0 25px;">📱 MÓVILES</h2>
+    <div class="carousel-grid" id="carrusel-moviles">
+        <div class="tarjeta-premium">
+            <img src="iphone.JPEG" alt="iPhone 11">
+            <div style="padding: 20px; text-align: center;">
+                <h4>iPhone 11</h4>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
+                <a href="https://wa.me/240555391797?text=Info%20iPhone%2011" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-premium">
+            <img src="ip.JPG" alt="iPhone Última Generación">
+            <div style="padding: 20px; text-align: center;">
+                <h4>iPhone - Última Generación</h4>
+                <p>Rendimiento excepcional y cámaras profesionales</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">350.000 FCFA</p>
+                <a href="https://wa.me/+240555391797" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-premium">
+            <img src="iphon.JPEG" alt="iPhone / Samsung">
+            <div style="padding: 20px; text-align: center;">
+                <h4>IPhone / Samsung</h4>
+                <p>Última tecnología en tu mano</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">Desde 100.000 FCFA</p>
+                <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ====================== ESTILOS Y SCRIPT DEL CARRUSEL ====================== -->
+<style>
+    .carousel-grid {
+        display: flex;
+        gap: 25px;
+        overflow-x: auto;
+        padding: 20px 0;
+        scrollbar-width: none;
+    }
+    .carousel-grid::-webkit-scrollbar { display: none; }
+
+    .tarjeta-premium {
+        flex: 0 0 320px;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        transition: all 0.4s ease;
+    }
+    .tarjeta-premium:hover {
+        transform: scale(1.08) translateY(-12px);
+        box-shadow: 0 20px 40px rgba(211, 18, 18, 0.25);
+    }
+    .badge-oferta {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #ffd700;
+        color: #d31212;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+    .btn-whatsapp {
+        background: #25D366;
+        color: white;
+        padding: 12px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 10px;
+    }
+</style>
+
+<script>
+// Carrusel automático infinito y suave
+function iniciarCarruseles() {
+    document.querySelectorAll('.carousel-grid').forEach(carrusel => {
+        let scrollPos = 0;
+        let velocidad = 1.7;
+        let pausado = false;
+
+        const original = carrusel.innerHTML;
+        carrusel.innerHTML += original;   // Duplicar para scroll infinito
+
+        function animar() {
+            if (!pausado) {
+                scrollPos += velocidad;
+                carrusel.scrollLeft = scrollPos;
+                if (scrollPos >= carrusel.scrollWidth / 2) scrollPos = 0;
+            }
+            requestAnimationFrame(animar);
         }
+        animar();
 
-        window.onload = autoScrollCarrusel;
-    </script>
+        carrusel.addEventListener('mouseenter', () => pausado = true);
+        carrusel.addEventListener('mouseleave', () => pausado = false);
+    });
+}
 
+window.addEventListener('load', iniciarCarruseles);
+</script>
+    <script>
+// ====================== AUTO-PUBLICAR DESDE WHATSAPP ======================
+document.getElementById('form-publicar').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const categoria = document.getElementById('categoria').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const precio = document.getElementById('precio').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+    const imagen = document.getElementById('imagen').value.trim();
+
+    // Crear la tarjeta exactamente como las demás
+    const nuevaTarjeta = `
+        <div class="tarjeta-premium">
+            <img src="${imagen}" alt="${nombre}" loading="lazy">
+            <div style="padding: 20px; text-align: center;">
+                <h4>${nombre}</h4>
+                <p style="color: #888; font-size: 0.9rem;">${descripcion}</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">${precio}</p>
+                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20${encodeURIComponent(nombre)}" 
+                   class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>`;
+
+    // Añadir al carrusel correspondiente
+    let carrusel;
+    if (categoria === 'laptops') carrusel = document.getElementById('carrusel-laptops');
+    else if (categoria === 'moviles') carrusel = document.getElementById('carrusel-moviles');
+    else carrusel = document.getElementById('carrusel-destacados');
+
+    if (carrusel) {
+        carrusel.innerHTML += nuevaTarjeta;   // Añade al final
+        carrusel.scrollLeft = carrusel.scrollWidth; // Desplaza para ver la nueva
+    }
+
+    // Mensaje de éxito
+    alert(`✅ ¡Producto "${nombre}" publicado automáticamente en la web!`);
+
+    // Limpiar formulario
+    this.reset();
+});
+</script>
+  <footer style="background: #222; color: #fff; padding: 60px 20px; text-align: center; font-family: sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        
+        <div style="margin-bottom: 40px;">
+            <a href="index.html" style="background: #d31212; color: white; padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; transition: 0.3s; display: inline-block; border: 2px solid #d31212;">
+                🏠 Volver a la página principal
+            </a>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #444; margin: 40px 0;">
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left;">
+            <div style="min-width: 250px;">
+                <h3 style="color: #d31212;">COMPRA YA!!</h3>
+                <p style="color: #bbb; line-height: 1.6;">Tu aliado estratégico en tecnología y electrodomésticos en Malabo. Calidad garantizada al mejor precio del mercado.</p>
+            </div>
+
+            <div style="min-width: 250px;">
+                <h3 style="color: #fff;">Contacto Directo</h3>
+                <p style="color: #bbb; margin: 5px 0;">📍 Malabo, Guinea Ecuatorial</p>
+                <p style="color: #bbb; margin: 5px 0;">📱 WhatsApp: Pedidos Inmediatos</p>
+                <p style="color: #bbb; margin: 5px 0;">📧 Soporte al Cliente</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #333; color: #777; font-size: 0.9rem;">
+            <p>&copy; 2026 COMPRA YA!! - Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>  
 </body>
 </html>
