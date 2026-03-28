@@ -65,43 +65,43 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <<!-- HERO SECTION (mantenido igual) -->
-<!-- HERO SECTION MEJORADA - CON BOTÓN IA -->
+<!-- HERO SECTION CORREGIDA Y MEJORADA -->
 <section id="inicio" class="hero">
     <h1 class="titulo-principal">¡Hola Jef@! <br>Sea Bienvenido a COMPRA YA!!</h1>
     <p class="subtitulo">La mejor tecnología de Malabo al alcance de un clic.</p>
     
     <div class="botones-hero">
         <!-- Botón Catálogo -->
-        <button onclick="window.location.href='#galeria-productos'" 
-                class="btn-hero btn-rojo">
+        <button onclick="window.location.href='#galeria-productos'" class="btn-hero btn-rojo">
             📋 NUESTRO CATÁLOGO
         </button>
         
         <!-- Botón Oferta -->
-        <a href="#galeria-productos" 
-           class="btn-hero btn-rojo">
+        <a href="#galeria-productos" class="btn-hero btn-rojo">
             🔥 VEA NUESTRA OFERTA
         </a>
         
-        <!-- Botón Contacto WhatsApp -->
+        <!-- Botón Contacto -->
         <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
            class="btn-hero btn-verde">
             💬 CONTÁCTANOS
         </a>
-        
-        <!-- Nuevo Botón Inteligencia Artificial -->
-        <button onclick="abrirModalIA()" 
-                class="btn-hero btn-ia">
-            🤖 Pregunta a la IA
+    </div>
+
+    <!-- Caja de búsqueda IA (nueva) -->
+    <div class="ia-search-container">
+        <input type="text" id="ia-search-input" 
+               placeholder="¿Qué producto buscas? Ej: laptop G5, iPhone 11, Dell..."
+               class="ia-search-input">
+        <button onclick="buscarConIA()" class="ia-search-btn">
+            🔎 Buscar
         </button>
     </div>
-    
-    <div style="text-align: center; margin-top: 35px; opacity: 0.75;">
-        <span style="margin: 0 12px; font-size: 0.85rem; color: #555;">🔒 Pago Seguro</span>
-        <span style="margin: 0 12px; font-size: 0.85rem; color: #555;">⭐ Calidad Garantizada</span>
-        <span style="margin: 0 12px; font-size: 0.85rem; color: #555;">🚀 Entrega Verificada</span>
+
+    <div style="text-align: center; margin-top: 35px; opacity: 0.8;">
+        <span style="margin: 0 15px; font-size: 0.9rem;">🔒 Pago Seguro</span>
+        <span style="margin: 0 15px; font-size: 0.9rem;">⭐ Calidad Garantizada</span>
+        <span style="margin: 0 15px; font-size: 0.9rem;">🚀 Entrega Verificada</span>
     </div>
 </section>
 
@@ -443,36 +443,43 @@ function cerrarModalIA() {
     document.getElementById('modal-ia').style.display = 'none';
 }
 
-// Función simulada de búsqueda IA
+<script>
+// Búsqueda IA con enlace directo al producto
 function buscarConIA() {
-    const input = document.getElementById('busqueda-ia').value.toLowerCase().trim();
-    const resultadoDiv = document.getElementById('resultado-ia');
-    
-    if (!input) {
-        resultadoDiv.innerHTML = `<p style="color: #d31212;">Por favor escribe qué producto buscas.</p>`;
-        resultadoDiv.style.display = 'block';
-        return;
+    const input = document.getElementById('ia-search-input').value.toLowerCase().trim();
+    if (!input) return;
+
+    let mensaje = "";
+    let enlace = "#galeria-productos"; // por defecto va al catálogo
+
+    if (input.includes("g5") || input.includes("250")) {
+        mensaje = "✅ Encontrado: Laptop G5 por 250.000 FCFA (Oferta de la semana)";
+        enlace = "#galeria-productos"; // puedes poner ID específico a la tarjeta G5 si quieres
+    } 
+    else if (input.includes("iphone") || input.includes("11")) {
+        mensaje = "✅ Encontrado: iPhone 11 por 160.000 FCFA";
+        enlace = "#galeria-productos";
+    } 
+    else if (input.includes("dell")) {
+        mensaje = "✅ Encontrado: Laptop Dell por 160.000 FCFA";
+        enlace = "#galeria-productos";
+    } 
+    else if (input.includes("probook")) {
+        mensaje = "✅ Encontrado: HP ProBook por 175.000 FCFA";
+        enlace = "#galeria-productos";
+    } 
+    else if (input.includes("laptop")) {
+        mensaje = "Tenemos Dell, G5, ProBook y más. Te muestro el catálogo completo.";
+    } 
+    else {
+        mensaje = "🔍 No encontré coincidencia exacta, pero tenemos muchas opciones. Te ayudo por WhatsApp.";
     }
 
-    let respuesta = "";
-
-    if (input.includes("iphone") || input.includes("11")) {
-        respuesta = "✅ Encontrado: <strong>iPhone 11</strong> por 160.000 FCFA. ¿Quieres más detalles?";
-    } else if (input.includes("g5") || input.includes("250")) {
-        respuesta = "✅ Disponible: <strong>Laptop G5</strong> en oferta por 250.000 FCFA (Oferta de la semana).";
-    } else if (input.includes("dell")) {
-        respuesta = "✅ Disponible: <strong>Laptop Dell</strong> por 160.000 FCFA.";
-    } else if (input.includes("probook")) {
-        respuesta = "✅ Disponible: <strong>HP ProBook</strong> por 175.000 FCFA.";
-    } else if (input.includes("laptop") || input.includes("portátil")) {
-        respuesta = "Tenemos varias laptops: Dell (160k), G5 (250k), ProBook (175k) y más. ¿Cuál te interesa?";
-    } else {
-        respuesta = "🔍 No encontré coincidencia exacta, pero tenemos muchas opciones. Te recomiendo contactarnos por WhatsApp para ayudarte mejor.";
-    }
-
-    resultadoDiv.innerHTML = `<p>${respuesta}</p>`;
-    resultadoDiv.style.display = 'block';
+    // Mostrar resultado y enlace
+    alert(mensaje + "\n\nHaz clic en Aceptar para ir al catálogo.");
+    window.location.href = enlace;
 }
+</script>
 
 // Cerrar modal al hacer clic fuera
 window.onclick = function(event) {
