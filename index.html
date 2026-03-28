@@ -75,7 +75,7 @@
         <nav class="nav-simple">
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#galeria-productos">Productos</a></li>
+             <li><a href="nuestrocatalogo.html">Catálogo</a></li>
                 <li><a href="#intercambios">Intercambios</a></li>
                 <li><a href="#terminos-seguridad">Seguridad</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -83,12 +83,17 @@
         </nav>
     </div>
 </header>
-<!-- HERO SECTION - BOTONES MEJORADOS -->
-<section id="inicio" class="hero">
-    <h1 class="titulo-principal">¡Hola Jef@! <br>Sea Bienvenido a COMPRA YA!!</h1>
-    <p class="subtitulo">La mejor tecnología de Malabo al alcance de un clic.</p>
-    
-    <div class="botones-hero">
+<!-- Botón Catálogo que ahora abre la nueva página -->
+<button onclick="window.location.href='nuestrocatalogo.html'" 
+        class="btn-hero btn-rojo">
+    📋 VER CATÁLOGO COMPLETO
+</button>
+
+<!-- Botón Oferta (puedes dejarlo o también enviarlo al nuevo catálogo) -->
+<button onclick="window.location.href='nuestrocatalogo.html'" 
+        class="btn-hero btn-rojo">
+    🔥 VER TODAS LAS OFERTAS
+</button>
         
         <!-- Botón Catálogo -->
         <button onclick="window.location.href='#galeria-productos'" 
@@ -251,79 +256,6 @@
             <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio" class="btn-whatsapp" style="max-width: 300px; margin: 20px auto; display: inline-block;">
                 Pedir por WhatsApp 📲
             </a>
-        </div>
-    </section>
-
-    <!-- Catálogo principal (completo con todos tus productos) -->
-    <section id="galeria-productos" style="background-color: #f4f4f4; padding: 60px 20px;">
-        <h2 class="seccion-titulo">🛍️ Nuestro Catálogo</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 50px;">Haz clic en el botón de WhatsApp para consultar disponibilidad</p>
-        
-        <!-- LAPTOPS -->
-        <div style="margin-bottom: 70px;">
-            <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 30px;">💻 LAPTOPS</h3>
-            <div class="grid-productos">
-                <!-- Productos originales + los 3 nuevos -->
-                <div class="tarjeta-premium">
-                    <img src="laptopd.JPEG" alt="DELL LATITUDE 3310" loading="lazy">
-                    <div style="padding: 20px; text-align: center; flex-grow: 1;">
-                        <h4>DELL LATITUDE 3310</h4>
-                        <p style="color: #888; font-size: 0.9rem;">8GB RAM - 256GB INTEL CORE</p>
-                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
-                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-                    </div>
-                </div>
-                <!-- ... (mantengo todos los demás laptops que tenías) ... -->
-                <!-- Nuevos productos -->
-                <div class="tarjeta-premium">
-                    <img src="Dell.JPG" alt="Dell Laptop" loading="lazy">
-                    <div style="padding: 20px; text-align: center; flex-grow: 1;">
-                        <h4>DELL LATITUDE</h4>
-                        <p style="color: #888; font-size: 0.9rem;">Laptop Dell de alto rendimiento</p>
-                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
-                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20Dell%20laptop%20de%20160.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-                    </div>
-                </div>
-                <div class="tarjeta-premium">
-                    <img src="G5.JPEG" alt="G5 Laptop" loading="lazy">
-                    <div style="padding: 20px; text-align: center; flex-grow: 1;">
-                        <h4>G5</h4>
-                        <p style="color: #888; font-size: 0.9rem;">Laptop G5 potente y moderna</p>
-                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">250.000 FCFA</p>
-                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20G5%20de%20250.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-                    </div>
-                </div>
-                <div class="tarjeta-premium">
-                    <img src="probook.JPEG" alt="Probook Laptop" loading="lazy">
-                    <div style="padding: 20px; text-align: center; flex-grow: 1;">
-                        <h4>PROBOOK</h4>
-                        <p style="color: #888; font-size: 0.9rem;">HP ProBook confiable para trabajo</p>
-                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">175.000 FCFA</p>
-                        <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20Probook%20de%20175.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Móviles -->
-        <div style="margin-bottom: 60px;">
-            <h3 style="background: #d31212; color: white; display: inline-block; padding: 10px 25px; border-radius: 0 50px 50px 0; margin-bottom: 25px;">📱 MÓVILES</h3>
-            <div class="grid-productos">
-                <div class="tarjeta-premium">
-                    <img src="iphone.JPEG" alt="iPhone 11" loading="lazy">
-                    <div style="padding: 20px; text-align: center; flex-grow: 1;">
-                        <h4>iPhone 11</h4>
-                        <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
-                        <a href="https://wa.me/240555391797?text=Info%20iPhone%2011" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-                    </div>
-                    <div class="product-info">
-        <h3>iPhone - Última Generación</h3>
-        <p class="description">Rendimiento excepcional y cámaras profesionales. Disponible ahora en nuestra sede de Malabo. ¡No te quedes sin el tuyo!</p>
-        <p class="price">350.000 FCFA</p>
-        <a href="https://wa.me/+240555391797" class="btn-buy"><i class="fab fa-whatsapp"></i> Pedir por WhatsApp</a>
-    </div>
-                </div>
-            </div>
         </div>
     </section>
 
