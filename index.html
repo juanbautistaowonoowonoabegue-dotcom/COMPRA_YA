@@ -47,8 +47,26 @@
 
 <body>
 
-    <!-- HEADER CON LOGO ROJO COMPLETO -->
-    <header>
+<!-- HEADER MEJORADO CON ESPACIO PUBLICITARIO -->
+<header class="header-principal">
+    
+    <!-- Banner Publicitario Superior -->
+    <div class="banner-publicidad">
+        <div class="publicidad-contenido">
+            <span class="badge-top">🔥 TOP VENTAS</span>
+            <h2 class="texto-publicidad">ESPACIO RESERVADO PARA PUBLICIDAD</h2>
+            <p class="subtexto-publicidad">Cambia esta imagen fácilmente con tus anuncios</p>
+        </div>
+        
+        <!-- Imagen publicitaria (aquí pones tus banners) -->
+        <img id="banner-img" 
+             src="https://via.placeholder.com/1200x250/000000/ffffff?text=PUBLICIDAD+COMPRA+YA" 
+             alt="Banner Publicitario" 
+             class="banner-imagen">
+    </div>
+
+    <!-- Header Principal con Logo y Navegación -->
+    <div class="header-contenido">
         <div class="header-full">
             <img src="logotipo.JPEG" 
                  alt="COMPRA YA!! Logo" 
@@ -59,22 +77,41 @@
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#galeria-productos">Productos</a></li>
+                <li><a href="#intercambios">Intercambios</a></li>
                 <li><a href="#terminos-seguridad">Seguridad</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-    </header>
-
-<!-- HERO SECTION CORREGIDA Y MEJORADA -->
+    </div>
+</header>
+<!-- HERO SECTION - BOTONES MEJORADOS -->
 <section id="inicio" class="hero">
     <h1 class="titulo-principal">¡Hola Jef@! <br>Sea Bienvenido a COMPRA YA!!</h1>
     <p class="subtitulo">La mejor tecnología de Malabo al alcance de un clic.</p>
     
     <div class="botones-hero">
+        
         <!-- Botón Catálogo -->
-        <button onclick="window.location.href='#galeria-productos'" class="btn-hero btn-rojo">
+        <button onclick="window.location.href='#galeria-productos'" 
+                class="btn-hero btn-rojo">
             📋 NUESTRO CATÁLOGO
         </button>
+        
+        <!-- Botón Oferta -->
+        <button onclick="window.location.href='#galeria-productos'" 
+                class="btn-hero btn-rojo">
+            🔥 VEA NUESTRA OFERTA
+        </button>
+        
+        <!-- Botón Contacto (WhatsApp) -->
+        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
+           target="_blank" 
+           class="btn-hero btn-verde">
+            💬 CONTÁCTANOS POR WHATSAPP
+        </a>
+        
+    </div>
+</section>
         
         <!-- Botón Oferta -->
         <a href="#galeria-productos" class="btn-hero btn-rojo">
