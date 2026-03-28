@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Completo - Compra Ya Malabo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Añade aquí los mismos estilos y fuentes que tienes en la página principal -->
+</head>
+<body>
+
+ <!-- ====================== CATÁLOGO DINÁMICO CON CARRUSEL ====================== -->
+<section style="padding: 80px 20px; background: #f8f8f8;">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h1 style="font-size: 3.2rem; color: #d31212; margin-bottom: 10px;">🛍️ NUESTRO CATÁLOGO COMPLETO</h1>
+        <p style="font-size: 1.4rem; color: #555; max-width: 700px; margin: 0 auto;">
+            Desliza horizontalmente • Productos actualizados diariamente en Malabo
+        </p>
+    </div>
+
+    <!-- CSS para el carrusel (puedes ponerlo en style.css también) -->
+    <style>
+        .carousel-grid {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+        .carousel-grid::-webkit-scrollbar { display: none; }
+
+        .tarjeta-premium {
+            flex: 0 0 320px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+        .tarjeta-premium:hover {
+            transform: scale(1.07) translateY(-10px);
+            box-shadow: 0 20px 35px rgba(211, 18, 18, 0.3);
+        }
+        .tarjeta-premium img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn-whatsapp:hover {
+            background: #20ba5a;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <!-- LAPTOPS -->
+    <h2 style="background: #d31212; color: white; display: inline-block; padding: 12px 35px; border-radius: 0 50px 50px 0; margin: 40px 0 25px;">💻 LAPTOPS</h2>
+    <div class="carousel-grid" id="carrusel-laptops">
+
+        <div class="tarjeta-premium">
+            <img src="laptopd.JPEG" alt="DELL LATITUDE 3310" loading="lazy">
+            <div style="padding: 20px; text-align: center;">
+                <h4>DELL LATITUDE 3310</h4>
+                <p style="color: #888; font-size: 0.9rem;">8GB RAM - 256GB INTEL CORE</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
+                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-premium">
+            <img src="Dell.JPG" alt="Dell Laptop" loading="lazy">
+            <div style="padding: 20px; text-align: center;">
+                <h4>DELL LATITUDE</h4>
+                <p style="color: #888; font-size: 0.9rem;">Laptop Dell de alto rendimiento</p>
+                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
+                <a href
+
+    <!-- Footer (puedes copiar el mismo) -->
+
+    <script>
+        // Carrusel automático suave (izquierda a derecha)
+        function autoScrollCarrusel() {
+            const carousels = document.querySelectorAll('.carousel-grid');
+            carousels.forEach(grid => {
+                let scrollAmount = 0;
+                const scrollSpeed = 1.5; // velocidad (px por frame)
+
+                setInterval(() => {
+                    scrollAmount += scrollSpeed;
+                    grid.scrollLeft = scrollAmount;
+
+                    // Reinicia cuando llega al final
+                    if (scrollAmount >= grid.scrollWidth - grid.clientWidth) {
+                        scrollAmount = 0;
+                    }
+                }, 30); // velocidad del movimiento
+            });
+        }
+
+        window.onload = autoScrollCarrusel;
+    </script>
+
+</body>
+</html>
