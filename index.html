@@ -416,11 +416,12 @@
         </div>
     </div>
 
-    <!-- Botón flotante WhatsApp -->
-    <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20un%20producto" 
-       class="whatsapp-flotante" target="_blank">
+<!-- BOTÓN FLOTANTE WHATSAPP + CHATBOT -->
+<div class="whatsapp-flotante-container">
+    <button onclick="toggleChatWidget()" class="whatsapp-flotante" title="Chatea con Compra Ya">
         <i class="fab fa-whatsapp"></i>
-    </a>
+    </button>
+</div>
 
     <script>
         // Scroll suave
@@ -487,5 +488,90 @@ window.onclick = function(event) {
     if (event.target === modal) cerrarModalIA();
 };
 </script>
+   <!-- WIDGET CHATBOT WHATSAPP -->
+<div id="chat-widget" class="chat-widget">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+                <strong>Compra Ya - Asistente</strong><br>
+                <small>En línea • Respuesta inmediata</small>
+            </div>
+        </div>
+        <span onclick="toggleChatWidget()" class="close-chat">✕</span>
+    </div>
+    
+    <div class="chat-body">
+        <div class="chat-welcome">
+            ¡Hola! Soy el asistente de Compra Ya.<br>
+            ¿En qué te ayudo hoy?
+        </div>
+        
+        <div class="chat-options">
+            <button onclick="seleccionarOpcion(1)">💻 Busco una laptop para trabajar/estudiar</button>
+            <button onclick="seleccionarOpcion(2)">🔥 Quiero ver los 'Nuevos Fichajes' de la semana</button>
+            <button onclick="seleccionarOpcion(3)">🔄 Plan Renove: Quiero entregar mi equipo</button>
+            <button onclick="seleccionarOpcion(4)">📱 ¿Tienen el iPhone 11 o similares en stock?</button>
+            <button onclick="seleccionarOpcion(5)">💼 Consultar HP EliteBook / Dell</button>
+            <button onclick="seleccionarOpcion(6)">👨‍💼 Asesoría Personalizada</button>
+        </div>
+        
+        <!-- Sub-menú inteligente para laptops -->
+        <div id="sub-laptop" class="sub-menu" style="display:none;">
+            <p><strong>Perfecto, ¿para qué tipo de uso la necesitas?</strong></p>
+            <button onclick="recomendarLaptop('basico')">Uso básico (oficina, estudios, navegación)</button>
+            <button onclick="recomendarLaptop('pesado')">Uso pesado (diseño, ingeniería, programas grandes)</button>
+        </div>
+    </div>
+</div>     
+  <script>
+// Abrir / cerrar widget
+function toggleChatWidget() {
+    const widget = document.getElementById('chat-widget');
+    widget.style.display = (widget.style.display === 'block') ? 'none' : 'block';
+}
+
+// Selección de opción principal
+function seleccionarOpcion(opcion) {
+    const widget = document.getElementById('chat-widget');
+    
+    if (opcion === 1) {
+        document.getElementById('sub-laptop').style.display = 'block';
+        return;
+    }
+    
+    let mensaje = "";
+    switch(opcion) {
+        case 2: mensaje = "Quiero ver los Nuevos Fichajes de la semana"; break;
+        case 3: mensaje = "Estoy interesado en el Plan Renove (entregar mi equipo)"; break;
+        case 4: mensaje = "Quiero saber si tienen el iPhone 11 o similares en stock"; break;
+        case 5: mensaje = "Consultar disponibilidad de HP EliteBook y Dell"; break;
+        case 6: mensaje = "Quiero asesoría personalizada con un experto"; break;
+    }
+    
+    window.open(`https://wa.me/240555391797?text=${encodeURIComponent(mensaje)}`, "_blank");
+    toggleChatWidget(); // cierra el widget
+}
+
+// Recomendación inteligente para laptops
+function recomendarLaptop(tipo) {
+    let mensaje = "";
+    if (tipo === 'basico') {
+        mensaje = "Busco laptop para uso básico de oficina y estudios (Dell o ProBook)";
+    } else {
+        mensaje = "Necesito laptop para uso pesado (diseño, ingeniería). Recomiéndame la mejor opción";
+    }
+    window.open(`https://wa.me/240555391797?text=${encodeURIComponent(mensaje)}`, "_blank");
+    toggleChatWidget();
+}
+
+// Auto-apertura a los 7 segundos
+setTimeout(() => {
+    const widget = document.getElementById('chat-widget');
+    if (widget.style.display !== 'block') {
+        widget.style.display = 'block';
+    }
+}, 7000);
+</script>      
 </body>
 </html>
