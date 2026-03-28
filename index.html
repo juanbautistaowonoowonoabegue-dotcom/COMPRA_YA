@@ -593,8 +593,7 @@ function buscarConIA() {
         </div>
         
         <div class="chat-options">
-            <button onclick="seleccionarOpcion(1)">💻 Busco una laptop para trabajar/estudiar</button>
-            <button onclick="seleccionarOpcion(2)">🔥 Quiero ver los 'Nuevos Fichajes' de la semana</button>
+            <button onclick="seleccionarOpcion(2)">🔥 Quiero ver los 'Nuevos ordenadores' de la semana</button>
             <button onclick="seleccionarOpcion(3)">🔄 Plan Renove: Quiero entregar mi equipo</button>
             <button onclick="seleccionarOpcion(4)">📱 ¿Tienen el iPhone 11 o similares en stock?</button>
             <button onclick="seleccionarOpcion(5)">💼 Consultar HP EliteBook / Dell</button>
@@ -625,14 +624,29 @@ function seleccionarOpcion(opcion) {
         return;
     }
     
-    let mensaje = "";
-    switch(opcion) {
-        case 2: mensaje = "Quiero ver los Nuevos Fichajes de la semana"; break;
-        case 3: mensaje = "Estoy interesado en el Plan Renove (entregar mi equipo)"; break;
-        case 4: mensaje = "Quiero saber si tienen el iPhone 11 o similares en stock"; break;
-        case 5: mensaje = "Consultar disponibilidad de HP EliteBook y Dell"; break;
-        case 6: mensaje = "Quiero asesoría personalizada con un experto"; break;
-    }
+let opcion = 2; // Aquí iría el número que recibes (2, 3, 4, etc.)
+let mensaje = "";
+
+switch (opcion) {
+    case 2: 
+        mensaje = "Quiero ver los Nuevos ordenadores de la semana"; 
+        break;
+    case 3: 
+        mensaje = "Estoy interesado en el Plan Renove (entregar mi equipo)"; 
+        break;
+    case 4: 
+        mensaje = "Quiero saber si tienen el iPhone 11 o similares en stock"; 
+        break;
+    case 5: 
+        mensaje = "Consultar disponibilidad de HP EliteBook y Dell"; 
+        break;
+    case 6: 
+        mensaje = "Quiero asesoría personalizada con un experto"; 
+        break;
+    default:
+        mensaje = "Hola, quiero información sobre los productos de Compra Ya!!";
+}
+
     
     window.open(`https://wa.me/240555391797?text=${encodeURIComponent(mensaje)}`, "_blank");
     toggleChatWidget(); // cierra el widget
