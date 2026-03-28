@@ -44,10 +44,60 @@
             <textarea id="descripcion" placeholder="Ej: Última generación - Cámara profesional" rows="2" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;"></textarea>
         </div>
 
-        <div style="margin-top: 15px;">
-            <label><strong>URL de la imagen (sube a imgur.com o similar y pega el enlace directo)</strong></label>
-            <input type="text" id="imagen" placeholder="https://i.imgur.com/xxxxx.jpg" required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
-        </div>
+        <div style="margin-top: 15px; font-family: sans-serif;">
+    <label><strong>Seleccionar imagen desde el dispositivo</strong></label>
+    
+    <input type="file" id="archivo-imagen" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd; margin-bottom: 10px;">
+    
+    <input type="hidden" id="imagen" name="imagen">
+    
+    <p id="status" style="font-size: 0.9em; color: #666;"></p>
+</div>
+
+<script>
+    const fileInput = document.getElementById('archivo-imagen');
+    const statusText = document.getElementById('status');
+    const urlOutput = document.getElementById('imagen');
+
+    // Lista de tus API Keys (se usará la primera por defecto)
+    const apiKey = '74d11d0588be8361d7ccd4812a9cb112';
+
+    fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (!file) return;
+
+        statusText.innerText = "Subiendo imagen...";
+        statusText.style.color = "#007bff";
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        // Petición a la API de ImgBB
+        fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                const imageUrl = result.data.url;
+                urlOutput.value = imageUrl; // Guardamos la URL en el input oculto
+                statusText.innerText = "¡Imagen lista!";
+                statusText.style.color = "#28a745";
+                console.log("URL de la imagen:", imageUrl);
+            } else {
+                statusText.innerText = "Error al subir la imagen.";
+                statusText.style.color = "#dc3545";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            statusText.innerText = "Error de conexión.";
+            statusText.style.color = "#dc3545";
+        });
+    });
+</script>
+
 
         <button type="submit" 
                 style="margin-top: 20px; width: 100%; padding: 16px; background: #d31212; color: white; border: none; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer;">
@@ -57,7 +107,7 @@
 </div>
 
 <p style="text-align: center; color: #666; font-size: 0.95rem;">
-    Publica primero en tu canal WhatsApp → luego rellena este formulario → la tarjeta aparece automáticamente en el carrusel.
+   incluso puedes publicar tu propio producto si eres un vendedor y necesitas visibilidad gratuitamente🆓
 </p>
         <p style="font-size: 1.35rem; color: #444;">Desliza para ver todas las ofertas • Actualizado en Malabo</p>
     </div>
