@@ -89,23 +89,7 @@
     📋 VER CATÁLOGO COMPLETO
 </button>
 
-<!-- Botón Oferta (puedes dejarlo o también enviarlo al nuevo catálogo) -->
-<button onclick="window.location.href='nuestrocatalogo.html'" 
-        class="btn-hero btn-rojo">
-    🔥 VER TODAS LAS OFERTAS
-</button>
-        
-        <!-- Botón Catálogo -->
-        <button onclick="window.location.href='#galeria-productos'" 
-                class="btn-hero btn-rojo">
-            📋 NUESTRO CATÁLOGO
-        </button>
-        
-        <!-- Botón Oferta -->
-        <button onclick="window.location.href='#galeria-productos'" 
-                class="btn-hero btn-rojo">
-            🔥 VEA NUESTRA OFERTA
-        </button>
+
         
         <!-- Botón Contacto (WhatsApp) -->
         <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20más%20información" 
@@ -124,10 +108,8 @@
            class="ia-search-input"
            style="width: 75%; padding: 15px; border: 2px solid #d31212; border-radius: 50px 0 0 50px; font-size: 1.1rem; outline: none;">
     
-    <button onclick="buscarConIA()" class="ia-search-btn"
-            style="padding: 15px 30px; background: #d31212; color: white; border: none; border-radius: 0 50px 50px 0; font-size: 1.1rem; cursor: pointer;">
-        🔎 Buscar con IA
-    </button>
+    
+    
 </div>
 
 <!-- Área donde aparecerá la respuesta de la IA -->
@@ -151,12 +133,16 @@
         
         <input type="text" id="busqueda-ia" 
                placeholder="Ej: Quiero un iPhone, laptop Dell, G5..." 
-               style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 1.05rem; margin-bottom: 20px;">
-        
-        <button onclick="buscarConIA()" 
-                style="width: 100%; padding: 16px; background: #d31212; color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
-            Buscar con IA
-        </button>
+               style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 1.05rem; margin-bottom: <div style="display: flex; max-width: 600px; margin: 0 auto;">
+    <input type="text" id="user-input" placeholder="¿Qué necesitas hoy?" 
+           style="flex: 1; padding: 15px; border: 2px solid #d31212; border-radius: 50px 0 0 50px; outline: none;">
+    
+    <button onclick="buscarConIA()" class="ia-search-btn"
+            style="padding: 15px 30px; background: #d31212; color: white; border: none; border-radius: 0 50px 50px 0; font-size: 1.1rem; cursor: pointer;">
+        🔎 Busque el producto aquí
+    </button>
+</div>
+
         
         <div id="resultado-ia" style="margin-top: 25px; padding: 15px; background: #f9f9f9; border-radius: 12px; min-height: 80px; display: none;">
             <!-- Los resultados aparecerán aquí -->
@@ -734,6 +720,27 @@ function generarRespuestaIA(consulta) {
 
     return html;
 }
+        function buscarConIA() {
+    // 1. Capturamos lo que el usuario escribió en tu input de búsqueda
+    // Asegúrate de que tu <input> tenga el id="user-input"
+    const busqueda = document.getElementById('user-input').value;
+
+    if (busqueda.trim() === "") {
+        alert("Por favor, escribe qué estás buscando (ej: 'una laptop para diseño' o 'un móvil barato')");
+        return;
+    }
+
+    // 2. Definimos el mensaje para la IA
+    const mensajeContexto = `Hola Gemini, soy cliente de COMPRA YA!! en Malabo. 
+    Basándote en tu conocimiento del catálogo de esta tienda (Laptops HP/Lenovo/MacBook y Móviles), 
+    ayúdame a encontrar: ${busqueda}`;
+
+    // 3. Opción recomendada: Abrir Gemini con la consulta lista
+    const url = `https://gemini.google.com/app?q=${encodeURIComponent(mensajeContexto)}`;
+    window.open(url, '_blank');
+}
+
 </script>
+    
 </body>
 </html>
