@@ -499,40 +499,148 @@
         </div>
     </div>
 
-<!-- BOTÓN FLOTANTE WHATSAPP -->
-<a href="#" onclick="toggleChatWidget(event)" class="whatsapp-flotante" title="Chatea con Compra Ya">
-    <i class="fab fa-whatsapp"></i>
-</a>
+<!-- ====================== BOTONES FLOTANTES ====================== -->
 
+<!-- Botón Flotante PUBLICAR PRODUCTO (arriba a la derecha) -->
+<button onclick="mostrarFormulario()" 
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999;
+               background: #d31212; color: white; border: none; padding: 14px 18px;
+               border-radius: 50px; font-size: 1rem; font-weight: bold; box-shadow: 0 8px 25px rgba(211, 18, 18, 0.35);
+               cursor: pointer; display: flex; align-items: center; gap: 8px;">
+    📲 Publicar Producto
+</button>
+
+<!-- Botón Flotante WHATSAPP + Chatbot (abajo a la derecha) -->
+<div style="position: fixed; bottom: 25px; right: 25px; z-index: 10000; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;">
+    
+    <!-- Botón principal de WhatsApp -->
+    <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20producto" 
+       target="_blank"
+       style="background: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; 
+              display: flex; align-items: center; justify-content: center; font-size: 32px; 
+              box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); text-decoration: none;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Widget de Chatbot (se abre al hacer clic en el botón de arriba) -->
+    <div id="chat-widget" style="display: none; background: white; width: 320px; border-radius: 16px; 
+         box-shadow: 0 15px 40px rgba(0,0,0,0.25); overflow: hidden; margin-bottom: 10px;">
+
+        <!-- Cabecera del Chat -->
+        <div style="background: #25D366; color: white; padding: 15px; display: flex; align-items: center; gap: 12px;">
+            <div style="width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                💬
+            </div>
+            <div>
+                <strong>Compra Ya - Asistente</strong><br>
+                <small>Respondo rápido por WhatsApp</small>
+            </div>
+            <button onclick="toggleChatWidget()" 
+                    style="margin-left: auto; background: none; border: none; color: white; font-size: 20px; cursor: pointer;">
+                ✕
+            </button>
+        </div>
+
+        <!-- Cuerpo del Chatbot -->
+        <div style="padding: 20px; background: #f9f9f9; max-height: 380px; overflow-y: auto;">
+            <p style="margin: 0 0 15px 0; color: #444; font-size: 0.95rem;">
+                ¡Hola! ¿En qué te puedo ayudar hoy?
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onclick="enviarMensajeWhatsApp('Quiero ver laptops disponibles')" 
+                        style="padding: 12px 16px; text-align: left; background: white; border: 1px solid #ddd; 
+                               border-radius: 10px; cursor: pointer; font-size: 0.95rem;">
+                    💻 Quiero ver laptops disponibles
+                </button>
+
+                <button onclick="enviarMensajeWhatsApp('Quiero ver móviles y smartphones')" 
+                        style="padding: 12px 16px; text-align: left; background: white; border: 1px solid #ddd; 
+                               border-radius: 10px; cursor: pointer; font-size: 0.95rem;">
+                    📱 Quiero ver móviles y smartphones
+                </button>
+
+                <button onclick="enviarMensajeWhatsApp('¿Cuánto cuesta el producto que tengo en mente?')" 
+                        style="padding: 12px 16px; text-align: left; background: white; border: 1px solid #ddd; 
+                               border-radius: 10px; cursor: pointer; font-size: 0.95rem;">
+                    💰 Consultar precio de un producto
+                </button>
+
+                <button onclick="enviarMensajeWhatsApp('Quiero publicar mi propio producto')" 
+                        style="padding: 12px 16px; text-align: left; background: white; border: 1px solid #ddd; 
+                               border-radius: 10px; cursor: pointer; font-size: 0.95rem;">
+                    📢 Quiero publicar mi producto
+                </button>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" 
+                   target="_blank"
+                   style="color: #25D366; text-decoration: none; font-size: 0.9rem;">
+                    📢 Únete a nuestro Canal de WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- Pie del Chat -->
+        
+        <div style="padding: 12px; background: #f1f1f1; text-align: center; font-size: 0.85rem; color: #666;">
+            Responderemos por WhatsApp en pocos minutos
+        </div>
+    </div>
+</div>
     <script>
-        // Scroll suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const modal = document.getElementById('privacidad-modal');
-            if (event.target === modal) modal.style.display = "none";
-        };
-    </script>
-        <script>
-// Abrir modal IA
-function abrirModalIA() {
-    document.getElementById('modal-ia').style.display = 'flex';
-    document.getElementById('busqueda-ia').focus();
+// Toggle del widget de Chatbot
+function toggleChatWidget(e) {
+    if (e) e.preventDefault();
+    const widget = document.getElementById('chat-widget');
+    widget.style.display = widget.style.display === 'block' ? 'none' : 'block';
 }
 
-// Cerrar modal IA
-function cerrarModalIA() {
-    document.getElementById('modal-ia').style.display = 'none';
+// Enviar mensaje predefinido a WhatsApp
+function enviarMensajeWhatsApp(mensaje) {
+    const numero = "240555391797";
+    const texto = encodeURIComponent(mensaje);
+    window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
+    
+    // Opcional: cerrar el widget después de hacer clic
+    setTimeout(() => {
+        document.getElementById('chat-widget').style.display = 'none';
+    }, 800);
 }
 
-<script>
+// Mostrar/Ocultar formulario de publicación (del código anterior)
+function mostrarFormulario() {
+    document.getElementById('formulario-publicacion').style.display = 'block';
+}
+
+function cerrarFormulario() {
+    document.getElementById('formulario-publicacion').style.display = 'none';
+}
+
+// Cerrar chatbot si se hace clic fuera
+document.addEventListener('click', function(e) {
+    const widget = document.getElementById('chat-widget');
+    const botonWhatsapp = document.querySelector('.whatsapp-flotante');
+    
+    if (widget.style.display === 'block' && 
+        !widget.contains(e.target) && 
+        !e.target.closest('a[href*="wa.me"]')) {
+        widget.style.display = 'none';
+    }
+});
+
+// Scroll suave para enlaces internos
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
 // Búsqueda IA con enlace directo al producto
 function buscarConIA() {
     const input = document.getElementById('ia-search-input').value.toLowerCase().trim();
