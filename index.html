@@ -36,13 +36,13 @@
 
         .logo-rectangulo {
             background: white;
-            padding: 18px 0;
+            padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid #eee;
             width: 100%;
         }
 
-        .logo-rectangulo img {
+        .logo-full {
             max-width: 320px;
             height: auto;
             display: block;
@@ -106,7 +106,33 @@
             transition: 0.3s;
         }
 
-        /* ====================== WHATSAPP FLOTANTE CON ANIMACIÓN ====================== */
+        /* Botón IA */
+        .ia-button-container {
+            margin-left: auto;
+        }
+
+        .btn-ia {
+            background: linear-gradient(135deg, #d31212, #a80e0e);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(211, 18, 18, 0.3);
+        }
+
+        .btn-ia:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(211, 18, 18, 0.4);
+        }
+
+        /* WhatsApp Flotante */
         .whatsapp-flotante {
             position: fixed;
             bottom: 25px;
@@ -123,21 +149,19 @@
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
             z-index: 9999;
             text-decoration: none;
-            transition: all 0.4s ease;
-            animation: pulsoVerde 2.5s infinite ease-in-out;
+            animation: pulsoVerde 2.8s infinite ease-in-out;
         }
 
         .whatsapp-flotante:hover {
             transform: scale(1.12);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
         }
 
         @keyframes pulsoVerde {
             0%, 100% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5); }
-            50% { box-shadow: 0 10px 45px rgba(37, 211, 102, 0.85); }
+            50% { box-shadow: 0 15px 45px rgba(37, 211, 102, 0.85); }
         }
 
-        /* ====================== CATÁLOGO CON CARRUSEL ====================== */
+        /* Catálogo */
         .seccion {
             max-width: 1300px;
             margin: 50px auto;
@@ -212,14 +236,9 @@
             padding: 0;
         }
 
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
         .footer-col a {
             color: #aaa;
             text-decoration: none;
-            transition: color 0.3s;
         }
 
         .footer-col a:hover {
@@ -242,11 +261,106 @@
             font-size: 0.9rem;
         }
 
+        /* Modal Privacidad */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 90%;
+            padding: 35px;
+            border-radius: 16px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            color: var(--rojo);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-content h3 {
+            margin: 25px 0 12px;
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* Chatbot */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 340px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
+            z-index: 9998;
+            display: none;
+            flex-direction: column;
+            max-height: 520px;
+        }
+
+        .chat-header {
+            background: #25D366;
+            color: white;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-body {
+            padding: 20px;
+            background: #f9f9f9;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .chat-options button {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .chat-options button:hover {
+            background: #f0f8f0;
+            border-color: #25D366;
+        }
+
+        .chat-footer {
+            padding: 12px;
+            background: #f1f1f1;
+            text-align: center;
+        }
+
+        .canal-wa {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
-                top: 130px;
+                top: 145px;
                 left: 0;
                 right: 0;
                 background: white;
@@ -257,6 +371,7 @@
                 opacity: 0;
                 visibility: hidden;
                 transition: all 0.4s ease;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -269,12 +384,14 @@
                 display: flex;
             }
 
-            .logo-rectangulo img {
+            .logo-full {
                 max-width: 240px;
             }
 
-            .ofertas-container {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            .chatbot-widget {
+                width: 92%;
+                right: 4%;
+                bottom: 90px;
             }
         }
 
@@ -290,24 +407,19 @@
     </style>
 </head>
 <body>
-<!-- ====================== CABECERA PROFESIONAL ====================== -->
+
+<!-- CABECERA -->
 <header class="header-principal">
-    
-    <!-- Rectángulo completo del Logo -->
     <div class="logo-rectangulo">
         <img src="logo.JPG" alt="Compra Ya Logo" class="logo-full">
     </div>
 
-    <!-- Banner Publicidad -->
     <div class="banner-publicidad">
         ¡La mejor tecnología en Malabo con garantía real y precios competitivos!
     </div>
 
-    <!-- Navegación + Botón IA -->
     <div class="header-contenido">
         <div class="header-inner">
-            
-            <!-- Menú de navegación -->
             <nav>
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#productos">Catálogo</a></li>
@@ -317,14 +429,12 @@
                 </ul>
             </nav>
 
-            <!-- Botón Inteligencia Artificial -->
             <div class="ia-button-container">
                 <button onclick="mostrarBuscadorIA()" class="btn-ia">
                     <i class="fas fa-robot"></i> Buscar con IA
                 </button>
             </div>
 
-            <!-- Hamburguesa para móvil -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -333,102 +443,88 @@
         </div>
     </div>
 </header>
-    <!-- HERO -->
-    <section class="hero" style="background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover; color: white; text-align: center; padding: 120px 20px;">
-        <h1 style="font-size: 3.2rem; margin-bottom: 20px;">Intercambio y Venta de Móviles y Laptops</h1>
-        <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 30px;">Compra, vende o intercambia con la mejor garantía en Malabo</p>
-        
-        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="#productos" class="btn-hero" style="background: white; color: var(--rojo); padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold;">Ver Catálogo</a>
-            <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya" target="_blank" class="btn-hero" style="background: #25D366; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold;">Contactar por WhatsApp</a>
-        </div>
-    </section>
 
-    <!-- CATÁLOGO -->
-    <section id="productos" class="seccion">
-        <h2 class="seccion-titulo">🔥 Nuestro Catálogo</h2>
-        <div class="ofertas-container">
-            <!-- Aquí puedes agregar todas tus tarjetas de productos con la misma estructura -->
-            <div class="oferta-card">
-                <img src="iphon.JPEG" alt="iPhone">
-                <div class="oferta-info">
-                    <h3>iPhone / Samsung</h3>
-                    <p>Últimos modelos disponibles</p>
-                    <div style="font-size: 1.7rem; font-weight: bold; color: var(--rojo); margin: 15px 0;">Desde 100.000 FCFA</div>
-                    <a href="https://wa.me/240555391797?text=Quiero%20ver%20móviles" target="_blank" style="background: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; text-decoration: none;">Pedir por WhatsApp</a>
-                </div>
-            </div>
+<!-- HERO -->
+<section class="hero" style="background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover; color: white; text-align: center; padding: 120px 20px;">
+    <h1 style="font-size: 3.2rem; margin-bottom: 20px;">Intercambio y Venta de Móviles y Laptops</h1>
+    <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 30px;">Compra, vende o intercambia con la mejor garantía en Malabo</p>
+    
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="#productos" style="background: white; color: var(--rojo); padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold;">Ver Catálogo</a>
+        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya" target="_blank" style="background: #25D366; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold;">Contactar por WhatsApp</a>
+    </div>
+</section>
 
-            <!-- Repite con más tarjetas según necesites (todas con la misma estructura) -->
-            <!-- Ejemplo adicional -->
-            <div class="oferta-card">
-                <img src="laptopi.JPEG" alt="Laptop">
-                <div class="oferta-info">
-                    <h3>Laptops HP / Dell</h3>
-                    <p>Ideal para trabajo y estudios</p>
-                    <div style="font-size: 1.7rem; font-weight: bold; color: var(--rojo); margin: 15px 0;">Desde 150.000 FCFA</div>
-                    <a href="https://wa.me/240555391797?text=Quiero%20información%20de%20laptops" target="_blank" style="background: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; text-decoration: none;">Pedir por WhatsApp</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secciones adicionales (Intercambio, Garantía, etc.) -->
-    <!-- Puedes mantener o adaptar las secciones que ya tenías -->
-
-    <!-- FOOTER -->
-    <footer id="contacto">
-        <div class="footer-contenido">
-            <div class="footer-col">
-                <h3>Compra Ya 🛒</h3>
-                <p>Tecnología de calidad con garantía real en Malabo.</p>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Enlaces Rápidos</h3>
-                <ul>
-                    <li><a href="#productos">Catálogo</a></li>
-                    <li><a href="#intercambios">Intercambio</a></li>
-                    <li><a href="#terminos-seguridad">Garantía y Seguridad</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Contáctanos</h3>
-                <p>📍 Malabo, Bioko Norte</p>
-                <p>📲 <a href="https://wa.me/240555391797" style="color: #25D366;">+240 555 391 797</a></p>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Síguenos</h3>
-                <div class="redes-sociales">
-                    <a href="https://www.instagram.com/compra_ya_malabo" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@owonoowonoabegue" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://wa.me/240555391797" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
+<!-- CATÁLOGO -->
+<section id="productos" class="seccion">
+    <h2 class="seccion-titulo">🔥 Nuestro Catálogo</h2>
+    <div class="ofertas-container">
+        <div class="oferta-card">
+            <img src="iphon.JPEG" alt="iPhone">
+            <div class="oferta-info">
+                <h3>iPhone / Samsung</h3>
+                <p>Últimos modelos disponibles</p>
+                <div style="font-size: 1.7rem; font-weight: bold; color: var(--rojo); margin: 15px 0;">Desde 100.000 FCFA</div>
+                <a href="https://wa.me/240555391797?text=Quiero%20ver%20móviles" target="_blank" style="background: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; text-decoration: none;">Pedir por WhatsApp</a>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p>© 2026 Compra Ya • Tienda Física y Online en Malabo</p>
-            <p style="margin-top: 8px;">
-                <button onclick="document.getElementById('privacidad-modal').style.display='block'" 
-                        style="background:none; border:none; color:#d31212; cursor:pointer;">
-                    Política de Privacidad
-                </button>
-            </p>
+        <div class="oferta-card">
+            <img src="laptopi.JPEG" alt="Laptop">
+            <div class="oferta-info">
+                <h3>Laptops HP / Dell</h3>
+                <p>Ideal para trabajo y estudios</p>
+                <div style="font-size: 1.7rem; font-weight: bold; color: var(--rojo); margin: 15px 0;">Desde 150.000 FCFA</div>
+                <a href="https://wa.me/240555391797?text=Quiero%20información%20de%20laptops" target="_blank" style="background: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; text-decoration: none;">Pedir por WhatsApp</a>
+            </div>
         </div>
-    </footer>
-<!-- ====================== WHATSAPP FLOTANTE + CHATBOT INTELIGENTE ====================== -->
+    </div>
+</section>
 
-<!-- Botón WhatsApp Flotante con animación -->
+<!-- FOOTER -->
+<footer id="contacto">
+    <div class="footer-contenido">
+        <div class="footer-col">
+            <h3>Compra Ya 🛒</h3>
+            <p>Tecnología de calidad con garantía real en Malabo.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+                <li><a href="#productos">Catálogo</a></li>
+                <li><a href="#intercambios">Intercambio</a></li>
+                <li><a href="#terminos-seguridad">Garantía y Seguridad</a></li>
+                <li><a href="#" onclick="document.getElementById('privacidad-modal').style.display='block'">Política de Privacidad</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Contáctanos</h3>
+            <p>📍 Malabo, Bioko Norte</p>
+            <p>📲 <a href="https://wa.me/240555391797" style="color: #25D366;">+240 555 391 797</a></p>
+        </div>
+        <div class="footer-col">
+            <h3>Síguenos</h3>
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/compra_ya_malabo" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@owonoowonoabegue" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/240555391797" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Compra Ya • Tienda Física y Online en Malabo</p>
+    </div>
+</footer>
+
+<!-- Botón WhatsApp Flotante -->
 <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20información" 
    target="_blank" 
-   class="whatsapp-flotante" id="wa-flotante">
+   class="whatsapp-flotante">
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- Chatbot Inteligente (se abre automáticamente al cargar la página) -->
+<!-- Chatbot Inteligente -->
 <div id="chatbot-widget" class="chatbot-widget">
     <div class="chat-header">
         <div class="chat-header-info">
@@ -457,19 +553,16 @@
     </div>
     
     <div class="chat-footer">
-        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" 
-           target="_blank" class="canal-wa">
+        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank" class="canal-wa">
             📢 Únete a nuestro Canal de WhatsApp
         </a>
     </div>
 </div>
 
-    <!-- Modal Privacidad (mantenido simple) -->
-<!-- ====================== MODAL POLÍTICA DE PRIVACIDAD ====================== -->
+<!-- Modal Política de Privacidad -->
 <div id="privacidad-modal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="document.getElementById('privacidad-modal').style.display='none'">&times;</span>
-        
         <h2>Política de Privacidad y Condiciones de Servicio</h2>
         
         <h3>1. Garantía de los Productos</h3>
@@ -505,85 +598,140 @@
         <p>Compra Ya no se hace responsable del software ilegal instalado por el usuario tras la compra ni de la pérdida de información por falta de copias de seguridad. Recomendamos siempre mantener sus archivos en la nube.</p>
 
         <h3>6. Jurisdicción y Contacto</h3>
-        <p>Cualquier controversia será resuelta bajo las leyes comerciales vigentes en la República de Guinea Ecuatorial, priorizando siempre la mediación directa para mantener la relación de confianza con el cliente.</p>
+        <p>Cualquier controversia será resuelta bajo las leyes comerciales vigentes en la República de Guinea Ecuatorial, priorizando siempre la mediación directa.</p>
         <ul>
             <li><strong>Sede</strong>: Malabo, Guinea Ecuatorial</li>
             <li><strong>WhatsApp de Atención</strong>: +240 555 391 797</li>
-            <li><strong>Web</strong>: [Reemplaza aquí con tu enlace de GitHub Pages]</li>
+            <li><strong>Web</strong>: [Reemplaza aquí con tu enlace]</li>
         </ul>
 
-        <p style="text-align: center; margin-top: 35px; font-weight: bold; color: #d31212; font-size: 1.1rem;">
+        <p style="text-align: center; margin-top: 35px; font-weight: bold; color: #d31212;">
             Gracias por confiar en Compra Ya<br>
             <span style="font-size: 1.05rem;">LA MEJOR CALIDAD A TU ALCANCE</span>
         </p>
     </div>
 </div>
 
-    <script>
-        // Menú hamburguesa
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
+<!-- Buscador IA -->
+<div id="ia-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 10000; justify-content: center; align-items: center;">
+    <div style="background: white; max-width: 620px; width: 90%; border-radius: 16px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+        <h3 style="text-align: center; color: #d31212; margin-bottom: 20px;">🤖 Buscar con Inteligencia Artificial</h3>
+        
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <input type="text" id="ia-input" placeholder="Ej: iPhone 11, laptop HP, MacBook..." 
+                   style="flex: 1; padding: 14px; border: 2px solid #ddd; border-radius: 50px; font-size: 1rem; outline: none;">
+            <button onclick="buscarConIA()" 
+                    style="background: #d31212; color: white; border: none; padding: 14px 28px; border-radius: 50px; cursor: pointer; font-weight: bold;">
+                Buscar
+            </button>
+        </div>
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+        <div id="ia-response" style="min-height: 120px; padding: 15px; background: #f9f9f9; border-radius: 12px; display: none;"></div>
 
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
-    <script>
-// Abrir/Cerrar chatbot
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="cerrarIA()" style="background: #666; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==================== MENÚ HAMBURGUESA ====================
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+// ==================== CHATBOT ====================
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot-widget');
     chatbot.style.display = (chatbot.style.display === 'flex') ? 'none' : 'flex';
 }
 
-// Enviar mensaje predefinido a WhatsApp
 function enviarMensajePredefinido(opcion) {
     let mensaje = "";
     const numero = "240555391797";
 
     switch(opcion) {
-        case 1:
-            mensaje = "Hola, quiero ver las laptops y portátiles disponibles";
-            break;
-        case 2:
-            mensaje = "Hola, estoy buscando móviles (iPhone o Samsung). ¿Qué tienen en stock?";
-            break;
-        case 3:
-            mensaje = "Hola, quiero información sobre el Plan Renove / Intercambio";
-            break;
-        case 4:
-            mensaje = "Hola, busco MacBook o productos Apple. ¿Tienen disponibles?";
-            break;
-        case 5:
-            mensaje = "Hola, tengo una consulta sobre sus productos";
-            break;
+        case 1: mensaje = "Hola, quiero ver las laptops y portátiles disponibles"; break;
+        case 2: mensaje = "Hola, estoy buscando móviles (iPhone o Samsung). ¿Qué tienen en stock?"; break;
+        case 3: mensaje = "Hola, quiero información sobre el Plan Renove / Intercambio"; break;
+        case 4: mensaje = "Hola, busco MacBook o productos Apple. ¿Tienen disponibles?"; break;
+        case 5: mensaje = "Hola, tengo una consulta sobre sus productos"; break;
     }
 
-    // Abrir WhatsApp con el mensaje
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
     
-    // Cerrar el chatbot después de 800ms
     setTimeout(() => {
         document.getElementById('chatbot-widget').style.display = 'none';
     }, 800);
 }
 
-// Auto-abrir el chatbot después de 4 segundos al cargar la página
-window.onload = function() {
+// Auto-abrir chatbot
+window.addEventListener('load', () => {
     setTimeout(() => {
-        const chatbot = document.getElementById('chatbot-widget');
-        if (chatbot.style.display !== 'flex') {
-            chatbot.style.display = 'flex';
+        document.getElementById('chatbot-widget').style.display = 'flex';
+    }, 4000);
+});
+
+// ==================== BUSCADOR IA ====================
+function mostrarBuscadorIA() {
+    document.getElementById('ia-modal').style.display = 'flex';
+    document.getElementById('ia-input').focus();
+}
+
+function cerrarIA() {
+    document.getElementById('ia-modal').style.display = 'none';
+}
+
+function buscarConIA() {
+    const input = document.getElementById('ia-input').value.trim();
+    const responseDiv = document.getElementById('ia-response');
+
+    if (!input) {
+        responseDiv.innerHTML = `<p style="color:#d31212;">Por favor escribe qué estás buscando.</p>`;
+        responseDiv.style.display = 'block';
+        return;
+    }
+
+    responseDiv.style.display = 'block';
+    responseDiv.innerHTML = `<p><strong>🤖 Analizando nuestro catálogo...</strong></p>`;
+
+    setTimeout(() => {
+        let html = `<p><strong>✅ Resultados para: "${input}"</strong></p>`;
+        
+        const q = input.toLowerCase();
+        if (q.includes('iphone') || q.includes('móvil')) {
+            html += `<p>Tenemos varios iPhone y Samsung en stock con garantía. Revisa nuestro catálogo completo.</p>`;
+        } else if (q.includes('laptop') || q.includes('portatil') || q.includes('hp') || q.includes('dell')) {
+            html += `<p>Disponemos de laptops HP, Dell y más. Todas revisadas técnicamente.</p>`;
+        } else if (q.includes('macbook') || q.includes('apple')) {
+            html += `<p>MacBook Air y Pro disponibles en excelente estado.</p>`;
+        } else {
+            html += `<p>Hemos encontrado opciones relacionadas en nuestro catálogo.</p>`;
         }
-    }, 4000); // 4 segundos
-};
+
+        html += `<br><a href="nuestrocatalogo.html" style="display:inline-block; background:#d31212; color:white; padding:12px 25px; border-radius:50px; text-decoration:none;">Ver Catálogo Completo →</a>`;
+        
+        responseDiv.innerHTML = html;
+    }, 1100);
+}
+
+// Cerrar modal IA al hacer clic fuera
+document.getElementById('ia-modal').addEventListener('click', function(e) {
+    if (e.target === this) cerrarIA();
+});
 </script>
+
 </body>
 </html>
