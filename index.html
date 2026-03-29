@@ -47,43 +47,223 @@
 
 <body>
 
-<!-- HEADER MEJORADO CON ESPACIO PUBLICITARIO -->
+<!-- HEADER MEJORADO Y RESPONSIVE -->
 <header class="header-principal">
-    
+
     <!-- Banner Publicitario Superior -->
     <div class="banner-publicidad">
-        <div class="publicidad-contenido">
-            <h2 class="texto-publicidad">ESPACIO RESERVADO PARA PUBLICIDAD</h2>
-            <p class="subtexto-publicidad"
-        </div>
-    
-        <!-- Imagen publicitaria (aquí pones tus banners) -->
         <img id="banner-img" 
-             src="https://via.placeholder.com/1200x250/000000/ffffff?text=PUBLICIDAD+COMPRA+YA" 
+             src="https://via.placeholder.com/1200x200/000000/ffffff?text=PUBLICIDAD+COMPRA+YA+-+ANUNCIA+AQUÍ" 
              alt="Banner Publicitario" 
              class="banner-imagen">
     </div>
 
     <!-- Header Principal con Logo y Navegación -->
     <div class="header-contenido">
-        <div class="header-full">
-            <img src="logo.JPEG" 
-                 alt="COMPRA YA!! Logo" 
-                 class="logo-full">
+        <div class="header-inner">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo-link">
+                <img src="logo.JPEG" 
+                     alt="COMPRA YA!! Logo" 
+                     class="logo-full">
+            </a>
+
+            <!-- Navegación -->
+            <nav class="nav-simple">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nuestrocatalogo.html">Catálogo</a></li>
+                    <li><a href="intercambio.html">Intercambio</a></li>
+                    <li><a href="#terminos-seguridad">Seguridad</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+
+                <!-- Botón Hamburguesa (solo visible en móvil) -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+
         </div>
-       <div> 
-        <nav class="nav-simple">
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-             <li><a href="nuestrocatalogo.html">Catálogo</a></li>
-                 <li><a href="intercambio.html">Intercambio</a></li>
-                <li><a href="#terminos-seguridad">Seguridad</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </div>
     </div>
 </header>
+
+<style>
+    :root {
+        --rojo: #d31212;
+    }
+
+    .header-principal {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .banner-publicidad {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .banner-imagen {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 220px;
+        object-fit: cover;
+    }
+
+    .header-contenido {
+        background: white;
+        padding: 12px 20px;
+    }
+
+    .header-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .logo-link {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-full {
+        height: 65px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
+    }
+
+    .nav-simple {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 28px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #222;
+        font-weight: 600;
+        font-size: 1.05rem;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--rojo);
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+    }
+
+    .hamburger span {
+        width: 28px;
+        height: 3px;
+        background: #222;
+        transition: all 0.3s;
+    }
+
+    /* RESPONSIVE - MÓVIL */
+    @media (max-width: 868px) {
+        .header-inner {
+            padding: 10px 15px;
+        }
+
+        .logo-full {
+            height: 55px;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 140px;           /* Ajusta según altura del banner + header */
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            gap: 0;
+            padding: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+        }
+
+        .nav-links.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-links li {
+            text-align: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+
+        /* Animación hamburguesa a X */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    }
+
+    /* Ajustes para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+        .banner-imagen {
+            max-height: 160px;
+        }
+    }
+</style>
+
+<script>
+    // Funcionalidad del menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un enlace (en móvil)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+</script>
 <style>
     /* Contenedor principal */
     .botones-container {
