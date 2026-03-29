@@ -1,83 +1,17 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    
-    <title>Compra Ya - Sede en Malabo | Ofertas Imbatibles</title>
-    <meta name="description" content="Las mejores ofertas en teléfonos y ordenadores en Compra Ya, tu tienda de confianza con sede en Malabo.">
-    
-    <link rel="icon" href="logotipo.JPEG" type="image/JPEG">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* Estilos adicionales para modal de privacidad */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            overflow-y: auto;
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 35px;
-            border-radius: 18px;
-            max-width: 800px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 32px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover { color: #d31212; }
-    </style>
-</head>
-
-<body>
-
-<!-- HEADER MEJORADO Y RESPONSIVE -->
+<!-- HEADER SIMPLE Y PROFESIONAL - SOLO LOGO EN RECUADRO -->
 <header class="header-principal">
 
-    <!-- Banner Publicitario Superior -->
-    <div class="banner-publicidad">
-        <img id="banner-img" 
-             src="https://via.placeholder.com/1200x200/000000/ffffff?text=PUBLICIDAD+COMPRA+YA+-+ANUNCIA+AQUÍ" 
-             alt="Banner Publicitario" 
-             class="banner-imagen">
-    </div>
-
-<!-- HEADER PRINCIPAL - DISTRIBUCIÓN PROFESIONAL -->
-<header class="header-principal">
-    
-    <!-- Banner Publicitario Superior (opcional, puedes mantenerlo) -->
-    <div class="banner-publicidad">
-        <img src="https://via.placeholder.com/1200x200/000000/ffffff?text=PUBLICIDAD+COMPRA+YA" 
-             alt="Banner Publicitario" 
-             class="banner-imagen">
-    </div>
-
-    <!-- Header con Logo y Navegación -->
     <div class="header-contenido">
         <div class="header-inner">
 
-            <!-- Logo rectangular a la izquierda -->
-            <a href="index.html" class="logo-link">
-                <img src="logo.JPG" 
-                     alt="COMPRA YA Logo" 
-                     class="logo-full">
-            </a>
+            <!-- Recuadro del Logo -->
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.JPG" 
+                         alt="COMPRA YA Logo" 
+                         class="logo-full">
+                </a>
+            </div>
 
             <!-- Navegación -->
             <nav class="nav-simple">
@@ -100,6 +34,140 @@
         </div>
     </div>
 </header>
+
+<style>
+    .header-principal {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-contenido {
+        padding: 18px 20px;
+    }
+
+    .header-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Recuadro del logo */
+    .logo-container {
+        background: #ffffff;
+        padding: 8px 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-full {
+        height: 65px;           /* Tamaño óptimo y profesional */
+        width: auto;
+        max-width: 220px;
+        object-fit: contain;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;              /* Espacio bien distribuido */
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #222;
+        font-weight: 600;
+        font-size: 1.05rem;
+    }
+
+    .nav-links a:hover {
+        color: #d31212;
+    }
+
+    /* Hamburguesa móvil */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        width: 30px;
+        height: 3px;
+        background: #222;
+    }
+
+    /* ==================== MÓVIL ==================== */
+    @media (max-width: 868px) {
+        .header-inner {
+            padding: 12px 15px;
+        }
+
+        .logo-full {
+            height: 55px;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 115px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            gap: 0;
+            padding: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            z-index: 999;
+        }
+
+        .nav-links.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-links li {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+</style>
+
+<script>
+    // Funcionalidad del menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+</script>>
 
 <style>
     .header-principal {
