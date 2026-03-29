@@ -58,14 +58,24 @@
              class="banner-imagen">
     </div>
 
-    <!-- Header Principal con Logo y Navegación -->
+<!-- HEADER PRINCIPAL - DISTRIBUCIÓN PROFESIONAL -->
+<header class="header-principal">
+    
+    <!-- Banner Publicitario Superior (opcional, puedes mantenerlo) -->
+    <div class="banner-publicidad">
+        <img src="https://via.placeholder.com/1200x200/000000/ffffff?text=PUBLICIDAD+COMPRA+YA" 
+             alt="Banner Publicitario" 
+             class="banner-imagen">
+    </div>
+
+    <!-- Header con Logo y Navegación -->
     <div class="header-contenido">
         <div class="header-inner">
 
-            <!-- Logo -->
+            <!-- Logo rectangular a la izquierda -->
             <a href="index.html" class="logo-link">
-                <img src="logo.JPEG" 
-                     alt="COMPRA YA!! Logo" 
+                <img src="logo.JPG" 
+                     alt="COMPRA YA Logo" 
                      class="logo-full">
             </a>
 
@@ -79,7 +89,7 @@
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
 
-                <!-- Botón Hamburguesa (solo visible en móvil) -->
+                <!-- Hamburguesa para móvil -->
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -90,6 +100,149 @@
         </div>
     </div>
 </header>
+
+<style>
+    .header-principal {
+        background: white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .banner-imagen {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .header-contenido {
+        padding: 15px 20px;
+        background: white;
+    }
+
+    .header-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;   /* Mejor distribución posible */
+    }
+
+    .logo-link {
+        display: block;
+    }
+
+    .logo-full {
+        height: 68px;          /* Tamaño profesional y rectangular */
+        width: auto;
+        max-width: 220px;
+        object-fit: contain;   /* Mantiene proporciones sin deformar */
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 32px;             /* Espacio óptimo entre botones */
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #222;
+        font-weight: 600;
+        font-size: 1.05rem;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #d31212;
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        width: 30px;
+        height: 3px;
+        background: #222;
+        transition: 0.3s;
+    }
+
+    /* ==================== MÓVIL ==================== */
+    @media (max-width: 868px) {
+        .header-inner {
+            padding: 10px 15px;
+        }
+
+        .logo-full {
+            height: 58px;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 125px;           /* Ajustado según altura del header */
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            gap: 0;
+            padding: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+        }
+
+        .nav-links.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-links li {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+
+        /* Animación hamburguesa → X */
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    }
+</style>
+
+<script>
+    // Funcionalidad hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Cerrar menú al click en un enlace (móvil)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+</script>
 
 <style>
     :root {
