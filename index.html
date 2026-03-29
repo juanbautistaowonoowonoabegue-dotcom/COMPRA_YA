@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,7 @@
             --rojo: #d31212;
         }
         
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: system-ui, -apple-system, sans-serif; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
         
         body {
             background: #f8f8f8;
@@ -37,41 +33,19 @@
             align-items: center;
         }
 
-        /* Recuadro del logo - estilo limpio tipo Vinted */
-        .logo-container {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .logo-full {
-            height: 62px;
-            width: auto;
-            max-width: 210px;
-            object-fit: contain;
-            display: block;
-        }
-
-        .menu {
-            display: flex;
-            align-items: center;
-            gap: 28px;           /* Espacio horizontal bien distribuido */
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            font-size: 1.05rem;
-            white-space: nowrap;
-        }
-
-        .menu a:hover {
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
             color: var(--rojo);
         }
 
-        /* Estilos que ya tenías (sin cambios importantes) */
+        .menu a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
         .hero {
             background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover;
             color: white;
@@ -179,29 +153,6 @@
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
             z-index: 9999;
             text-decoration: none;
-        }
-
-        /* Ajustes para móvil - menú horizontal con scroll si es necesario */
-        @media (max-width: 768px) {
-            nav {
-                padding: 12px 15px;
-            }
-            
-            .logo-full {
-                height: 52px;
-            }
-
-            .menu {
-                gap: 18px;
-                overflow-x: auto;
-                padding-bottom: 5px;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .menu a {
-                font-size: 1rem;
-                padding: 6px 0;
-            }
         }
     </style>
 </head>
