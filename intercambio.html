@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intercambio de Móviles - Compra Ya</title>
+    <style>
+        :root {
+            --rojo: #d31212;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        
+        body {
+            background: #f8f8f8;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--rojo);
+        }
+
+        .menu a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+        }
+
+        .seccion {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .formulario-intercambio {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--rojo);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .ofertas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .oferta-card {
+            border: 2px solid #ddd;
+            border-radius: 16px;
+            padding: 20px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .oferta-card:hover {
+            border-color: var(--rojo);
+            transform: translateY(-5px);
+        }
+
+        .footer-botones {
+            background: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-botones button {
+            background: white;
+            color: #222;
+            margin: 0 15px;
+            padding: 18px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">Compra Ya</div>
+            <div class="menu">
+                <a href="index.html">Inicio</a>
+                <a href="nuestrocatalogo.html">Catálogo</a>
+                <a href="#" style="color: var(--rojo); font-weight: bold;">Intercambio</a>
+                <a href="https://wa.me/240555391797" target="_blank">WhatsApp</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>🔄 Intercambio de Móviles</h1>
+        <p style="font-size: 1.5rem; max-width: 700px; margin: 0 auto;">
+            Cambia tu móvil antiguo por uno mejor. <strong>¡Rápido, seguro y sin complicaciones!</strong>
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2 style="text-align: center; color: var(--rojo); margin-bottom: 30px; font-size: 2.2rem;">
+            ¿Cómo funciona el intercambio?
+        </h2>
+
+        <div class="card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+            <div>
+                <h3>1. Publica tu oferta</h3>
+                <p>Sube los datos de tu móvil actual (marca, modelo, estado, accesorios) y dime qué móvil quieres recibir.</p>
+            </div>
+            <div>
+                <h3>2. Verificación de propiedad</h3>
+                <p>Debes traer: caja original, factura, IMEI o cualquier documento que demuestre que es tuyo.</p>
+            </div>
+            <div>
+                <h3>3. Evaluación en tiempo real</h3>
+                <p>Te decimos el valor de tu móvil y la diferencia que tienes que pagar (o recibir).</p>
+            </div>
+            <div>
+                <h3>4. Intercambio inmediato</h3>
+                <p>Si todo coincide, ¡hacemos el cambio el mismo día en nuestra tienda!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULARIO DINÁMICO PARA PUBLICAR OFERTA -->
+    <div class="seccion card">
+        <h2 style="color: var(--rojo); margin-bottom: 20px;">📱 Publica tu oferta de intercambio</h2>
+        
+        <form id="form-intercambio">
+            <div class="formulario-intercambio">
+                <div>
+                    <label><strong>Móvil que entregas</strong></label>
+                    <input type="text" id="movil-entrega" placeholder="Ej: iPhone 11 64GB - Negro" required>
+                </div>
+                <div>
+                    <label><strong>Estado del móvil</strong></label>
+                    <select id="estado" required>
+                        <option value="">Selecciona estado</option>
+                        <option value="Excelente">Excelente (como nuevo)</option>
+                        <option value="Bueno">Bueno (algunos rasguños)</option>
+                        <option value="Aceptable">Aceptable (funciona perfecto)</option>
+                    </select>
+                </div>
+                <div>
+                    <label><strong>Móvil que deseas recibir</strong></label>
+                    <input type="text" id="movil-deseado" placeholder="Ej: iPhone 14 Pro o Samsung Galaxy S24" required>
+                </div>
+                <div>
+                    <label><strong>Precio aproximado que estás dispuesto a pagar de diferencia</strong></label>
+                    <input type="text" id="diferencia" placeholder="Ej: 150.000 FCFA o 0 FCFA" required>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <label><strong>Descripción adicional + accesorios que incluyes</strong></label>
+                <textarea id="descripcion" rows="3" placeholder="Caja original, cargador, auriculares, protector..."></textarea>
+            </div>
+
+            <button type="submit" style="margin-top: 25px; width: 100%;">
+                🚀 PUBLICAR MI OFERTA DE INTERCAMBIO
+            </button>
+        </form>
+    </div>
+
+    <!-- OFERTAS PUBLICADAS (DINÁMICO) -->
+    <div class="seccion">
+        <h2 style="color: var(--rojo); margin-bottom: 20px;">🔥 Ofertas de intercambio activas</h2>
+        <div id="ofertas-container" class="ofertas-container">
+            <!-- Se llenan con JavaScript -->
+        </div>
+    </div>
+
+    <!-- PUNTOS IMPORTANTES (Dinámico) -->
+    <div class="seccion card">
+        <h2 style="text-align: center; color: var(--rojo);">✅ Requisitos y ventajas del intercambio</h2>
+        <ul id="lista-requisitos" style="margin-top: 20px; font-size: 1.1rem; line-height: 2;">
+            <!-- Se llenan con JavaScript para que sea dinámico -->
+        </ul>
+    </div>
+
+    <!-- FOOTER CON BOTONES -->
+    <div class="footer-botones">
+        <h3 style="margin-bottom: 20px;">¿Qué quieres hacer ahora?</h3>
+        
+        <button onclick="window.location.href='index.html'">
+            ← Regresar a la página de inicio
+        </button>
+        
+        <button onclick="window.location.href='nuestrocatalogo.html'">
+            🛍️ Ir al catálogo completo
+        </button>
+        
+        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
+            Compra Ya • Malabo • WhatsApp: <a href="https://wa.me/240555391797" target="_blank" style="color: #25D366;">+240 555 391 797</a>
+        </p>
+    </div>
+
+    <!-- Botón WhatsApp flotante -->
+    <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20hacer%20un%20intercambio%20de%20m%C3%B3vil" target="_blank" class="whatsapp-flotante">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ==================== DATOS DINÁMICOS ====================
+        let ofertas = JSON.parse(localStorage.getItem('ofertasIntercambio')) || [];
+
+        // Renderizar ofertas
+        function renderizarOfertas() {
+            const container = document.getElementById('ofertas-container');
+            container.innerHTML = '';
+
+            if (ofertas.length === 0) {
+                container.innerHTML = `
+                    <div class="card" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <p style="font-size: 1.3rem; color: #666;">Aún no hay ofertas de intercambio.<br>
+                        ¡Sé el primero en publicar la tuya!</p>
+                    </div>`;
+                return;
+            }
+
+            ofertas.forEach((oferta, index) => {
+                const div = document.createElement('div');
+                div.className = 'oferta-card';
+                div.innerHTML = `
+                    <strong style="color: var(--rojo); font-size: 1.3rem;">${oferta.movilEntrega}</strong>
+                    <p><strong>Estado:</strong> ${oferta.estado}</p>
+                    <p><strong>Quiere:</strong> ${oferta.movilDeseado}</p>
+                    <p><strong>Diferencia:</strong> ${oferta.diferencia}</p>
+                    <p style="font-size: 0.95rem; margin-top: 12px; color: #555;">${oferta.descripcion}</p>
+                    <small style="color: #888;">Publicado: ${oferta.fecha}</small>
+                    <button onclick="contactarOferta(${index})" 
+                            style="margin-top: 15px; width: 100%; background: #25D366; font-size: 1rem;">
+                        💬 Contactar por WhatsApp
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Publicar nueva oferta
+        document.getElementById('form-intercambio').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nuevaOferta = {
+                id: Date.now(),
+                movilEntrega: document.getElementById('movil-entrega').value,
+                estado: document.getElementById('estado').value,
+                movilDeseado: document.getElementById('movil-deseado').value,
+                diferencia: document.getElementById('diferencia').value,
+                descripcion: document.getElementById('descripcion').value || "Sin descripción adicional",
+                fecha: new Date().toLocaleDateString('es-ES')
+            };
+
+            ofertas.unshift(nuevaOferta);
+            localStorage.setItem('ofertasIntercambio', JSON.stringify(ofertas));
+
+            renderizarOfertas();
+
+            // Limpiar formulario
+            this.reset();
+
+            alert('✅ ¡Oferta publicada correctamente! Ya aparece en la lista de intercambios.');
+        });
+
+        // Contactar una oferta
+        window.contactarOferta = function(index) {
+            const oferta = ofertas[index];
+            const mensaje = encodeURIComponent(
+                `Hola! Me interesa tu intercambio:\n` +
+                `• Entregas: ${oferta.movilEntrega} (${oferta.estado})\n` +
+                `• Quieres: ${oferta.movilDeseado}\n` +
+                `• Diferencia: ${oferta.diferencia}`
+            );
+            window.open(`https://wa.me/240555391797?text=${mensaje}`, '_blank');
+        };
+
+        // Lista de requisitos dinámica (puedes añadir más fácilmente)
+        const requisitos = [
+            "✅ Documento de propiedad (factura, caja original o comprobante de compra)",
+            "✅ IMEI del móvil debe coincidir con el de la caja",
+            "✅ El móvil debe encender y funcionar correctamente",
+            "✅ Batería con más del 80% de salud",
+            "✅ Intercambio 100% seguro y con garantía de 7 días",
+            "✅ Evaluación gratuita en tienda en menos de 15 minutos",
+            "✅ Puedes traer accesorios extras para aumentar el valor de tu oferta"
+        ];
+
+        function renderizarRequisitos() {
+            const ul = document.getElementById('lista-requisitos');
+            ul.innerHTML = requisitos.map(req => `<li>${req}</li>`).join('');
+        }
+
+        // Inicializar todo al cargar la página
+        window.onload = function() {
+            renderizarOfertas();
+            renderizarRequisitos();
+        };
+    </script>
+</body>
+</html>
