@@ -11,55 +11,83 @@
  <!-- ====================== CATÁLOGO COMPLETO DINÁMICO ====================== -->
 <section style="padding: 80px 20px; background: #f8f8f8;">
 
-    <!-- ====================== FORMULARIO PRINCIPAL DE PUBLICACIÓN (PRIMERO) ====================== -->
-    <div id="formulario-publicacion" style="max-width: 900px; margin: 0 auto 60px; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2 style="color: #d31212; margin: 0;">📲 Publicar Nuevo Producto</h2>
-            <button onclick="eliminarFormulario()" 
-                    style="background: #666; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                ❌ Eliminar formulario (Ver solo catálogo)
-            </button>
+    <!-- BOTÓN FLOTANTE PARA ABRIR EL FORMULARIO -->
+<button onclick="mostrarFormulario()" 
+        style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+               background: #d31212; color: white; border: none; padding: 16px 20px;
+               border-radius: 50px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 8px 25px rgba(211, 18, 18, 0.4);
+               cursor: pointer; display: flex; align-items: center; gap: 10px;">
+    📲 Publicar Producto
+</button>
+
+<!-- FORMULARIO FLOTANTE -->
+<div id="formulario-publicacion" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+     max-width: 900px; width: 90%; background: white; padding: 30px; border-radius: 16px; 
+     box-shadow: 0 20px 60px rgba(0,0,0,0.25); z-index: 2000; max-height: 90vh; overflow-y: auto;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2 style="color: #d31212; margin: 0;">📲 Publicar Nuevo Producto</h2>
+        <button onclick="cerrarFormulario()" 
+                style="background: #666; color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 1.1rem;">
+            ✕ Cerrar
+        </button>
+    </div>
+    
+    <form id="form-publicar">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <label><strong>Categoría</strong></label>
+                <select id="categoria" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #d31212;">
+                    <option value="destacados">🔥 Lo que vende más</option>
+                    <option value="laptops">💻 Laptops</option>
+                    <option value="moviles">📱 Móviles</option>
+                </select>
+            </div>
+            <div>
+                <label><strong>Nombre del producto</strong></label>
+                <input type="text" id="nombre" placeholder="Ej: iPhone 13 o HP EliteBook 840 G5" required 
+                       style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+            </div>
         </div>
-        
-        <form id="form-publicar">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div>
-                    <label><strong>Categoría</strong></label>
-                    <select id="categoria" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #d31212;">
-                        <option value="destacados">🔥 Lo que vende más</option>
-                        <option value="laptops">💻 Laptops</option>
-                        <option value="moviles">📱 Móviles</option>
-                    </select>
-                </div>
-                <div>
-                    <label><strong>Nombre del producto</strong></label>
-                    <input type="text" id="nombre" placeholder="Ej: iPhone 13 o HP EliteBook 840 G5" required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
-                </div>
-            </div>
 
-            <div style="margin-top: 15px;">
-                <label><strong>Precio</strong></label>
-                <input type="text" id="precio" placeholder="Ej: 250.000 FCFA" required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
-            </div>
+        <div style="margin-top: 15px;">
+            <label><strong>Precio</strong></label>
+            <input type="text" id="precio" placeholder="Ej: 250.000 FCFA" required 
+                   style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+        </div>
 
-            <div style="margin-top: 15px;">
-                <label><strong>Descripción corta</strong></label>
-                <textarea id="descripcion" placeholder="Ej: 8GB RAM - 256GB SSD - Excelente estado" rows="2" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;"></textarea>
-            </div>
+        <div style="margin-top: 15px;">
+            <label><strong>Descripción corta</strong></label>
+            <textarea id="descripcion" placeholder="Ej: 8GB RAM - 256GB SSD - Excelente estado" rows="3"
+                      style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;"></textarea>
+        </div>
 
-            <div style="margin-top: 15px;">
-                <label><strong>Seleccionar imagen desde el dispositivo</strong></label>
-                <input type="file" id="archivo-imagen" accept="image/*" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd; margin-bottom: 10px;">
-                <input type="hidden" id="imagen" name="imagen">
-                <p id="status" style="font-size: 0.9em; color: #666; margin-top: 5px;"></p>
-            </div>
+        <div style="margin-top: 15px;">
+            <label><strong>Imagen del producto</strong></label>
+            <input type="file" id="archivo-imagen" accept="image/*" 
+                   style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd;">
+            <input type="hidden" id="imagen">
+            <p id="status" style="font-size: 0.9em; color: #28a745; margin-top: 5px;"></p>
+        </div>
 
-            <button type="submit" 
-                    style="margin-top: 25px; width: 100%; padding: 16px; background: #d31212; color: white; border: none; border-radius: 12px; font-size: 1.25rem; font-weight: bold; cursor: pointer;">
-                🚀 PUBLICAR EN LA WEB AHORA
-            </button>
-        </form>
-        
+        <button type="submit" 
+                style="margin-top: 25px; width: 100%; padding: 16px; background: #d31212; color: white; border: none; 
+                       border-radius: 12px; font-size: 1.25rem; font-weight: bold; cursor: pointer;">
+            🚀 PUBLICAR EN LA WEB AHORA
+        </button>
+    </form>
+</div>
+
+<!-- CONTENEDOR DEL CATÁLOGO -->
+<div id="catalogo" style="margin-top: 40px;">
+    <h1 style="text-align: center; font-size: 3.2rem; color: #d31212; margin-bottom: 30px;">
+        🛍️ NUESTRO CATÁLOGO COMPLETO
+    </h1>
+    
+    <div id="productos-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;">
+        <!-- Los productos se agregan aquí dinámicamente -->
+    </div>
+</div>
         <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 15px;">
             El producto se publicará automáticamente en la sección correspondiente.
         </p>
@@ -389,7 +417,117 @@ function iniciarCarruseles() {
 
 window.addEventListener('load', iniciarCarruseles);
 </script>
+<script>
+// Array para guardar todos los productos (persiste mientras la página esté abierta)
+let productos = [];
 
+// Función para mostrar el formulario flotante
+function mostrarFormulario() {
+    document.getElementById('formulario-publicacion').style.display = 'block';
+}
+
+// Función para cerrar el formulario
+function cerrarFormulario() {
+    document.getElementById('formulario-publicacion').style.display = 'none';
+}
+
+// Convertir imagen a Base64
+document.getElementById('archivo-imagen').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const status = document.getElementById('status');
+    
+    if (file) {
+        status.textContent = 'Procesando imagen...';
+        const reader = new FileReader();
+        
+        reader.onload = function(event) {
+            document.getElementById('imagen').value = event.target.result;
+            status.textContent = '✅ Imagen lista para subir';
+            status.style.color = '#28a745';
+        };
+        
+        reader.readAsDataURL(file);
+    }
+});
+
+// Manejar el envío del formulario
+document.getElementById('form-publicar').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const precio = document.getElementById('precio').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const categoria = document.getElementById('categoria').value;
+    const imagenBase64 = document.getElementById('imagen').value;
+
+    if (!nombre || !precio || !imagenBase64) {
+        alert("Por favor completa todos los campos y selecciona una imagen");
+        return;
+    }
+
+    // Crear nuevo producto
+    const nuevoProducto = {
+        id: Date.now(),
+        nombre: nombre,
+        precio: precio,
+        descripcion: descripcion || "Sin descripción",
+        categoria: categoria,
+        imagen: imagenBase64,
+        fecha: new Date().toLocaleDateString('es-ES')
+    };
+
+    // Agregar al array
+    productos.unshift(nuevoProducto); // poner el nuevo primero
+
+    // Mostrar inmediatamente en el catálogo
+    renderizarProductos();
+
+    // Limpiar formulario y cerrar
+    this.reset();
+    document.getElementById('imagen').value = '';
+    document.getElementById('status').textContent = '';
+    
+    cerrarFormulario();
+
+    alert("✅ ¡Producto publicado con éxito! Ya aparece en el catálogo.");
+});
+
+// Función para renderizar todos los productos
+function renderizarProductos() {
+    const container = document.getElementById('productos-container');
+    container.innerHTML = '';
+
+    if (productos.length === 0) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; font-size: 1.2rem;">Aún no hay productos publicados.</p>';
+        return;
+    }
+
+    productos.forEach(producto => {
+        const card = document.createElement('div');
+        card.style.cssText = `
+            background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        `;
+        card.innerHTML = `
+            <img src="${producto.imagen}" style="width: 100%; height: 220px; object-fit: cover;">
+            <div style="padding: 18px;">
+                <h3 style="margin: 0 0 8px 0; color: #222;">${producto.nombre}</h3>
+                <p style="color: #d31212; font-size: 1.4rem; font-weight: bold; margin: 8px 0;">
+                    ${producto.precio}
+                </p>
+                <p style="color: #555; font-size: 0.95rem; margin: 12px 0;">${producto.descripcion}</p>
+                <small style="color: #888;">Publicado: ${producto.fecha}</small>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// Inicializar
+window.onload = function() {
+    renderizarProductos();
+};
+</script>
   <footer style="background: #222; color: #fff; padding: 60px 20px; text-align: center; font-family: sans-serif;">
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="margin-bottom: 40px;">
