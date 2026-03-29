@@ -8,7 +8,12 @@
             --rojo: #d31212;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: system-ui, -apple-system, sans-serif; 
+        }
         
         body {
             background: #f8f8f8;
@@ -16,12 +21,36 @@
             line-height: 1.6;
         }
 
+        /* ==================== CABECERA MEJORADA ==================== */
         header {
             background: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .logo-rectangulo {
+            background: white;
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-rectangulo img {
+            max-width: 280px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .banner-publicidad {
+            background: #fff;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #555;
+            border-bottom: 1px solid #eee;
         }
 
         nav {
@@ -31,21 +60,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--rojo);
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
 
         .menu a {
-            margin-left: 25px;
             text-decoration: none;
             color: #333;
             font-weight: 500;
+            transition: color 0.3s;
         }
 
+        .menu a:hover {
+            color: var(--rojo);
+        }
+
+        /* ==================== HERO Y CONTENIDO ==================== */
         .hero {
             background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover;
             color: white;
@@ -102,10 +139,11 @@
             transform: scale(1.05);
         }
 
+        /* Catálogo dinámico (responsive y bien ajustado) */
         .ofertas-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .oferta-card {
@@ -113,12 +151,14 @@
             border-radius: 16px;
             padding: 20px;
             background: white;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            height: 100%;
         }
 
         .oferta-card:hover {
             border-color: var(--rojo);
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         .footer-botones {
@@ -137,22 +177,66 @@
             font-size: 1.1rem;
         }
 
+        /* Botón flotante de WhatsApp */
         .whatsapp-flotante {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background: #25D366;
             color: white;
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            font-size: 38px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
             z-index: 9999;
             text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-flotante:hover {
+            transform: scale(1.1);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .logo-rectangulo img {
+                max-width: 220px;
+            }
+            
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                padding: 12px 15px;
+            }
+            
+            .menu {
+                gap: 15px;
+            }
+            
+            .formulario-intercambio {
+                grid-template-columns: 1fr;
+            }
+            
+            .ofertas-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-flotante {
+                width: 58px;
+                height: 58px;
+                font-size: 32px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
