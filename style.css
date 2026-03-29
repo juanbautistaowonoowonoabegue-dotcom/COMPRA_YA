@@ -710,3 +710,124 @@ footer {
     color: white;
     border-color: #25d366;
 }
+/* Chatbot Widget */
+.chatbot-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 340px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    overflow: hidden;
+    z-index: 9998;
+    display: none;
+    flex-direction: column;
+    max-height: 520px;
+}
+
+.chat-header {
+    background: #25D366;
+    color: white;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chat-body {
+    padding: 20px;
+    background: #f9f9f9;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chat-welcome {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.chat-options button {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.98rem;
+}
+
+.chat-options button:hover {
+    background: #f0f8f0;
+    border-color: #25D366;
+}
+
+.chat-footer {
+    padding: 12px;
+    background: #f1f1f1;
+    text-align: center;
+}
+
+.canal-wa {
+    color: #25D366;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+}
+
+.canal-wa:hover {
+    text-decoration: underline;
+}
+
+.close-chat {
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.close-chat:hover {
+    opacity: 1;
+}
+
+/* Animación del botón flotante */
+.whatsapp-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: white;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+    z-index: 9999;
+    text-decoration: none;
+    animation: pulsoVerde 2.8s infinite ease-in-out;
+}
+
+@keyframes pulsoVerde {
+    0%, 100% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5); }
+    50% { box-shadow: 0 15px 45px rgba(37, 211, 102, 0.85); }
+}
+
+@media (max-width: 480px) {
+    .chatbot-widget {
+        width: 92%;
+        right: 4%;
+        bottom: 90px;
+    }
+}
