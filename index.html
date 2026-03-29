@@ -290,40 +290,49 @@
     </style>
 </head>
 <body>
+<!-- ====================== CABECERA PROFESIONAL ====================== -->
+<header class="header-principal">
+    
+    <!-- Rectángulo completo del Logo -->
+    <div class="logo-rectangulo">
+        <img src="logo.JPG" alt="Compra Ya Logo" class="logo-full">
+    </div>
 
-    <!-- CABECERA -->
-    <header class="header-principal">
-        <!-- Rectángulo del Logo -->
-        <div class="logo-rectangulo">
-            <img src="logo.JPG" alt="Compra Ya Logo" class="logo-full">
-        </div>
+    <!-- Banner Publicidad -->
+    <div class="banner-publicidad">
+        ¡La mejor tecnología en Malabo con garantía real y precios competitivos!
+    </div>
 
-        <!-- Banner Publicidad -->
-        <div class="banner-publicidad">
-            ¡La mejor tecnología en Malabo con garantía real y precios competitivos!
-        </div>
+    <!-- Navegación + Botón IA -->
+    <div class="header-contenido">
+        <div class="header-inner">
+            
+            <!-- Menú de navegación -->
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#productos">Catálogo</a></li>
+                    <li><a href="#intercambios">Intercambio</a></li>
+                    <li><a href="#terminos-seguridad">Garantía</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
 
-        <!-- Navegación -->
-        <div class="header-contenido">
-            <div class="header-inner">
-                <nav>
-                    <ul class="nav-links" id="nav-links">
-                        <li><a href="#productos">Catálogo</a></li>
-                        <li><a href="#intercambios">Intercambio</a></li>
-                        <li><a href="#terminos-seguridad">Garantía</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </nav>
+            <!-- Botón Inteligencia Artificial -->
+            <div class="ia-button-container">
+                <button onclick="mostrarBuscadorIA()" class="btn-ia">
+                    <i class="fas fa-robot"></i> Buscar con IA
+                </button>
+            </div>
 
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <!-- Hamburguesa para móvil -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </header>
-
+    </div>
+</header>
     <!-- HERO -->
     <section class="hero" style="background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover; color: white; text-align: center; padding: 120px 20px;">
         <h1 style="font-size: 3.2rem; margin-bottom: 20px;">Intercambio y Venta de Móviles y Laptops</h1>
@@ -410,25 +419,105 @@
             </p>
         </div>
     </footer>
+<!-- ====================== WHATSAPP FLOTANTE + CHATBOT INTELIGENTE ====================== -->
 
-    <!-- Botón WhatsApp Flotante -->
-    <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20información" 
-       target="_blank" 
-       class="whatsapp-flotante">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<!-- Botón WhatsApp Flotante con animación -->
+<a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20información" 
+   target="_blank" 
+   class="whatsapp-flotante" id="wa-flotante">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-    <!-- Modal Privacidad (mantenido simple) -->
-    <div id="privacidad-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000;">
-        <div style="background:white; max-width:600px; margin:50px auto; padding:30px; border-radius:12px;">
-            <h2>Política de Privacidad</h2>
-            <p>En Compra Ya respetamos tu privacidad...</p>
-            <button onclick="document.getElementById('privacidad-modal').style.display='none'" 
-                    style="margin-top:20px; padding:12px 25px; background:var(--rojo); color:white; border:none; border-radius:8px;">
-                Cerrar
-            </button>
+<!-- Chatbot Inteligente (se abre automáticamente al cargar la página) -->
+<div id="chatbot-widget" class="chatbot-widget">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <i class="fab fa-whatsapp" style="font-size: 28px;"></i>
+            <div>
+                <strong>Compra Ya - Asistente</strong><br>
+                <small>En línea • Respuesta rápida</small>
+            </div>
+        </div>
+        <span class="close-chat" onclick="toggleChatbot()">✕</span>
+    </div>
+    
+    <div class="chat-body">
+        <div class="chat-welcome">
+            ¡Hola! 👋 Bienvenido a <strong>Compra Ya</strong>.<br>
+            ¿En qué te puedo ayudar hoy?
+        </div>
+        
+        <div class="chat-options">
+            <button onclick="enviarMensajePredefinido(1)">💻 Quiero ver laptops / portátiles</button>
+            <button onclick="enviarMensajePredefinido(2)">📱 Busco móviles (iPhone, Samsung...)</button>
+            <button onclick="enviarMensajePredefinido(3)">🔄 Quiero hacer un intercambio (Plan Renove)</button>
+            <button onclick="enviarMensajePredefinido(4)">🍎 Busco MacBook o productos Apple</button>
+            <button onclick="enviarMensajePredefinido(5)">❓ Tengo otra consulta</button>
         </div>
     </div>
+    
+    <div class="chat-footer">
+        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" 
+           target="_blank" class="canal-wa">
+            📢 Únete a nuestro Canal de WhatsApp
+        </a>
+    </div>
+</div>
+
+    <!-- Modal Privacidad (mantenido simple) -->
+<!-- ====================== MODAL POLÍTICA DE PRIVACIDAD ====================== -->
+<div id="privacidad-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="document.getElementById('privacidad-modal').style.display='none'">&times;</span>
+        
+        <h2>Política de Privacidad y Condiciones de Servicio</h2>
+        
+        <h3>1. Garantía de los Productos</h3>
+        <p>Todos los equipos vendidos en Compra Ya cuentan con <strong>garantía de fabricante</strong> donde aplique, y adicionalmente:</p>
+        <ul>
+            <li><strong>Grado A (Seminuevos)</strong>: Equipos seleccionados con "Confianza Técnica", revisados en más de 20 puntos de control antes de salir a la venta.</li>
+        </ul>
+
+        <h3>2. Plan Renove (Intercambios)</h3>
+        <p>Para participar en el sistema de intercambio, el cliente acepta que:</p>
+        <ul>
+            <li>El equipo entregado será sometido a una Inspección Técnica inmediata.</li>
+            <li>Compra Ya se reserva el derecho de rechazar equipos con daños estructurales graves o de procedencia no verificable.</li>
+            <li>La valoración económica del equipo antiguo es final y se descontará del precio del equipo nuevo.</li>
+        </ul>
+
+        <h3>3. Garantía Real y Reclamaciones</h3>
+        <p>Compra Ya ofrece:</p>
+        <ul>
+            <li><strong>Periodo de Prueba</strong>: 1 mes de garantía técnica en hardware para equipos de segunda mano (salvo mal uso, golpes o contacto con líquidos).</li>
+            <li><strong>Soporte Post-Venta</strong>: Asesoría gratuita para la configuración inicial de tu laptop o smartphone.</li>
+            <li>Toda reclamación requiere la presentación de la factura digital o física emitida al momento de la compra.</li>
+        </ul>
+
+        <h3>4. Entregas y Pagos en Malabo</h3>
+        <ul>
+            <li><strong>Zona de Cobertura</strong>: Realizamos entregas verificadas en toda Malabo y Bioko.</li>
+            <li><strong>Métodos de Pago</strong>: Efectivo, transferencias locales y métodos digitales acordados previamente por WhatsApp.</li>
+            <li><strong>Reserva de Equipos</strong>: Las reservas solo se mantienen por 24 horas a menos que se realice un pago de señal.</li>
+        </ul>
+
+        <h3>5. Limitación de Responsabilidad</h3>
+        <p>Compra Ya no se hace responsable del software ilegal instalado por el usuario tras la compra ni de la pérdida de información por falta de copias de seguridad. Recomendamos siempre mantener sus archivos en la nube.</p>
+
+        <h3>6. Jurisdicción y Contacto</h3>
+        <p>Cualquier controversia será resuelta bajo las leyes comerciales vigentes en la República de Guinea Ecuatorial, priorizando siempre la mediación directa para mantener la relación de confianza con el cliente.</p>
+        <ul>
+            <li><strong>Sede</strong>: Malabo, Guinea Ecuatorial</li>
+            <li><strong>WhatsApp de Atención</strong>: +240 555 391 797</li>
+            <li><strong>Web</strong>: [Reemplaza aquí con tu enlace de GitHub Pages]</li>
+        </ul>
+
+        <p style="text-align: center; margin-top: 35px; font-weight: bold; color: #d31212; font-size: 1.1rem;">
+            Gracias por confiar en Compra Ya<br>
+            <span style="font-size: 1.05rem;">LA MEJOR CALIDAD A TU ALCANCE</span>
+        </p>
+    </div>
+</div>
 
     <script>
         // Menú hamburguesa
@@ -447,5 +536,54 @@
             });
         });
     </script>
+    <script>
+// Abrir/Cerrar chatbot
+function toggleChatbot() {
+    const chatbot = document.getElementById('chatbot-widget');
+    chatbot.style.display = (chatbot.style.display === 'flex') ? 'none' : 'flex';
+}
+
+// Enviar mensaje predefinido a WhatsApp
+function enviarMensajePredefinido(opcion) {
+    let mensaje = "";
+    const numero = "240555391797";
+
+    switch(opcion) {
+        case 1:
+            mensaje = "Hola, quiero ver las laptops y portátiles disponibles";
+            break;
+        case 2:
+            mensaje = "Hola, estoy buscando móviles (iPhone o Samsung). ¿Qué tienen en stock?";
+            break;
+        case 3:
+            mensaje = "Hola, quiero información sobre el Plan Renove / Intercambio";
+            break;
+        case 4:
+            mensaje = "Hola, busco MacBook o productos Apple. ¿Tienen disponibles?";
+            break;
+        case 5:
+            mensaje = "Hola, tengo una consulta sobre sus productos";
+            break;
+    }
+
+    // Abrir WhatsApp con el mensaje
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
+    
+    // Cerrar el chatbot después de 800ms
+    setTimeout(() => {
+        document.getElementById('chatbot-widget').style.display = 'none';
+    }, 800);
+}
+
+// Auto-abrir el chatbot después de 4 segundos al cargar la página
+window.onload = function() {
+    setTimeout(() => {
+        const chatbot = document.getElementById('chatbot-widget');
+        if (chatbot.style.display !== 'flex') {
+            chatbot.style.display = 'flex';
+        }
+    }, 4000); // 4 segundos
+};
+</script>
 </body>
 </html>
