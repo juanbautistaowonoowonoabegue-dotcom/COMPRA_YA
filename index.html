@@ -405,47 +405,55 @@
             }
         }
     </style>
-<!-- CABECERA -->
+<!-- CABECERA ESTILO MARKETPLACE -->
 <header class="header-principal">
+
+    <!-- Barra superior tipo anuncio -->
     <div class="header-top">
+        <p>¡Tecnología en Malabo con garantía real y precios competitivos!</p>
+    </div>
+
+    <!-- Barra principal -->
+    <div class="header-main">
+        
+        <!-- Logo pequeño -->
         <div class="logo-container">
-            <img src="logo.JPEG" alt="Compra Ya Logo" class="logo-small">
+            <img src="logo.JPEG" alt="Compra Ya Logo">
+            <span class="logo-text">Compra Ya</span>
         </div>
 
-        <div class="banner-publicidad">
-            ¡La mejor tecnología en Malabo con garantía real y precios competitivos!
+        <!-- Buscador tipo Covendy -->
+        <div class="search-container">
+            <input type="text" placeholder="Buscar productos...">
+            <button onclick="mostrarBuscadorIA()">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
+
+        <!-- Navegación -->
+        <nav class="nav-desktop">
+            <a href="nuestrocatalogo.html">Catálogo</a>
+            <a href="intercambio.html">Intercambio</a>
+            <a href="#terminos-seguridad">Garantía</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <!-- Botón IA -->
+        <div class="ia-button-container">
+            <button onclick="mostrarBuscadorIA()" class="btn-ia">
+                <i class="fas fa-robot"></i>
+            </button>
+        </div>
+
+        <!-- Menú móvil -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
     </div>
 
-    <div class="header-contenido">
-        <div class="header-inner">
-            <!-- Logo secundario pequeño en la barra de navegación (opcional pero común en estilo Covendy) -->
-            <a href="index.html" class="logo-nav">
-                <img src="logo.JPEG" alt="Compra Ya" class="logo-mini">
-            </a>
-
-            <nav>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="nuestrocatalogo.html">Catálogo</a></li>
-                    <li><a href="intercambio.html">Intercambio</a></li>
-                    <li><a href="#terminos-seguridad">Garantía</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-
-            <div class="ia-button-container">
-                <button onclick="mostrarBuscadorIA()" class="btn-ia">
-                    <i class="fas fa-robot"></i> Buscar con IA
-                </button>
-            </div>
-
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
 </header>
 <!-- HERO -->
 <section class="hero" style="background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover; color: white; text-align: center; padding: 120px 20px;">
