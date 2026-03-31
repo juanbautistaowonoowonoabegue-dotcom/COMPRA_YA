@@ -9,6 +9,48 @@
     box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
 }
 
+.nav-desktop {
+    display: flex;
+    justify-content: space-between; /* distribuye en todo el ancho */
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    flex-wrap: wrap; /* importante para móvil */
+}
+
+/* Botones estilo moderno */
+.nav-btn {
+    flex: 1; /* todos ocupan el mismo espacio */
+    text-align: center;
+    padding: 10px 12px;
+    background: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+/* Hover efecto marketplace */
+.nav-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Para pantallas grandes (más elegante) */
+@media (min-width: 768px) {
+    .nav-desktop {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .nav-btn {
+        flex: none;
+        min-width: 140px;
+    }
+}
 .botones-hero {
     display: flex;
     flex-wrap: wrap;
