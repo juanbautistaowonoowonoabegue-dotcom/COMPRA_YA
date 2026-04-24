@@ -1,758 +1,1995 @@
-
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intercambio de Móviles - Compra Ya | Malabo</title>
+    <title>Compra Ya — Tecnología Premium · Malabo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --rojo: #d31212;
+            --rojo-oscuro: #a80e0e;
+            --rojo-vivo: #ff1f1f;
             --verde-wa: #25D366;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-        
-        body {
-            background: #f8f8f8;
-            color: #222;
-            line-height: 1.6;
+            --negro: #0a0a0a;
+            --gris-oscuro: #141414;
+            --gris-medio: #2a2a2a;
+            --gris-claro: #f4f4f4;
+            --blanco: #ffffff;
+            --texto-muted: #888;
+            --radio: 14px;
+            --sombra: 0 20px 60px rgba(0,0,0,0.15);
+            --sombra-roja: 0 12px 40px rgba(211,18,18,0.35);
         }
 
-        /* ====================== CABECERA ====================== */
-        .header-principal {
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+```
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .logo-rectangulo {
-            background: white;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            width: 100%;
-        }
+    html { scroll-behavior: smooth; }
 
-        .logo-full {
-            max-width: 320px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
+    body {
+        font-family: 'DM Sans', sans-serif;
+        background: #fafafa;
+        color: var(--negro);
+        overflow-x: hidden;
+    }
 
-        .banner-publicidad {
-            background: #f9f9f9;
-            padding: 14px 20px;
-            text-align: center;
-            font-size: 0.95rem;
-            color: #555;
-            border-bottom: 1px solid #eee;
-        }
+    /* ===== CURSOR PERSONALIZADO ===== */
+    .cursor-dot {
+        width: 8px; height: 8px;
+        background: var(--rojo);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 99999;
+        transition: transform 0.1s;
+    }
+    .cursor-ring {
+        width: 36px; height: 36px;
+        border: 2px solid rgba(211,18,18,0.5);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 99998;
+        transition: all 0.15s ease;
+    }
 
-        .header-contenido {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 15px 20px;
-        }
+    /* ===== BARRA SUPERIOR ===== */
+    .topbar {
+        background: var(--negro);
+        color: #aaa;
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+        padding: 9px 0;
+        overflow: hidden;
+    }
+    .topbar-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .topbar-ticker {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+    }
+    .topbar-ticker span { display: flex; align-items: center; gap: 6px; }
+    .topbar-ticker i { color: var(--rojo); font-size: 0.7rem; }
+    .topbar-badge {
+        background: var(--rojo);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        animation: badgePulse 2s infinite;
+    }
+    @keyframes badgePulse {
+        0%,100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
 
-        .header-inner {
+    /* ===== HEADER ===== */
+    .header {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: box-shadow 0.3s;
+    }
+    .header.scrolled {
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+    .header-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+    }
+
+    .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .logo-icon {
+        width: 42px; height: 42px;
+        background: var(--rojo);
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.3rem;
+        color: white;
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        box-shadow: 0 4px 15px rgba(211,18,18,0.4);
+    }
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--negro); line-height: 1.1; }
+    .logo-sub { font-size: 0.65rem; font-weight: 400; color: var(--texto-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* Buscador */
+    .search-bar {
+        flex: 1;
+        max-width: 460px;
+        position: relative;
+    }
+    .search-bar input {
+        width: 100%;
+        padding: 12px 50px 12px 18px;
+        border: 2px solid #eee;
+        border-radius: 50px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.9rem;
+        background: #f8f8f8;
+        transition: all 0.3s;
+        outline: none;
+    }
+    .search-bar input:focus {
+        border-color: var(--rojo);
+        background: white;
+        box-shadow: 0 0 0 4px rgba(211,18,18,0.08);
+    }
+    .search-bar button {
+        position: absolute;
+        right: 8px; top: 50%;
+        transform: translateY(-50%);
+        background: var(--rojo);
+        border: none;
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s;
+    }
+    .search-bar button:hover { background: var(--rojo-oscuro); transform: translateY(-50%) scale(1.08); }
+
+    /* Nav */
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+    }
+    .nav a {
+        text-decoration: none;
+        color: #444;
+        font-size: 0.88rem;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    .nav a:hover { background: #f5f5f5; color: var(--rojo); }
+    .nav a.active { color: var(--rojo); background: rgba(211,18,18,0.06); }
+
+    .btn-primary {
+        background: var(--rojo);
+        color: white !important;
+        padding: 10px 20px !important;
+        border-radius: 50px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(211,18,18,0.3);
+        transition: all 0.3s !important;
+    }
+    .btn-primary:hover {
+        background: var(--rojo-oscuro) !important;
+        box-shadow: 0 8px 25px rgba(211,18,18,0.4) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .hamburger span { width: 24px; height: 2px; background: #333; transition: all 0.3s; display: block; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ===== HERO ===== */
+    .hero {
+        min-height: 90vh;
+        background: var(--negro);
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+    .hero-bg-grid {
+        position: absolute; inset: 0;
+        background-image:
+            linear-gradient(rgba(211,18,18,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(211,18,18,0.06) 1px, transparent 1px);
+        background-size: 60px 60px;
+    }
+    .hero-bg-glow {
+        position: absolute;
+        width: 700px; height: 700px;
+        background: radial-gradient(circle, rgba(211,18,18,0.2) 0%, transparent 70%);
+        right: -100px; top: 50%;
+        transform: translateY(-50%);
+        animation: glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+        0%,100% { opacity: 0.8; transform: translateY(-50%) scale(1); }
+        50% { opacity: 1; transform: translateY(-50%) scale(1.05); }
+    }
+
+    .hero-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 80px 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+    .hero-text { color: white; }
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(211,18,18,0.15);
+        border: 1px solid rgba(211,18,18,0.4);
+        color: #ff6b6b;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 30px;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.2s forwards;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--rojo-vivo); border-radius: 50%; animation: badgePulse 1.5s infinite; }
+
+    .hero-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(2.4rem, 5vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.08;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.4s forwards;
+    }
+    .hero-title .accent { color: var(--rojo-vivo); }
+
+    .hero-desc {
+        font-size: 1.05rem;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.7;
+        max-width: 460px;
+        margin-bottom: 36px;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.6s forwards;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.8s forwards;
+    }
+    .btn-hero-main {
+        background: var(--rojo);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+        box-shadow: 0 8px 30px rgba(211,18,18,0.5);
+    }
+    .btn-hero-main:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(211,18,18,0.6);
+        background: var(--rojo-vivo);
+    }
+    .btn-hero-ghost {
+        background: rgba(255,255,255,0.07);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        border: 1px solid rgba(255,255,255,0.15);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+        backdrop-filter: blur(10px);
+    }
+    .btn-hero-ghost:hover {
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(255,255,255,0.3);
+        transform: translateY(-3px);
+    }
+
+    /* Hero stats */
+    .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 48px;
+        padding-top: 36px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        opacity: 0;
+        animation: fadeUp 0.7s 1s forwards;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: white;
+        display: block;
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Hero Visual */
+    .hero-visual {
+        position: relative;
+        opacity: 0;
+        animation: fadeLeft 0.9s 0.5s forwards;
+    }
+    .hero-phone-stack {
+        position: relative;
+        height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .phone-card {
+        position: absolute;
+        background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 20px;
+        width: 200px;
+        text-align: center;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        transition: all 0.4s;
+    }
+    .phone-card:hover { transform: translateY(-10px) !important; }
+    .phone-card:nth-child(1) { transform: rotate(-8deg) translateX(-80px) translateY(20px); z-index: 1; }
+    .phone-card:nth-child(2) { transform: rotate(0deg); z-index: 3; width: 220px; }
+    .phone-card:nth-child(3) { transform: rotate(8deg) translateX(80px) translateY(20px); z-index: 1; }
+    .phone-emoji { font-size: 3.5rem; margin-bottom: 10px; }
+    .phone-name { color: white; font-weight: 600; font-size: 0.85rem; margin-bottom: 4px; }
+    .phone-price { color: var(--rojo-vivo); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+    .phone-tag {
+        display: inline-block;
+        background: rgba(211,18,18,0.2);
+        color: #ff6b6b;
+        font-size: 0.65rem;
+        padding: 3px 8px;
+        border-radius: 20px;
+        margin-top: 6px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Floating elements */
+    .float-badge {
+        position: absolute;
+        background: white;
+        border-radius: 12px;
+        padding: 10px 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #333;
+        animation: floatUp 3s ease-in-out infinite;
+        z-index: 5;
+    }
+    .float-badge:nth-child(4) { top: 60px; left: -20px; animation-delay: 0s; }
+    .float-badge:nth-child(5) { bottom: 80px; right: -20px; animation-delay: 1.5s; }
+    .float-badge .fb-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    @keyframes floatUp {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeLeft {
+        from { opacity: 0; transform: translateX(40px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+        background: white;
+        border-bottom: 1px solid #eee;
+        padding: 20px 0;
+    }
+    .trust-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        flex-wrap: wrap;
+    }
+    .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.85rem;
+        color: #555;
+        font-weight: 500;
+    }
+    .trust-item i { color: var(--rojo); font-size: 1.1rem; }
+
+    /* ===== SECCIONES GENERALES ===== */
+    .section {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 80px 24px;
+    }
+    .section-header {
+        text-align: center;
+        margin-bottom: 52px;
+    }
+    .section-tag {
+        display: inline-block;
+        background: rgba(211,18,18,0.08);
+        color: var(--rojo);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+    }
+    .section-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        font-weight: 800;
+        color: var(--negro);
+        line-height: 1.15;
+        margin-bottom: 14px;
+    }
+    .section-desc { font-size: 1rem; color: #777; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* ===== CATEGORÍAS ===== */
+    .cats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 14px;
+    }
+    .cat-card {
+        background: white;
+        border: 2px solid #eee;
+        border-radius: var(--radio);
+        padding: 24px 16px;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .cat-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--rojo);
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: 0;
+    }
+    .cat-card:hover::before { transform: translateY(0); }
+    .cat-card:hover { border-color: var(--rojo); transform: translateY(-4px); box-shadow: var(--sombra-roja); }
+    .cat-card:hover .cat-icon, .cat-card:hover .cat-name { color: white; position: relative; z-index: 1; }
+    .cat-icon { font-size: 2.2rem; margin-bottom: 10px; display: block; transition: color 0.3s; }
+    .cat-name { font-weight: 600; font-size: 0.85rem; transition: color 0.3s; }
+
+    /* ===== PRODUCTOS ===== */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 22px;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        cursor: pointer;
+    }
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+
+    .product-img-wrap {
+        position: relative;
+        height: 220px;
+        background: #f5f5f5;
+        overflow: hidden;
+    }
+    .product-img-wrap img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.07); }
+
+    .product-label {
+        position: absolute;
+        top: 12px; left: 12px;
+        background: var(--rojo);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .product-label.nuevo { background: #0070f3; }
+    .product-label.oferta { background: #e67e22; }
+
+    .product-quick {
+        position: absolute;
+        bottom: 12px; right: 12px;
+        background: white;
+        border: none;
+        width: 38px; height: 38px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s;
+        color: var(--rojo);
+    }
+    .product-card:hover .product-quick { opacity: 1; transform: scale(1); }
+
+    .product-body { padding: 18px; }
+    .product-category { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .product-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #111; margin-bottom: 6px; line-height: 1.3; }
+    .product-desc { font-size: 0.82rem; color: #888; line-height: 1.5; margin-bottom: 14px; }
+
+    .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        border-top: 1px solid #f0f0f0;
+    }
+    .product-price {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--rojo);
+    }
+    .product-price span { font-size: 0.75rem; font-weight: 500; color: #999; font-family: 'DM Sans', sans-serif; }
+    .btn-comprar {
+        background: var(--negro);
+        color: white;
+        border: none;
+        padding: 9px 16px;
+        border-radius: 8px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    .btn-comprar:hover { background: var(--rojo); transform: scale(1.03); }
+
+    /* ===== INTERCAMBIO ===== */
+    .intercambio-section {
+        background: var(--negro);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    .intercambio-section::before {
+        content: '';
+        position: absolute;
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(211,18,18,0.15), transparent 70%);
+        left: -200px; top: 50%;
+        transform: translateY(-50%);
+    }
+    .intercambio-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+    .intercambio-text { color: white; }
+    .intercambio-text .section-tag { background: rgba(211,18,18,0.2); }
+    .intercambio-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 20px;
+    }
+    .intercambio-desc { color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 32px; }
+
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s ease;
+    }
+    .step.visible { opacity: 1; transform: translateX(0); }
+    .step-num {
+        width: 36px; height: 36px;
+        background: var(--rojo);
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 0.9rem;
+        color: white;
+        flex-shrink: 0;
+    }
+    .step-title { font-weight: 600; color: white; margin-bottom: 3px; }
+    .step-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+    .intercambio-cta {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 20px;
+        padding: 32px;
+        backdrop-filter: blur(10px);
+        text-align: center;
+    }
+    .ren-icon { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+    .intercambio-cta h3 { color: white; font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+    .intercambio-cta p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.6; margin-bottom: 24px; }
+    .btn-intercambio {
+        background: var(--rojo);
+        color: white;
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s;
+        box-shadow: 0 8px 25px rgba(211,18,18,0.4);
+    }
+    .btn-intercambio:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(211,18,18,0.5); }
+
+    /* ===== GARANTÍA ===== */
+    .garantia-section {
+        background: linear-gradient(135deg, #fff9f9 0%, #fff 60%);
+        padding: 80px 0;
+        border-top: 1px solid #f0e8e8;
+    }
+    .garantia-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+    }
+    .garantia-card {
+        background: white;
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+    .garantia-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 4px; height: 100%;
+        background: var(--rojo);
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+        transform-origin: bottom;
+    }
+    .garantia-card:hover::before { transform: scaleY(1); }
+    .garantia-card:hover { box-shadow: 0 12px 40px rgba(211,18,18,0.1); transform: translateY(-4px); }
+    .garantia-icon {
+        width: 52px; height: 52px;
+        background: rgba(211,18,18,0.08);
+        border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+        color: var(--rojo);
+    }
+    .garantia-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .garantia-desc { font-size: 0.83rem; color: #777; line-height: 1.6; }
+
+    /* ===== TESTIMONIOS ===== */
+    .testimonios-section { background: #fafafa; padding: 80px 0; }
+    .testimonios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .testimonio-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: all 0.3s;
+    }
+    .testimonio-card:hover { transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,0.1); }
+    .t-stars { color: #fbbf24; font-size: 0.85rem; margin-bottom: 12px; }
+    .t-text { font-size: 0.88rem; color: #555; line-height: 1.65; margin-bottom: 16px; font-style: italic; }
+    .t-author { display: flex; align-items: center; gap: 10px; }
+    .t-avatar {
+        width: 36px; height: 36px;
+        background: linear-gradient(135deg, var(--rojo), #ff6b6b);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 0.85rem;
+    }
+    .t-name { font-weight: 600; font-size: 0.85rem; }
+    .t-loc { font-size: 0.75rem; color: #aaa; }
+
+    /* ===== CONTACTO / FOOTER ===== */
+    .contact-bar {
+        background: var(--rojo);
+        padding: 60px 0;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    .contact-bar::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .contact-bar h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 12px; position: relative; }
+    .contact-bar p { font-size: 1rem; opacity: 0.85; margin-bottom: 28px; position: relative; }
+    .contact-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+    .btn-wa {
+        background: var(--verde-wa);
+        color: white;
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(0,0,0,0.25); }
+    .btn-white {
+        background: white;
+        color: var(--rojo);
+        padding: 14px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(0,0,0,0.15); }
+
+    footer {
+        background: var(--negro);
+        color: #888;
+        padding: 60px 0 30px;
+    }
+    .footer-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 40px;
+    }
+    .footer-brand .logo-wrap { margin-bottom: 16px; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.7; max-width: 240px; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+        width: 36px; height: 36px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 9px;
+        display: flex; align-items: center; justify-content: center;
+        color: #aaa;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+    .social-btn:hover { background: var(--rojo); color: white; transform: translateY(-3px); }
+
+    .footer-col h4 { color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { color: #777; text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--rojo); }
+    .footer-contact p { font-size: 0.83rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .footer-contact i { color: var(--rojo); width: 14px; }
+
+    .footer-bottom {
+        max-width: 1300px;
+        margin: 40px auto 0;
+        padding: 24px 24px 0;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .footer-bottom p { font-size: 0.78rem; }
+    .footer-bottom a { color: #777; text-decoration: none; font-size: 0.78rem; }
+    .footer-bottom a:hover { color: var(--rojo); }
+
+    /* ===== FAB FLOTANTES ===== */
+    .fab-group {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+        z-index: 9000;
+    }
+    .fab-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    .fab-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+    .fab-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .fab-label {
+        background: rgba(10,10,10,0.9);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        white-space: nowrap;
+        backdrop-filter: blur(10px);
+    }
+    .fab-btn {
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        border: none;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.3rem;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    .fab-btn:hover { transform: scale(1.1); }
+    .fab-btn.wa { background: var(--verde-wa); }
+    .fab-btn.ig { background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); }
+    .fab-btn.chat { background: var(--rojo); }
+
+    .fab-main {
+        width: 62px; height: 62px;
+        background: var(--rojo);
+        border-radius: 50%;
+        border: none;
+        color: white;
+        font-size: 1.6rem;
+        cursor: pointer;
+        box-shadow: 0 8px 30px rgba(211,18,18,0.5);
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s;
+        animation: fabPulse 3s infinite;
+    }
+    .fab-main:hover { transform: scale(1.08); }
+    .fab-main.open { transform: rotate(45deg); background: #333; animation: none; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    @keyframes fabPulse {
+        0%,100% { box-shadow: 0 8px 30px rgba(211,18,18,0.5); }
+        50% { box-shadow: 0 12px 45px rgba(211,18,18,0.75); }
+    }
+
+    /* ===== CHAT WIDGET ===== */
+    .chat-widget {
+        position: fixed;
+        bottom: 110px;
+        right: 28px;
+        width: 340px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        z-index: 8999;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .chat-widget.open {
+        display: flex;
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    .chat-head {
+        background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .chat-head-avatar {
+        width: 44px; height: 44px;
+        background: var(--rojo);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    .chat-head-info { flex: 1; }
+    .chat-head-name { color: white; font-weight: 600; font-size: 0.9rem; }
+    .chat-head-status { color: #4ade80; font-size: 0.72rem; display: flex; align-items: center; gap: 5px; }
+    .chat-head-status::before { content: ''; width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: badgePulse 1.5s infinite; }
+    .chat-close { color: rgba(255,255,255,0.5); cursor: pointer; font-size: 1.1rem; padding: 4px; transition: color 0.2s; }
+    .chat-close:hover { color: white; }
+
+    .chat-body {
+        padding: 20px;
+        background: #f8f8f8;
+        max-height: 320px;
+        overflow-y: auto;
+    }
+    .chat-welcome {
+        background: white;
+        border-radius: 12px 12px 12px 4px;
+        padding: 14px 16px;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: #333;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 16px;
+    }
+    .chat-options { display: flex; flex-direction: column; gap: 8px; }
+    .chat-option-btn {
+        background: white;
+        border: 1.5px solid #eee;
+        border-radius: 12px;
+        padding: 11px 14px;
+        text-align: left;
+        cursor: pointer;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.82rem;
+        color: #333;
+        transition: all 0.25s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .chat-option-btn:hover { border-color: var(--verde-wa); background: #f0faf3; color: #1a7a42; transform: translateX(4px); }
+
+    .chat-foot {
+        padding: 12px 16px;
+        background: white;
+        border-top: 1px solid #eee;
+        text-align: center;
+        font-size: 0.75rem;
+        color: #999;
+    }
+    .chat-foot a { color: var(--verde-wa); text-decoration: none; font-weight: 500; }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+        background: white;
+        max-width: 680px;
+        width: 92%;
+        border-radius: 20px;
+        max-height: 88vh;
+        overflow-y: auto;
+        padding: 40px;
+        position: relative;
+        animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+        from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-close {
+        position: absolute;
+        top: 18px; right: 18px;
+        background: #f5f5f5;
+        border: none;
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.2s;
+    }
+    .modal-close:hover { background: var(--rojo); color: white; }
+    .modal-box h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--rojo); text-align: center; margin-bottom: 24px; }
+    .modal-box h3 { font-family: 'Syne', sans-serif; font-size: 1rem; margin: 22px 0 8px; color: #222; border-bottom: 2px solid #f5f5f5; padding-bottom: 8px; }
+    .modal-box p { font-size: 0.85rem; color: #666; line-height: 1.7; margin-bottom: 10px; }
+    .modal-box ul { padding-left: 18px; margin-bottom: 10px; }
+    .modal-box ul li { font-size: 0.85rem; color: #666; line-height: 1.7; margin-bottom: 5px; }
+
+    /* ===== BUSCADOR IA ===== */
+    .ia-modal-box { max-width: 580px; }
+    .ia-input-wrap { display: flex; gap: 10px; margin-bottom: 20px; }
+    .ia-input-wrap input {
+        flex: 1; padding: 14px 18px;
+        border: 2px solid #eee;
+        border-radius: 50px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    .ia-input-wrap input:focus { border-color: var(--rojo); }
+    .ia-input-wrap button {
+        background: var(--rojo); color: white; border: none;
+        padding: 14px 24px; border-radius: 50px; cursor: pointer;
+        font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+    .ia-input-wrap button:hover { background: var(--rojo-oscuro); transform: scale(1.03); }
+    .ia-result {
+        background: #f8f8f8; border-radius: 14px; padding: 20px;
+        font-size: 0.85rem; color: #555; line-height: 1.7;
+        display: none;
+        animation: fadeUp 0.4s forwards;
+    }
+    .ia-result.show { display: block; }
+    .ia-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+    .ia-chip {
+        background: #f5f5f5; border: 1.5px solid #eee; border-radius: 20px;
+        padding: 6px 14px; font-size: 0.78rem; cursor: pointer;
+        transition: all 0.2s; color: #555;
+    }
+    .ia-chip:hover { background: var(--rojo); border-color: var(--rojo); color: white; }
+
+    /* ===== ANIMACIONES SCROLL ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ===== LOADER ===== */
+    .page-loader {
+        position: fixed; inset: 0;
+        background: var(--negro);
+        z-index: 999999;
+        display: flex; align-items: center; justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        transition: opacity 0.5s ease;
+    }
+    .page-loader.hidden { opacity: 0; pointer-events: none; }
+    .loader-logo { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: white; }
+    .loader-logo span { color: var(--rojo-vivo); }
+    .loader-bar {
+        width: 200px; height: 3px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .loader-fill {
+        height: 100%;
+        background: var(--rojo);
+        border-radius: 2px;
+        animation: loaderAnim 1.2s ease forwards;
+    }
+    @keyframes loaderAnim {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+        .hero-content { grid-template-columns: 1fr; gap: 40px; }
+        .hero-visual { display: none; }
+        .intercambio-inner { grid-template-columns: 1fr; gap: 40px; }
+        .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+        .topbar-ticker { gap: 16px; font-size: 0.72rem; }
+        .nav { display: none; }
+        .nav.mobile-open {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--rojo);
-        }
-
-        .hamburger {
-            display: none;
             flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 30px;
-            height: 3px;
-            background: #222;
-            transition: 0.3s;
-        }
-
-        /* Botón IA */
-        .ia-button-container {
-            margin-left: auto;
-        }
-
-        .btn-ia {
-            background: linear-gradient(135deg, #d31212, #a80e0e);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(211, 18, 18, 0.3);
-        }
-
-        .btn-ia:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(211, 18, 18, 0.4);
-        }
-
-        /* WhatsApp Flotante */
-        .whatsapp-flotante {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: var(--verde-wa);
-            color: white;
-            width: 68px;
-            height: 68px;
-            border-radius: 50%;
-            display: flex;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: white;
             align-items: center;
             justify-content: center;
-            font-size: 38px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            gap: 24px;
             z-index: 9999;
-            text-decoration: none;
-            animation: pulsoVerde 2.8s infinite ease-in-out;
         }
+        .nav.mobile-open a { font-size: 1.2rem; }
+        .hamburger { display: flex; }
+        .search-bar { display: none; }
+        .hero-stats { flex-wrap: wrap; gap: 20px; }
+        .trust-inner { gap: 20px; }
+        .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+        .footer-bottom { flex-direction: column; text-align: center; }
+        .chat-widget { width: calc(100vw - 32px); right: 16px; }
+    }
 
-        .whatsapp-flotante:hover {
-            transform: scale(1.12);
-        }
+    @media (max-width: 480px) {
+        .fab-group { bottom: 20px; right: 16px; }
+        .fab-main { width: 56px; height: 56px; font-size: 1.4rem; }
+    }
+</style>
+```
 
-        @keyframes pulsoVerde {
-            0%, 100% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5); }
-            50% { box-shadow: 0 15px 45px rgba(37, 211, 102, 0.85); }
-        }
+</head>
+<body>
 
-        /* Catálogo */
-        .seccion {
-            max-width: 1300px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
+<!-- PAGE LOADER -->
 
-        .seccion-titulo {
-            text-align: center;
-            font-size: 2.2rem;
-            color: var(--rojo);
-            margin-bottom: 35px;
-        }
+<div class="page-loader" id="pageLoader">
+    <div class="loader-logo">Compra<span>Ya</span></div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
 
-        .ofertas-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 25px;
-        }
+<!-- CURSOR -->
 
-        .oferta-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-        .oferta-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(211, 18, 18, 0.15);
-        }
+<!-- TOP BAR -->
 
-        .oferta-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .oferta-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Footer */
-        footer {
-            background: #111;
-            color: #ddd;
-            padding: 60px 20px 30px;
-        }
-
-        .footer-contenido {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-col h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-col a {
-            color: #aaa;
-            text-decoration: none;
-        }
-
-        .footer-col a:hover {
-            color: var(--rojo);
-        }
-
-        .redes-sociales {
-            display: flex;
-            gap: 20px;
-            font-size: 1.8rem;
-            margin-top: 15px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* Modal Privacidad */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.75);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: white;
-            max-width: 800px;
-            width: 90%;
-            padding: 35px;
-            border-radius: 16px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-content h2 {
-            color: var(--rojo);
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .modal-content h3 {
-            margin: 25px 0 12px;
-            color: #333;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-        }
-
-        /* Chatbot */
-        .chatbot-widget {
-            position: fixed;
-            bottom: 100px;
-            right: 25px;
-            width: 340px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-            overflow: hidden;
-            z-index: 9998;
-            display: none;
-            flex-direction: column;
-            max-height: 520px;
-        }
-
-        .chat-header {
-            background: #25D366;
-            color: white;
-            padding: 15px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .chat-body {
-            padding: 20px;
-            background: #f9f9f9;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .chat-options button {
-            width: 100%;
-            padding: 14px 16px;
-            margin-bottom: 10px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        .chat-options button:hover {
-            background: #f0f8f0;
-            border-color: #25D366;
-        }
-
-        .chat-footer {
-            padding: 12px;
-            background: #f1f1f1;
-            text-align: center;
-        }
-
-        .canal-wa {
-            color: #25D366;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 145px;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.4s ease;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .logo-full {
-                max-width: 140px;
-            }
-
-            .chatbot-widget {
-                width: 92%;
-                right: 4%;
-                bottom: 90px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .whatsapp-flotante {
-                width: 60px;
-                height: 60px;
-                font-size: 32px;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-    </style>
-<!-- CABECERA ESTILO MARKETPLACE -->
-<header class="header-principal">
-
-    <!-- Barra superior tipo anuncio -->
-    <div class="header-top">
-        <p>COMPRA YA!!
-            A TU BOLSILLO LA MEJOR CALIDAD</p>
-    </div>
-
-    <!-- Barra principal -->
-    <div class="header-main">
-        
-   
-
-        <!-- Buscador tipo Covendy -->
-        <div class="search-container">
-            <input type="text" placeholder="Buscar productos...">
-            <button onclick="mostrarBuscadorIA()">
-                <i class="fas fa-search"></i>
-            </button>
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="topbar-ticker">
+            <span><i class="fas fa-circle"></i> Tienda abierta · Malabo, Guinea Ecuatorial</span>
+            <span><i class="fas fa-shipping-fast"></i> Entrega en toda Bioko</span>
+            <span><i class="fas fa-shield-alt"></i> Garantía verificada</span>
         </div>
-
-        <!-- Navegación -->
-<nav class="nav-desktop">
-    <a href="nuestrocatalogo.html" class="nav-btn">Catálogo</a>
-    <a href="intercambio.html" class="nav-btn">Intercambio</a>
-    <a href="#terminos-seguridad" class="nav-btn">Garantía</a>
-    <a href="#contacto" class="nav-btn">Contacto</a>
-</nav>
-
-        <!-- Botón IA -->
-        <div class="ia-button-container">
-            <button onclick="mostrarBuscadorIA()" class="btn-ia">
-                <i class="fas fa-robot"></i>
-            </button>
-        </div>
-
-        <!-- Menú móvil -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-    </div>
-
-</header>
-<!-- HERO -->
-<section class="hero" style="background: linear-gradient(rgba(211,18,18,0.85), rgba(211,18,18,0.85)), url('https://picsum.photos/id/1015/1600/900') center/cover; color: white; text-align: center; padding: 120px 20px;">
-    <h1 style="font-size: 3.2rem; margin-bottom: 20px;">Intercambio y Venta de Móviles y Laptops</h1>
-    <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 30px;">Compra, vende o intercambia con la mejor garantía en Malabo</p>
-    
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-        <a href="nuestrocatalogo.html" style="background: white; color: var(--rojo); padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold;">Ver Catálogo</a>
-        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya" target="_blank" style="background: #25D366; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold;">Contactar por WhatsApp</a>
-    </div>
-</section>
-
-<!-- HERO / VIDEO DE PRESENTACIÓN -->
-<section id="hero-video" class="hero-video-section" style="margin-bottom: 40px;">
-    <div class="video-container" style="max-width: 1000px; margin: 0 auto; padding: 0 15px;">
-        <!-- Aquí pega el código de embed que copies de Instagram -->
-        <blockquote class="instagram-media" 
-                    data-instgrm-permalink="https://www.instagram.com/reel/DWKISl2DZyc/" 
-                    data-instgrm-version="14">
-        </blockquote>
-        
-        <!-- Script de Instagram (ponerlo solo UNA vez en toda la página, preferiblemente al final del <body>) -->
-        <script async src="//www.instagram.com/embed.js"></script>
-    </div>
-</section>
-
-<!-- CATÁLOGO -->
-<section id="productos" class="seccion">
-    <h2 class="seccion-titulo">🔥 Nuestro Catálogo</h2>
-    <div class="ofertas-container">
-        <div class="oferta-card">
-            <img src="Ip.JPG" alt="iPhone">
-            <div class="oferta-info">
-                <h3>iPhone / Samsung</h3>
-                <p>Últimos modelos disponibles</p>
-                <div style="font-size: 1.7rem; font-weight: bold; color: var(--rojo); margin: 15px 0;">Desde 100.000 FCFA</div>
-                <a href="https://wa.me/240555391797?text=Quiero%20ver%20móviles" target="_blank" style="background: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; text-decoration: none;">Pedir por WhatsApp</a>
-            </div>
-        </div>
-
-        <div class="oferta-card">
-            <img src="laptopi.JPEG" alt="Laptop">
-            <div class="oferta-info">
-                <h3>Laptops HP / Dell</h3>
-                <p>Ideal para trabajo y estudios</p>
-                <div style="font-size: 1.7rem; font-weight: bold; color: var(--rojo); margin: 15px 0;">Desde 150.000 FCFA</div>
-                <a href="https://wa.me/240555391797?text=Quiero%20información%20de%20laptops" target="_blank" style="background: var(--rojo); color: white; padding: 12px; border-radius: 10px; text-align: center; display: block; text-decoration: none;">Pedir por WhatsApp</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer id="contacto">
-    <div class="footer-contenido">
-        <div class="footer-col">
-            <h3>Compra Ya 🛒</h3>
-            <p>Tecnología de calidad con garantía real en Malabo.</p>
-        </div>
-        <div class="footer-col">
-            <h3>Enlaces Rápidos</h3>
-            <ul>
-                <<li><a href="nuestrocatalogo.html">Catálogo</a></li>
-<li><a href="intercambio.html">Intercambio</a></li>
-                <li><a href="#terminos-seguridad">Garantía y Seguridad</a></li>
-                <li><a href="#" onclick="document.getElementById('privacidad-modal').style.display='block'">Política de Privacidad</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h3>Contáctanos</h3>
-            <p>📍 Malabo, Bioko Norte</p>
-            <p>📲 <a href="https://wa.me/240555391797" style="color: #25D366;">+240 555 391 797</a></p>
-        </div><div class="footer-col">
-    <h3>Síguenos</h3>
-    <div class="redes-sociales">
-        <a href="https://www.instagram.com/compra_ya_malabo" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@owonoowonoabegue" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.facebook.com/share/1CVpg7P9C6/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/240555391797" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="topbar-badge">🔥 Stock limitado</div>
     </div>
 </div>
-    </div>
 
-    <div class="footer-bottom">
-        <p>© 2026 Compra Ya • Tienda Física y Online en Malabo</p>
-    </div>
-</footer>
+<!-- HEADER -->
 
-<!-- Botón WhatsApp Flotante -->
-<a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20información" 
-   target="_blank" 
-   class="whatsapp-flotante">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- Chatbot Inteligente -->
-<div id="chatbot-widget" class="chatbot-widget">
-    <div class="chat-header">
-        <div class="chat-header-info">
-            <i class="fab fa-whatsapp" style="font-size: 28px;"></i>
+<header class="header" id="header">
+    <div class="header-inner">
+        <a href="#" class="logo-wrap">
+            <div class="logo-icon">CY</div>
             <div>
-                <strong>Compra Ya - Asistente</strong><br>
-                <small>En línea • Respuesta rápida</small>
+                <div class="logo-text">Compra Ya</div>
+                <div class="logo-sub">Malabo · Tecnología</div>
+            </div>
+        </a>
+
+```
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar iPhone, laptop, Samsung..." onkeypress="if(event.key==='Enter')abrirIA()">
+        <button onclick="abrirIA()"><i class="fas fa-search"></i></button>
+    </div>
+
+    <nav class="nav" id="mainNav">
+        <a href="nuestrocatalogo.html">Catálogo</a>
+        <a href="intercambio.html">Intercambio</a>
+        <a href="#garantia">Garantía</a>
+        <a href="#contacto">Contacto</a>
+        <a href="javascript:void(0)" onclick="abrirIA()" class="btn-primary">
+            <i class="fas fa-robot"></i> Buscar con IA
+        </a>
+        <button id="navClose" style="display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#333;padding:8px;" onclick="cerrarNav()">✕</button>
+    </nav>
+
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+```
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-badge">Nº1 en tecnología · Malabo</div>
+            <h1 class="hero-title">
+                La mejor<br>
+                tecnología,<br>
+                <span class="accent">a tu alcance.</span>
+            </h1>
+            <p class="hero-desc">
+                iPhones, Samsung, laptops y más. Compra con garantía real, intercambia tu equipo antiguo y recibe en toda Bioko.
+            </p>
+            <div class="hero-actions">
+                <a href="nuestrocatalogo.html" class="btn-hero-main">
+                    <i class="fas fa-th-large"></i> Ver Catálogo
+                </a>
+                <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20información" target="_blank" class="btn-hero-ghost">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="500">0</span>
+                    <span class="stat-label">Clientes felices</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="200">0</span>
+                    <span class="stat-label">Productos disponibles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Años en Malabo</span>
+                </div>
             </div>
         </div>
-        <span class="close-chat" onclick="toggleChatbot()">✕</span>
-    </div>
-    
-    <div class="chat-body">
-        <div class="chat-welcome">
-            ¡Hola! 👋 Bienvenido a <strong>Compra Ya</strong>.<br>
-            ¿En qué te puedo ayudar hoy?
+
+```
+    <div class="hero-visual">
+        <div class="hero-phone-stack">
+            <div class="phone-card">
+                <div class="phone-emoji">📱</div>
+                <div class="phone-name">Samsung Galaxy</div>
+                <div class="phone-price">150.000 FCFA</div>
+                <div class="phone-tag">En stock</div>
+            </div>
+            <div class="phone-card">
+                <div class="phone-emoji">🍎</div>
+                <div class="phone-name">iPhone 13 Pro</div>
+                <div class="phone-price">320.000 FCFA</div>
+                <div class="phone-tag">⭐ Más vendido</div>
+            </div>
+            <div class="phone-card">
+                <div class="phone-emoji">💻</div>
+                <div class="phone-name">HP Laptop i5</div>
+                <div class="phone-price">220.000 FCFA</div>
+                <div class="phone-tag">Garantía 1 mes</div>
+            </div>
+
+            <div class="float-badge">
+                <div class="fb-icon" style="background:#d1fae5;">✅</div>
+                <div>
+                    <strong style="display:block;font-size:0.8rem;">Verificado</strong>
+                    <span style="color:#999;font-size:0.7rem;">+20 puntos de control</span>
+                </div>
+            </div>
+            <div class="float-badge">
+                <div class="fb-icon" style="background:#fee2e2;">🔄</div>
+                <div>
+                    <strong style="display:block;font-size:0.8rem;">Plan Renove</strong>
+                    <span style="color:#999;font-size:0.7rem;">Ahorra en tu upgrade</span>
+                </div>
+            </div>
         </div>
-        
-        <div class="chat-options">
-            <button onclick="enviarMensajePredefinido(1)">💻 Quiero ver laptops / portátiles</button>
-            <button onclick="enviarMensajePredefinido(2)">📱 Busco móviles (iPhone, Samsung...)</button>
-            <button onclick="enviarMensajePredefinido(3)">🔄 Quiero hacer un intercambio (Plan Renove)</button>
-            <button onclick="enviarMensajePredefinido(4)">🍎 Busco MacBook o productos Apple</button>
-            <button onclick="enviarMensajePredefinido(5)">❓ Tengo otra consulta</button>
-        </div>
     </div>
-    
-    <div class="chat-footer">
-        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank" class="canal-wa">
-            📢 Únete a nuestro Canal de WhatsApp
+</div>
+```
+
+</section>
+
+<!-- TRUST BAR -->
+
+<div class="trust-bar">
+    <div class="trust-inner">
+        <div class="trust-item reveal"><i class="fas fa-shield-check"></i> Garantía técnica verificada</div>
+        <div class="trust-item reveal reveal-delay-1"><i class="fas fa-truck-fast"></i> Entrega en toda Malabo</div>
+        <div class="trust-item reveal reveal-delay-2"><i class="fas fa-rotate-left"></i> Plan Renove disponible</div>
+        <div class="trust-item reveal reveal-delay-3"><i class="fas fa-comments-dollar"></i> Asesoría gratuita post-venta</div>
+        <div class="trust-item reveal reveal-delay-4"><i class="fab fa-whatsapp"></i> Atención por WhatsApp</div>
+    </div>
+</div>
+
+<!-- CATEGORÍAS -->
+
+<div class="section">
+    <div class="section-header reveal">
+        <div class="section-tag">Explora</div>
+        <h2 class="section-title">¿Qué buscas hoy?</h2>
+        <p class="section-desc">Navega por nuestras categorías y encuentra exactamente lo que necesitas.</p>
+    </div>
+    <div class="cats-grid">
+        <a href="nuestrocatalogo.html" class="cat-card reveal">
+            <span class="cat-icon">📱</span>
+            <span class="cat-name">iPhones</span>
+        </a>
+        <a href="nuestrocatalogo.html" class="cat-card reveal reveal-delay-1">
+            <span class="cat-icon">📲</span>
+            <span class="cat-name">Samsung</span>
+        </a>
+        <a href="nuestrocatalogo.html" class="cat-card reveal reveal-delay-2">
+            <span class="cat-icon">💻</span>
+            <span class="cat-name">Laptops</span>
+        </a>
+        <a href="nuestrocatalogo.html" class="cat-card reveal reveal-delay-3">
+            <span class="cat-icon">🍎</span>
+            <span class="cat-name">MacBook</span>
+        </a>
+        <a href="nuestrocatalogo.html" class="cat-card reveal reveal-delay-4">
+            <span class="cat-icon">🎧</span>
+            <span class="cat-name">Accesorios</span>
+        </a>
+        <a href="intercambio.html" class="cat-card reveal">
+            <span class="cat-icon">🔄</span>
+            <span class="cat-name">Intercambio</span>
         </a>
     </div>
 </div>
 
-<!-- Modal Política de Privacidad -->
-<div id="privacidad-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="document.getElementById('privacidad-modal').style.display='none'">&times;</span>
-        <h2>Política de Privacidad y Condiciones de Servicio</h2>
-        
-        <h3>1. Garantía de los Productos</h3>
-        <p>Todos los equipos vendidos en Compra Ya cuentan con <strong>garantía de fabricante</strong> donde aplique, y adicionalmente:</p>
-        <ul>
-            <li><strong>Grado A (Seminuevos)</strong>: Equipos seleccionados con "Confianza Técnica", revisados en más de 20 puntos de control antes de salir a la venta.</li>
-        </ul>
+<!-- PRODUCTOS DESTACADOS -->
 
-        <h3>2. Plan Renove (Intercambios)</h3>
-        <p>Para participar en el sistema de intercambio, el cliente acepta que:</p>
-        <ul>
-            <li>El equipo entregado será sometido a una Inspección Técnica inmediata.</li>
-            <li>Compra Ya se reserva el derecho de rechazar equipos con daños estructurales graves o de procedencia no verificable.</li>
-            <li>La valoración económica del equipo antiguo es final y se descontará del precio del equipo nuevo.</li>
-        </ul>
+<div style="background:#f5f5f5; padding: 80px 0;">
+    <div class="section" style="padding-top:0;padding-bottom:0;">
+        <div class="section-header reveal">
+            <div class="section-tag">Catálogo</div>
+            <h2 class="section-title">Productos Destacados</h2>
+            <p class="section-desc">Equipos revisados técnicamente, con garantía y listos para entrega.</p>
+        </div>
+        <div class="products-grid">
 
-        <h3>3. Garantía Real y Reclamaciones</h3>
-        <p>Compra Ya ofrece:</p>
-        <ul>
-            <li><strong>Periodo de Prueba</strong>: 1 mes de garantía técnica en hardware para equipos de segunda mano (salvo mal uso, golpes o contacto con líquidos).</li>
-            <li><strong>Soporte Post-Venta</strong>: Asesoría gratuita para la configuración inicial de tu laptop o smartphone.</li>
-            <li>Toda reclamación requiere la presentación de la factura digital o física emitida al momento de la compra.</li>
-        </ul>
+```
+        <div class="product-card reveal">
+            <div class="product-img-wrap">
+                <img src="Ip.JPG" alt="iPhone" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220/f5f5f5/d31212?text=iPhone'">
+                <span class="product-label">Popular</span>
+                <button class="product-quick" onclick="window.open('https://wa.me/240555391797?text=Info%20iPhone','_blank')"><i class="fas fa-bolt"></i></button>
+            </div>
+            <div class="product-body">
+                <div class="product-category">Smartphones · Apple</div>
+                <div class="product-name">iPhone — Varios Modelos</div>
+                <div class="product-desc">iPhone 11, 12, 13 y más. Todos revisados en 20+ puntos de control técnico. Con garantía real.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">Desde 100.000 <span>FCFA</span></div>
+                <a class="btn-comprar" href="https://wa.me/240555391797?text=Quiero%20ver%20iPhones" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pedir
+                </a>
+            </div>
+        </div>
 
-        <h3>4. Entregas y Pagos en Malabo</h3>
-        <ul>
-            <li><strong>Zona de Cobertura</strong>: Realizamos entregas verificadas en toda Malabo y Bioko.</li>
-            <li><strong>Métodos de Pago</strong>: Efectivo, transferencias locales y métodos digitales acordados previamente por WhatsApp.</li>
-            <li><strong>Reserva de Equipos</strong>: Las reservas solo se mantienen por 24 horas a menos que se realice un pago de señal.</li>
-        </ul>
+        <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+                <img src="Ip.JPG" alt="Samsung" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220/f5f5f5/d31212?text=Samsung'">
+                <span class="product-label nuevo">Nuevo</span>
+                <button class="product-quick" onclick="window.open('https://wa.me/240555391797?text=Info%20Samsung','_blank')"><i class="fas fa-bolt"></i></button>
+            </div>
+            <div class="product-body">
+                <div class="product-category">Smartphones · Samsung</div>
+                <div class="product-name">Samsung Galaxy Series</div>
+                <div class="product-desc">Galaxy A, S y más. Modelos actuales con pantalla AMOLED y batería de larga duración.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">Desde 120.000 <span>FCFA</span></div>
+                <a class="btn-comprar" href="https://wa.me/240555391797?text=Quiero%20ver%20Samsung" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pedir
+                </a>
+            </div>
+        </div>
 
-        <h3>5. Limitación de Responsabilidad</h3>
-        <p>Compra Ya no se hace responsable del software ilegal instalado por el usuario tras la compra ni de la pérdida de información por falta de copias de seguridad. Recomendamos siempre mantener sus archivos en la nube.</p>
+        <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+                <img src="laptopi.JPEG" alt="Laptop" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220/f5f5f5/d31212?text=Laptop'">
+                <span class="product-label oferta">Oferta</span>
+                <button class="product-quick" onclick="window.open('https://wa.me/240555391797?text=Info%20Laptop','_blank')"><i class="fas fa-bolt"></i></button>
+            </div>
+            <div class="product-body">
+                <div class="product-category">Portátiles · HP · Dell</div>
+                <div class="product-name">Laptops HP & Dell</div>
+                <div class="product-desc">Ideales para trabajo, estudios o entretenimiento. Procesadores i5/i7, SSD, RAM actualizable.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">Desde 150.000 <span>FCFA</span></div>
+                <a class="btn-comprar" href="https://wa.me/240555391797?text=Quiero%20información%20de%20laptops" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pedir
+                </a>
+            </div>
+        </div>
 
-        <h3>6. Jurisdicción y Contacto</h3>
-        <p>Cualquier controversia será resuelta bajo las leyes comerciales vigentes en la República de Guinea Ecuatorial, priorizando siempre la mediación directa.</p>
-        <ul>
-            <li><strong>Sede</strong>: Malabo, Guinea Ecuatorial</li>
-            <li><strong>WhatsApp de Atención</strong>: +240 555 391 797</li>
-            <li><strong>Web</strong>: https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j</li>
-        </ul>
+        <div class="product-card reveal reveal-delay-3">
+            <div class="product-img-wrap" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a); display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:5rem;">🍎</span>
+                <span class="product-label">Premium</span>
+                <button class="product-quick" onclick="window.open('https://wa.me/240555391797?text=Info%20MacBook','_blank')"><i class="fas fa-bolt"></i></button>
+            </div>
+            <div class="product-body">
+                <div class="product-category">Portátiles · Apple</div>
+                <div class="product-name">MacBook Air & Pro</div>
+                <div class="product-desc">MacBooks en excelente estado. Chips M1/M2 disponibles. Perfectos para diseño y productividad.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">Desde 350.000 <span>FCFA</span></div>
+                <a class="btn-comprar" href="https://wa.me/240555391797?text=Busco%20MacBook" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pedir
+                </a>
+            </div>
+        </div>
 
-        <p style="text-align: center; margin-top: 35px; font-weight: bold; color: #d31212;">
-            Gracias por confiar en Compra Ya<br>
-            <span style="font-size: 1.05rem;">LA MEJOR CALIDAD A TU ALCANCE</span>
-        </p>
+    </div>
+    <div style="text-align:center; margin-top: 40px;" class="reveal">
+        <a href="nuestrocatalogo.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--negro);color:white;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:600;transition:all 0.3s;" onmouseover="this.style.background='var(--rojo)'" onmouseout="this.style.background='var(--negro)'">
+            Ver catálogo completo <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+```
+
+</div>
+
+<!-- VIDEO INSTAGRAM -->
+
+<div style="background:var(--negro);padding:60px 0;">
+    <div class="section" style="padding-top:0;padding-bottom:0;text-align:center;">
+        <div class="section-header reveal" style="margin-bottom:32px;">
+            <div class="section-tag" style="background:rgba(211,18,18,0.25);color:#ff6b6b;">Instagram</div>
+            <h2 class="section-title" style="color:white;">Síguenos en vivo</h2>
+        </div>
+        <div style="max-width:700px;margin:0 auto;" class="reveal">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DWKISl2DZyc/" data-instgrm-version="14" style="border-radius:16px;overflow:hidden;"></blockquote>
+            <script async src="//www.instagram.com/embed.js"></script>
+        </div>
     </div>
 </div>
 
-<!-- Buscador IA -->
-<div id="ia-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 10000; justify-content: center; align-items: center;">
-    <div style="background: white; max-width: 620px; width: 90%; border-radius: 16px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
-        <h3 style="text-align: center; color: #d31212; margin-bottom: 20px;">🤖 Buscar con Inteligencia Artificial</h3>
-        
-        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <input type="text" id="ia-input" placeholder="Ej: iPhone 11, laptop HP, MacBook..." 
-                   style="flex: 1; padding: 14px; border: 2px solid #ddd; border-radius: 50px; font-size: 1rem; outline: none;">
-            <button onclick="buscarConIA()" 
-                    style="background: #d31212; color: white; border: none; padding: 14px 28px; border-radius: 50px; cursor: pointer; font-weight: bold;">
-                Buscar
-            </button>
-        </div>
+<!-- INTERCAMBIO -->
 
-        <div id="ia-response" style="min-height: 120px; padding: 15px; background: #f9f9f9; border-radius: 12px; display: none;"></div>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <button onclick="cerrarIA()" style="background: #666; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
-                Cerrar
-            </button>
+<section class="intercambio-section" id="intercambio">
+    <div class="intercambio-inner">
+        <div class="intercambio-text">
+            <div class="section-tag">Plan Renove</div>
+            <h2 class="intercambio-title">Dale nueva vida<br>a tu equipo</h2>
+            <p class="intercambio-desc">Trae tu móvil o laptop antiguo y llévate el equipo que siempre quisiste. Valoramos tu equipo al instante y descontamos del precio del nuevo.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div>
+                        <div class="step-title">Trae tu equipo a nuestra tienda</div>
+                        <div class="step-desc">O envíanos fotos por WhatsApp para una valoración preliminar gratuita.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div>
+                        <div class="step-title">Inspección técnica inmediata</div>
+                        <div class="step-desc">Revisamos tu equipo en más de 20 puntos de control para una valoración justa.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div>
+                        <div class="step-title">Elige tu nuevo equipo</div>
+                        <div class="step-desc">El valor de tu equipo se descuenta directamente del precio del nuevo. Así de simple.</div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="intercambio-cta reveal">
+            <span class="ren-icon">🔄</span>
+            <h3>¿Listo para hacer el intercambio?</h3>
+            <p>Contáctanos ahora y recibe una valoración gratuita de tu equipo actual. Sin compromisos.</p>
+            <a href="https://wa.me/240555391797?text=Quiero%20información%20sobre%20el%20Plan%20Renove" target="_blank" class="btn-intercambio">
+                <i class="fab fa-whatsapp"></i> Iniciar intercambio
+            </a>
+            <p style="color:rgba(255,255,255,0.3);font-size:0.72rem;margin-top:14px;">Valoración gratuita y sin compromiso · Respuesta en minutos</p>
+        </div>
+    </div>
+</section>
+
+<!-- GARANTÍA -->
+
+<section class="garantia-section" id="garantia">
+    <div class="section" style="padding-top:80px;">
+        <div class="section-header reveal">
+            <div class="section-tag">Seguridad</div>
+            <h2 class="section-title">Compra con total confianza</h2>
+            <p class="section-desc">Cada equipo pasa por controles rigurosos antes de llegar a tus manos.</p>
+        </div>
+        <div class="garantia-grid">
+            <div class="garantia-card reveal">
+                <div class="garantia-icon"><i class="fas fa-shield-check"></i></div>
+                <div class="garantia-title">Revisión 20 puntos</div>
+                <div class="garantia-desc">Cada equipo pasa por más de 20 puntos de control técnico antes de ser puesto a la venta.</div>
+            </div>
+            <div class="garantia-card reveal reveal-delay-1">
+                <div class="garantia-icon"><i class="fas fa-calendar-check"></i></div>
+                <div class="garantia-title">Garantía 1 mes</div>
+                <div class="garantia-desc">Garantía técnica de hardware durante 1 mes en todos los equipos de segunda mano.</div>
+            </div>
+            <div class="garantia-card reveal reveal-delay-2">
+                <div class="garantia-icon"><i class="fas fa-headset"></i></div>
+                <div class="garantia-title">Soporte post-venta</div>
+                <div class="garantia-desc">Asesoría gratuita para la configuración inicial de tu smartphone o laptop.</div>
+            </div>
+            <div class="garantia-card reveal reveal-delay-3">
+                <div class="garantia-icon"><i class="fas fa-receipt"></i></div>
+                <div class="garantia-title">Factura digital</div>
+                <div class="garantia-desc">Recibe tu factura digital al instante. Necesaria para cualquier reclamación de garantía.</div>
+            </div>
+            <div class="garantia-card reveal reveal-delay-4">
+                <div class="garantia-icon"><i class="fas fa-truck-fast"></i></div>
+                <div class="garantia-title">Entrega verificada</div>
+                <div class="garantia-desc">Entregas en toda Malabo y Bioko Norte. Reservas con señal para 24 horas.</div>
+            </div>
+            <div class="garantia-card reveal">
+                <div class="garantia-icon"><i class="fas fa-money-bill-wave"></i></div>
+                <div class="garantia-title">Pagos flexibles</div>
+                <div class="garantia-desc">Efectivo, transferencias locales y métodos digitales. Todo acordado de forma segura por WhatsApp.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIOS -->
+
+<section class="testimonios-section">
+    <div class="section">
+        <div class="section-header reveal">
+            <div class="section-tag">Clientes</div>
+            <h2 class="section-title">Lo que dicen de nosotros</h2>
+        </div>
+        <div class="testimonios-grid">
+            <div class="testimonio-card reveal">
+                <div class="t-stars">★★★★★</div>
+                <div class="t-text">"Compré un iPhone 13 y llegó perfectamente revisado. Me dieron asesoría para configurarlo. Muy profesionales, volveré sin duda."</div>
+                <div class="t-author">
+                    <div class="t-avatar">MN</div>
+                    <div><div class="t-name">María N.</div><div class="t-loc">Malabo, Bioko</div></div>
+                </div>
+            </div>
+            <div class="testimonio-card reveal reveal-delay-1">
+                <div class="t-stars">★★★★★</div>
+                <div class="t-text">"El Plan Renove es increíble. Di mi viejo Samsung y me descontaron bastante del iPhone nuevo. Proceso muy rápido y transparente."</div>
+                <div class="t-author">
+                    <div class="t-avatar">JA</div>
+                    <div><div class="t-name">Juan A.</div><div class="t-loc">Malabo</div></div>
+                </div>
+            </div>
+            <div class="testimonio-card reveal reveal-delay-2">
+                <div class="t-stars">★★★★★</div>
+                <div class="t-text">"Laptop HP en perfecto estado, con garantía. Responden al momento por WhatsApp. La mejor tienda de tecnología en Malabo."</div>
+                <div class="t-author">
+                    <div class="t-avatar">EC</div>
+                    <div><div class="t-name">Esther C.</div><div class="t-loc">Malabo</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT BAR -->
+
+<section class="contact-bar" id="contacto">
+    <h2>¿Tienes alguna pregunta?</h2>
+    <p>Estamos disponibles ahora mismo. Escríbenos por WhatsApp y respondemos en minutos.</p>
+    <div class="contact-actions">
+        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20información" target="_blank" class="btn-wa">
+            <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank" class="btn-white">
+            <i class="fas fa-bell"></i> Unirte al canal
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#" class="logo-wrap" style="text-decoration:none;">
+                <div class="logo-icon">CY</div>
+                <div>
+                    <div class="logo-text" style="color:white;">Compra Ya</div>
+                    <div class="logo-sub">Malabo · Tecnología</div>
+                </div>
+            </a>
+            <p>Tecnología de calidad con garantía real en Malabo, Guinea Ecuatorial. Tu tienda de confianza desde 2023.</p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/compra_ya_malabo" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@owonoowonoabegue" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/share/1CVpg7P9C6/" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/240555391797" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Navegación</h4>
+            <ul>
+                <li><a href="nuestrocatalogo.html">Catálogo completo</a></li>
+                <li><a href="intercambio.html">Plan Renove</a></li>
+                <li><a href="#garantia">Garantía y seguridad</a></li>
+                <li><a href="javascript:void(0)" onclick="document.getElementById('privacidadModal').classList.add('open')">Política de privacidad</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Productos</h4>
+            <ul>
+                <li><a href="nuestrocatalogo.html">iPhones</a></li>
+                <li><a href="nuestrocatalogo.html">Samsung Galaxy</a></li>
+                <li><a href="nuestrocatalogo.html">Laptops HP & Dell</a></li>
+                <li><a href="nuestrocatalogo.html">MacBook</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contact">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Malabo, Bioko Norte, Guinea Ecuatorial</p>
+            <p><i class="fab fa-whatsapp" style="color:var(--verde-wa)"></i> <a href="https://wa.me/240555391797" style="color:#777;text-decoration:none;">+240 555 391 797</a></p>
+            <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/compra_ya_malabo" target="_blank" style="color:#777;text-decoration:none;">@compra_ya_malabo</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Compra Ya · Tienda física y online en Malabo, Guinea Ecuatorial</p>
+        <div style="display:flex;gap:20px;">
+            <a href="javascript:void(0)" onclick="document.getElementById('privacidadModal').classList.add('open')">Privacidad</a>
+            <a href="#garantia">Garantía</a>
+        </div>
+    </div>
+</footer>
+
+<!-- FAB FLOTANTE -->
+
+<div class="fab-group">
+    <div class="fab-menu" id="fabMenu">
+        <div class="fab-item">
+            <span class="fab-label">Chat de ayuda</span>
+            <button class="fab-btn chat" onclick="toggleChat()"><i class="fas fa-comment-dots"></i></button>
+        </div>
+        <a class="fab-item" href="https://www.instagram.com/compra_ya_malabo" target="_blank">
+            <span class="fab-label">Instagram</span>
+            <button class="fab-btn ig"><i class="fab fa-instagram"></i></button>
+        </a>
+        <a class="fab-item" href="https://wa.me/240555391797?text=Hola%20Compra%20Ya" target="_blank">
+            <span class="fab-label">WhatsApp</span>
+            <button class="fab-btn wa"><i class="fab fa-whatsapp"></i></button>
+        </a>
+    </div>
+    <button class="fab-main" id="fabMain" onclick="toggleFab()">
+        <i class="fas fa-plus"></i>
+    </button>
+</div>
+
+<!-- CHAT WIDGET -->
+
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-head">
+        <div class="chat-head-avatar">🛒</div>
+        <div class="chat-head-info">
+            <div class="chat-head-name">Compra Ya — Asistente</div>
+            <div class="chat-head-status">En línea ahora</div>
+        </div>
+        <span class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></span>
+    </div>
+    <div class="chat-body">
+        <div class="chat-welcome">
+            ¡Hola! 👋 Bienvenido a <strong>Compra Ya</strong>.<br>
+            ¿Qué estás buscando hoy?
+        </div>
+        <div class="chat-options">
+            <button class="chat-option-btn" onclick="enviarWA('Hola, quiero ver los portátiles disponibles')">💻 Quiero ver laptops / portátiles</button>
+            <button class="chat-option-btn" onclick="enviarWA('Hola, estoy buscando móviles iPhone o Samsung')">📱 Busco móviles (iPhone, Samsung…)</button>
+            <button class="chat-option-btn" onclick="enviarWA('Hola, quiero información sobre el Plan Renove / Intercambio')">🔄 Plan Renove — intercambio</button>
+            <button class="chat-option-btn" onclick="enviarWA('Hola, busco MacBook o productos Apple')">🍎 MacBook o productos Apple</button>
+            <button class="chat-option-btn" onclick="enviarWA('Hola, tengo una consulta')">❓ Otra consulta</button>
+        </div>
+    </div>
+    <div class="chat-foot">
+        <a href="https://whatsapp.com/channel/0029Vb6j8xy6BIEhugOF9O3j" target="_blank">📢 Únete a nuestro Canal de WhatsApp</a>
+    </div>
+</div>
+
+<!-- MODAL PRIVACIDAD -->
+
+<div class="modal-overlay" id="privacidadModal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="modal-box">
+        <button class="modal-close" onclick="document.getElementById('privacidadModal').classList.remove('open')">✕</button>
+        <h2>Política de Privacidad y Condiciones</h2>
+        <h3>1. Garantía de los Productos</h3>
+        <p>Todos los equipos vendidos en Compra Ya cuentan con garantía de fabricante donde aplique. Los equipos <strong>Grado A (Seminuevos)</strong> son seleccionados con "Confianza Técnica", revisados en más de 20 puntos antes de la venta.</p>
+        <h3>2. Plan Renove (Intercambios)</h3>
+        <ul>
+            <li>El equipo entregado será sometido a una Inspección Técnica inmediata.</li>
+            <li>Compra Ya puede rechazar equipos con daños estructurales graves o procedencia no verificable.</li>
+            <li>La valoración económica es final y se descuenta del equipo nuevo.</li>
+        </ul>
+        <h3>3. Garantía Real y Reclamaciones</h3>
+        <ul>
+            <li><strong>1 mes</strong> de garantía técnica en hardware para equipos de segunda mano.</li>
+            <li>Soporte gratuito para configuración inicial.</li>
+            <li>Toda reclamación requiere la factura digital o física emitida al comprar.</li>
+        </ul>
+        <h3>4. Entregas y Pagos en Malabo</h3>
+        <ul>
+            <li>Entregas en toda Malabo y Bioko.</li>
+            <li>Métodos de pago: efectivo, transferencias locales y digitales.</li>
+            <li>Reservas: solo se mantienen 24h sin señal de pago.</li>
+        </ul>
+        <h3>5. Contacto</h3>
+        <p>📍 Malabo, Guinea Ecuatorial · 📲 <a href="https://wa.me/240555391797" style="color:var(--rojo)">+240 555 391 797</a></p>
+        <p style="text-align:center;margin-top:28px;font-weight:700;color:var(--rojo)">Gracias por confiar en Compra Ya</p>
+    </div>
+</div>
+
+<!-- MODAL BUSCADOR IA -->
+
+<div class="modal-overlay" id="iaModal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="modal-box ia-modal-box">
+        <button class="modal-close" onclick="document.getElementById('iaModal').classList.remove('open')">✕</button>
+        <h2>🤖 Buscar con Inteligencia Artificial</h2>
+        <div class="ia-chips">
+            <span class="ia-chip" onclick="setChip('iPhone 13')">iPhone 13</span>
+            <span class="ia-chip" onclick="setChip('Samsung')">Samsung</span>
+            <span class="ia-chip" onclick="setChip('Laptop HP')">Laptop HP</span>
+            <span class="ia-chip" onclick="setChip('MacBook')">MacBook</span>
+            <span class="ia-chip" onclick="setChip('Intercambio')">Intercambio</span>
+        </div>
+        <div class="ia-input-wrap">
+            <input type="text" id="iaInput" placeholder="Ej: iPhone 11 con garantía, laptop barata…" onkeypress="if(event.key==='Enter')buscarIA()">
+            <button onclick="buscarIA()"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+        <div class="ia-result" id="iaResult"></div>
     </div>
 </div>
 
 <script>
-// ==================== MENÚ HAMBURGUESA ====================
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('pageLoader').classList.add('hidden');
+            setTimeout(() => document.getElementById('pageLoader').style.display = 'none', 600);
+        }, 1400);
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+        // Auto-abrir chat a los 5s
+        setTimeout(() => {
+            const w = document.getElementById('chatWidget');
+            w.style.display = 'flex';
+            setTimeout(() => w.classList.add('open'), 50);
+        }, 5000);
     });
-});
 
-// ==================== CHATBOT ====================
-function toggleChatbot() {
-    const chatbot = document.getElementById('chatbot-widget');
-    chatbot.style.display = (chatbot.style.display === 'flex') ? 'none' : 'flex';
-}
+    // ===== CURSOR =====
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    document.addEventListener('mousemove', e => {
+        dot.style.left = e.clientX - 4 + 'px';
+        dot.style.top = e.clientY - 4 + 'px';
+        ring.style.left = e.clientX - 18 + 'px';
+        ring.style.top = e.clientY - 18 + 'px';
+    });
+    document.querySelectorAll('a,button,.cat-card,.product-card').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.style.transform = 'scale(1.6)');
+        el.addEventListener('mouseleave', () => ring.style.transform = 'scale(1)');
+    });
 
-function enviarMensajePredefinido(opcion) {
-    let mensaje = "";
-    const numero = "240555391797";
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+        document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    });
 
-    switch(opcion) {
-        case 1: mensaje = "Hola, quiero ver los portátiles disponibles"; break;
-        case 2: mensaje = "Hola, estoy buscando móviles (iPhone o Samsung). ¿Qué tienen en stock?"; break;
-        case 3: mensaje = "Hola, quiero información sobre el Plan Renove / Intercambio"; break;
-        case 4: mensaje = "Hola, busco MacBook o productos Apple. ¿Tienen disponibles?"; break;
-        case 5: mensaje = "Hola, tengo una consulta sobre sus productos"; break;
+    // ===== MOBILE NAV =====
+    function toggleNav() {
+        const nav = document.getElementById('mainNav');
+        const ham = document.getElementById('hamburger');
+        const close = document.getElementById('navClose');
+        nav.classList.toggle('mobile-open');
+        ham.classList.toggle('open');
+        close.style.display = nav.classList.contains('mobile-open') ? 'block' : 'none';
+    }
+    function cerrarNav() {
+        document.getElementById('mainNav').classList.remove('mobile-open');
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('navClose').style.display = 'none';
     }
 
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, "_blank");
-    
-    setTimeout(() => {
-        document.getElementById('chatbot-widget').style.display = 'none';
-    }, 800);
-}
-
-// Auto-abrir chatbot
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('chatbot-widget').style.display = 'flex';
-    }, 4000);
-});
-
-// ==================== BUSCADOR IA ====================
-function mostrarBuscadorIA() {
-    document.getElementById('ia-modal').style.display = 'flex';
-    document.getElementById('ia-input').focus();
-}
-
-function cerrarIA() {
-    document.getElementById('ia-modal').style.display = 'none';
-}
-
-function buscarConIA() {
-    const input = document.getElementById('ia-input').value.trim();
-    const responseDiv = document.getElementById('ia-response');
-
-    if (!input) {
-        responseDiv.innerHTML = `<p style="color:#d31212;">Por favor escribe qué estás buscando.</p>`;
-        responseDiv.style.display = 'block';
-        return;
+    // ===== FAB =====
+    function toggleFab() {
+        const menu = document.getElementById('fabMenu');
+        const main = document.getElementById('fabMain');
+        menu.classList.toggle('open');
+        main.classList.toggle('open');
     }
 
-    responseDiv.style.display = 'block';
-    responseDiv.innerHTML = `<p><strong>🤖 Analizando nuestro catálogo...</strong></p>`;
-
-    setTimeout(() => {
-        let html = `<p><strong>✅ Resultados para: "${input}"</strong></p>`;
-        
-        const q = input.toLowerCase();
-        if (q.includes('iphone') || q.includes('móvil')) {
-            html += `<p>Tenemos varios iPhone y Samsung en stock con garantía. Revisa nuestro catálogo completo.</p>`;
-        } else if (q.includes('laptop') || q.includes('portatil') || q.includes('hp') || q.includes('dell')) {
-            html += `<p>Disponemos de laptops HP, Dell y más. Todas revisadas técnicamente.</p>`;
-        } else if (q.includes('macbook') || q.includes('apple')) {
-            html += `<p>MacBook Air y Pro disponibles en excelente estado.</p>`;
+    // ===== CHAT =====
+    function toggleChat() {
+        const w = document.getElementById('chatWidget');
+        if (w.style.display === 'flex') {
+            w.classList.remove('open');
+            setTimeout(() => w.style.display = 'none', 300);
         } else {
-            html += `<p>Hemos encontrado opciones relacionadas en nuestro catálogo.</p>`;
+            w.style.display = 'flex';
+            setTimeout(() => w.classList.add('open'), 10);
         }
+        const menu = document.getElementById('fabMenu');
+        const main = document.getElementById('fabMain');
+        if (menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            main.classList.remove('open');
+        }
+    }
 
-        html += `<br><a href="nuestrocatalogo.html" style="display:inline-block; background:#d31212; color:white; padding:12px 25px; border-radius:50px; text-decoration:none;">Ver Catálogo Completo →</a>`;
-        
-        responseDiv.innerHTML = html;
-    }, 1100);
-}
+    function enviarWA(msg) {
+        window.open(`https://wa.me/240555391797?text=${encodeURIComponent(msg)}`, '_blank');
+        toggleChat();
+    }
 
-// Cerrar modal IA al hacer clic fuera
-document.getElementById('ia-modal').addEventListener('click', function(e) {
-    if (e.target === this) cerrarIA();
-});
+    // ===== IA =====
+    function abrirIA() {
+        const val = document.getElementById('searchInput')?.value;
+        if (val) document.getElementById('iaInput').value = val;
+        document.getElementById('iaModal').classList.add('open');
+        setTimeout(() => document.getElementById('iaInput').focus(), 200);
+    }
+    function setChip(val) {
+        document.getElementById('iaInput').value = val;
+        buscarIA();
+    }
+    function buscarIA() {
+        const q = document.getElementById('iaInput').value.trim().toLowerCase();
+        const res = document.getElementById('iaResult');
+        if (!q) return;
+        res.className = 'ia-result';
+        res.innerHTML = '<p><strong>🤖 Analizando catálogo...</strong></p>';
+        res.classList.add('show');
+        setTimeout(() => {
+            let html = `<p><strong>✅ Resultados para: "${document.getElementById('iaInput').value}"</strong></p><br>`;
+            if (q.includes('iphone') || q.includes('apple') && !q.includes('mac')) {
+                html += `<p>📱 Tenemos varios <strong>iPhones</strong> en stock con garantía técnica. Modelos 11, 12, 13 y más disponibles desde 100.000 FCFA.</p>`;
+            } else if (q.includes('samsung')) {
+                html += `<p>📲 Disponemos de <strong>Samsung Galaxy</strong> A y S Series. Todos revisados técnicamente. Desde 120.000 FCFA.</p>`;
+            } else if (q.includes('laptop') || q.includes('portátil') || q.includes('hp') || q.includes('dell')) {
+                html += `<p>💻 Contamos con <strong>laptops HP, Dell y más</strong>. Procesadores i5/i7, SSD, perfectas para trabajo o estudio. Desde 150.000 FCFA.</p>`;
+            } else if (q.includes('macbook') || q.includes('mac')) {
+                html += `<p>🍎 Tenemos <strong>MacBook Air y Pro</strong> disponibles. Chips M1/M2 en excelente estado. Desde 350.000 FCFA.</p>`;
+            } else if (q.includes('intercambio') || q.includes('renove')) {
+                html += `<p>🔄 El <strong>Plan Renove</strong> te permite cambiar tu equipo antiguo y obtener descuento directo en el nuevo. Valoración gratuita.</p>`;
+            } else {
+                html += `<p>Hemos encontrado opciones relacionadas en nuestro catálogo. Consulta la sección completa o escríbenos por WhatsApp.</p>`;
+            }
+            html += `<br><div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="nuestrocatalogo.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--rojo);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-size:0.82rem;font-weight:600;">Ver Catálogo →</a>
+                <a href="https://wa.me/240555391797?text=${encodeURIComponent('Busco: '+document.getElementById('iaInput').value)}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25D366;color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-size:0.82rem;font-weight:600;"><i class="fab fa-whatsapp"></i> Preguntar en WhatsApp</a>
+            </div>`;
+            res.innerHTML = html;
+        }, 900);
+    }
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .step').forEach(el => observer.observe(el));
+
+    // ===== COUNTER ANIMADO =====
+    function animateCount(el, target, duration = 1800) {
+        let start = 0;
+        const step = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= target) { el.textContent = target + '+'; clearInterval(timer); }
+            else el.textContent = Math.floor(start) + '+';
+        }, 16);
+    }
+    const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                document.querySelectorAll('[data-count]').forEach(el => {
+                    animateCount(el, parseInt(el.dataset.count));
+                });
+                countObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.5 });
+    const statsEl = document.querySelector('.hero-stats');
+    if (statsEl) countObserver.observe(statsEl);
+
+    // ===== LAZY LOAD IMAGES (compresión visual) =====
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        img.style.filter = 'blur(8px)';
+        img.style.transition = 'filter 0.4s ease';
+        img.addEventListener('load', () => { img.style.filter = 'none'; });
+    });
 </script>
 
 </body>
