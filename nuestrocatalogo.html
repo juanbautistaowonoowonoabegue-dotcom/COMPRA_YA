@@ -1,550 +1,1058 @@
+Wifi
+GITGE Administración
+educaadmin
+
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Completo - Compra Ya Malabo</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
+```
+<!-- ═══════════════ FIREBASE SDK ═══════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+```
+
+<style>
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --rojo: #d31212;
+    --rojo-oscuro: #a50d0d;
+    --negro: #111;
+    --blanco: #fff;
+    --gris-claro: #f5f5f5;
+    --gris-medio: #888;
+    --verde-wa: #25D366;
+    --sombra: 0 8px 30px rgba(0,0,0,0.12);
+    --sombra-hover: 0 20px 50px rgba(211,18,18,0.25);
+    --radio: 16px;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Sora', sans-serif;
+}
+
+body { font-family: var(--font-body); background: #f5f5f5; color: var(--negro); }
+
+/* ══════════════════════════════════════
+   BOTÓN FLOTANTE PUBLICAR
+══════════════════════════════════════ */
+#btn-publicar {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 900;
+    background: var(--rojo);
+    color: white;
+    border: none;
+    padding: 16px 26px;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 28px rgba(211,18,18,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.02em;
+}
+#btn-publicar:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(211,18,18,0.55); }
+#btn-publicar .pulse {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #ffeb3b; animation: pulsar 1.2s infinite;
+}
+@keyframes pulsar { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:0.6} }
+
+/* ══════════════════════════════════════
+   OVERLAY + MODAL FORMULARIO
+══════════════════════════════════════ */
+#overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    animation: fadeIn 0.25s;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+#modal-formulario {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -52%);
+    width: min(92vw, 780px);
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    z-index: 1100;
+    overflow: hidden;
+    animation: slideUp 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    max-height: 92vh;
+    overflow-y: auto;
+}
+@keyframes slideUp { from{opacity:0;transform:translate(-50%,-44%)} to{opacity:1;transform:translate(-50%,-52%)} }
+
+.modal-header {
+    background: linear-gradient(135deg, var(--rojo), #8b0000);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; top: 0; z-index: 10;
+}
+.modal-header h2 { color: white; font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 1px; }
+#btn-cerrar {
+    background: rgba(255,255,255,0.2);
+    color: white; border: none;
+    padding: 8px 16px; border-radius: 8px;
+    cursor: pointer; font-size: 1.1rem; font-family: var(--font-body);
+    transition: background 0.2s;
+}
+#btn-cerrar:hover { background: rgba(255,255,255,0.35); }
+
+.modal-body { padding: 30px 28px; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media(max-width:600px) { .form-grid { grid-template-columns: 1fr; } }
+
+.campo label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #444;
+    margin-bottom: 7px;
+}
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    background: #fafafa;
+}
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    border-color: var(--rojo);
+    box-shadow: 0 0 0 4px rgba(211,18,18,0.08);
+    background: white;
+}
+
+/* Zona de imagen */
+#zona-imagen {
+    border: 2.5px dashed #d0d0d0;
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    background: #fafafa;
+}
+#zona-imagen:hover, #zona-imagen.drag-over {
+    border-color: var(--rojo);
+    background: rgba(211,18,18,0.03);
+}
+#zona-imagen .icono-upload { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+#zona-imagen p { color: #777; font-size: 0.9rem; }
+#zona-imagen input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+
+/* Preview imagen */
+#preview-img {
+    display: none;
+    width: 100%; max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 12px;
+}
+
+/* Barra de progreso */
+#barra-progreso-wrap {
+    display: none;
+    margin-top: 14px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 8px;
+}
+#barra-progreso {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rojo), #ff6b6b);
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.3s;
+}
+#status-img {
+    font-size: 0.85rem;
+    margin-top: 8px;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+/* Botón submit */
+#btn-submit {
+    width: 100%;
+    padding: 17px;
+    background: linear-gradient(135deg, var(--rojo), #a50d0d);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(211,18,18,0.35);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+#btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(211,18,18,0.45); }
+#btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ══════════════════════════════════════
+   SECCIÓN CATÁLOGO
+══════════════════════════════════════ */
+.catalogo-section { padding: 80px 24px; max-width: 1400px; margin: 0 auto; }
+
+.seccion-titulo {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--rojo);
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+.seccion-subtitulo {
+    text-align: center;
+    color: var(--gris-medio);
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+/* Oferta de la semana */
+.oferta-semana {
+    background: linear-gradient(135deg, #d31212 0%, #111 60%, #1a0000 100%);
+    border-radius: 24px;
+    padding: 60px 30px;
+    text-align: center;
+    color: white;
+    margin: 0 auto 80px;
+    position: relative;
+    overflow: hidden;
+}
+.oferta-semana::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+}
+.oferta-semana h2 {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+.oferta-semana .precio-oferta {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: #ffeb3b;
+    display: block;
+    margin: 10px 0;
+}
+.oferta-semana p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 6px; }
+.btn-reservar {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 16px 44px;
+    background: white;
+    color: var(--rojo);
+    border-radius: 50px;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.btn-reservar:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.3); }
+
+/* Etiqueta de sección */
+.etiqueta-seccion {
+    display: inline-block;
+    background: var(--rojo);
+    color: white;
+    padding: 12px 36px 12px 24px;
+    border-radius: 0 50px 50px 0;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin: 60px 0 28px;
+}
+
+/* Carrusel */
+.carousel-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 12px 4px 24px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+/* Tarjeta */
+.tarjeta {
+    flex: 0 0 300px;
+    background: white;
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1), box-shadow 0.35s;
+    position: relative;
+}
+.tarjeta:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: var(--sombra-hover);
+}
+.tarjeta img {
+    width: 100%; height: 210px;
+    object-fit: cover;
+    display: block;
+}
+.tarjeta-body { padding: 20px; text-align: center; }
+.tarjeta-body h3, .tarjeta-body h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+}
+.tarjeta-body .desc {
+    color: var(--gris-medio);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+.tarjeta-body .precio {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    color: var(--rojo);
+    margin: 10px 0;
+    letter-spacing: 0.5px;
+}
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--verde-wa);
+    color: white;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 6px;
+}
+.btn-whatsapp:hover { background: #1ebe5d; transform: scale(1.04); }
+
+.badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: #ffeb3b;
+    color: var(--rojo);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+.badge-nuevo {
+    background: #00c897;
+    color: white;
+}
+
+/* Plan renove */
+.plan-renove {
+    background: #fff;
+    border: 3px solid var(--rojo);
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    margin: 80px 0;
+}
+.plan-renove h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--rojo);
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+.plan-renove p { font-size: 1.15rem; color: #444; line-height: 1.7; }
+
+/* Spinner de carga */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    grid-column: 1/-1;
+}
+.spinner {
+    width: 44px; height: 44px;
+    border: 4px solid #eee;
+    border-top-color: var(--rojo);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Toast */
+#toast {
+    position: fixed;
+    bottom: 100px; right: 32px;
+    background: #1a1a1a;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    z-index: 9999;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    max-width: 320px;
+}
+#toast.visible { opacity: 1; transform: translateY(0); }
+#toast.error { background: #c0392b; }
+#toast.success { background: #27ae60; }
+
+/* Footer */
+footer {
+    background: #111;
+    color: white;
+    padding: 60px 24px;
+    text-align: center;
+    font-family: var(--font-body);
+}
+footer .footer-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+footer h3 { color: var(--rojo); margin-bottom: 12px; font-size: 1.1rem; }
+footer p { color: #aaa; line-height: 1.8; font-size: 0.9rem; }
+footer .footer-copy { color: #555; font-size: 0.85rem; padding-top: 20px; border-top: 1px solid #2a2a2a; }
+
+@media (max-width: 600px) {
+    .seccion-titulo { font-size: 2.2rem; }
+    .oferta-semana h2 { font-size: 2.2rem; }
+    .oferta-semana .precio-oferta { font-size: 2.2rem; }
+    .tarjeta { flex: 0 0 260px; }
+}
+</style>
+
 </head>
 <body>
 
- <!-- ====================== CATÁLOGO COMPLETO DINÁMICO ====================== -->
-<section style="padding: 80px 20px; background: #f8f8f8;">
+<!-- ══════════════════════════════════════
+     BOTÓN FLOTANTE
+══════════════════════════════════════ -->
 
-    <!-- BOTÓN FLOTANTE PARA ABRIR EL FORMULARIO -->
-<button onclick="mostrarFormulario()" 
-        style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;
-               background: #d31212; color: white; border: none; padding: 16px 20px;
-               border-radius: 50px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 8px 25px rgba(211, 18, 18, 0.4);
-               cursor: pointer; display: flex; align-items: center; gap: 10px;">
+<button id="btn-publicar" onclick="abrirFormulario()">
+    <span class="pulse"></span>
     📲 Publicar Producto
 </button>
 
-<!-- FORMULARIO FLOTANTE -->
-<div id="formulario-publicacion" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-     max-width: 900px; width: 90%; background: white; padding: 30px; border-radius: 16px; 
-     box-shadow: 0 20px 60px rgba(0,0,0,0.25); z-index: 2000; max-height: 90vh; overflow-y: auto;">
+<!-- ══════════════════════════════════════
+     OVERLAY
+══════════════════════════════════════ -->
 
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h2 style="color: #d31212; margin: 0;">📲 Publicar Nuevo Producto</h2>
-        <button onclick="cerrarFormulario()" 
-                style="background: #666; color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 1.1rem;">
-            ✕ Cerrar
-        </button>
+<div id="overlay" onclick="cerrarFormulario()"></div>
+
+<!-- ══════════════════════════════════════
+     MODAL FORMULARIO
+══════════════════════════════════════ -->
+
+<div id="modal-formulario">
+    <div class="modal-header">
+        <h2>📲 PUBLICAR PRODUCTO</h2>
+        <button id="btn-cerrar" onclick="cerrarFormulario()">✕ Cerrar</button>
     </div>
-    
-    <form id="form-publicar">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div>
-                <label><strong>Categoría</strong></label>
-                <select id="categoria" style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #d31212;">
-                    <option value="destacados">🔥 Lo que vende más</option>
-                    <option value="laptops">💻 Laptops</option>
-                    <option value="moviles">📱 Móviles</option>
-                </select>
+    <div class="modal-body">
+        <form id="form-publicar" onsubmit="publicarProducto(event)">
+            <div class="form-grid">
+                <div class="campo">
+                    <label>Categoría</label>
+                    <select id="categoria">
+                        <option value="destacados">🔥 Lo que vende más</option>
+                        <option value="laptops">💻 Laptops</option>
+                        <option value="moviles">📱 Móviles</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label>Nombre del producto</label>
+                    <input type="text" id="nombre" placeholder="Ej: iPhone 13 Pro 128GB" required>
+                </div>
             </div>
-            <div>
-                <label><strong>Nombre del producto</strong></label>
-                <input type="text" id="nombre" placeholder="Ej: iPhone 13 o HP EliteBook 840 G5" required 
-                       style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+
+```
+        <div class="campo" style="margin-top:18px">
+            <label>Precio</label>
+            <input type="text" id="precio" placeholder="Ej: 250.000 FCFA" required>
+        </div>
+
+        <div class="campo" style="margin-top:18px">
+            <label>Descripción</label>
+            <textarea id="descripcion" rows="2" placeholder="Ej: 8GB RAM · 256GB SSD · Excelente estado"></textarea>
+        </div>
+
+        <div class="campo" style="margin-top:18px">
+            <label>Imagen del producto</label>
+            <div id="zona-imagen">
+                <span class="icono-upload">📁</span>
+                <p><strong>Haz clic o arrastra</strong> una imagen aquí</p>
+                <p style="font-size:0.8rem;margin-top:4px">JPG, PNG, WEBP · Máx. 10 MB</p>
+                <input type="file" id="archivo-imagen" accept="image/*">
             </div>
+            <img id="preview-img" src="" alt="Vista previa">
+            <div id="barra-progreso-wrap">
+                <div id="barra-progreso"></div>
+            </div>
+            <p id="status-img"></p>
         </div>
 
-        <div style="margin-top: 15px;">
-            <label><strong>Precio</strong></label>
-            <input type="text" id="precio" placeholder="Ej: 250.000 FCFA" required 
-                   style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
-        </div>
+        <!-- URL de imagen oculta (se rellena automáticamente) -->
+        <input type="hidden" id="imagen-url">
 
-        <div style="margin-top: 15px;">
-            <label><strong>Descripción corta</strong></label>
-            <textarea id="descripcion" placeholder="Ej: 8GB RAM - 256GB SSD - Excelente estado" rows="3"
-                      style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;"></textarea>
-        </div>
-
-        <div style="margin-top: 15px;">
-            <label><strong>Imagen del producto</strong></label>
-            <input type="file" id="archivo-imagen" accept="image/*" 
-                   style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd;">
-            <input type="hidden" id="imagen">
-            <p id="status" style="font-size: 0.9em; color: #28a745; margin-top: 5px;"></p>
-        </div>
-
-        <button type="submit" 
-                style="margin-top: 25px; width: 100%; padding: 16px; background: #d31212; color: white; border: none; 
-                       border-radius: 12px; font-size: 1.25rem; font-weight: bold; cursor: pointer;">
+        <button type="submit" id="btn-submit">
             🚀 PUBLICAR EN LA WEB AHORA
         </button>
     </form>
 
-        <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 15px;">
-            El producto se publicará automáticamente en la sección correspondiente.
-        </p>
-    </div>
+    <p style="text-align:center;color:#aaa;font-size:0.82rem;margin-top:14px">
+        El producto se guarda en la nube y aparece al instante en el catálogo.
+    </p>
+</div>
+```
 
-    <div style="text-align: center; margin-bottom: 70px;">
-        <h1 style="font-size: 3.2rem; color: #d31212;">🛍️ NUESTRO CATÁLOGO COMPLETO</h1>
-        <p style="font-size: 1.35rem; color: #444; margin-top: 10px;">Desliza para ver todas las ofertas • Actualizado en Malabo</p>
-    </div>
+</div>
 
-    <!-- OFERTA DE LA SEMANA -->
-    <section style="background: linear-gradient(45deg, #d31212, #000); color: white; text-align: center; border-radius: 20px; margin: 0 auto 80px; max-width: 1200px; padding: 50px 20px;">
-        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem;">⚡ OFERTA DE LA SEMANA ⚡</h2>
-        <p style="font-size: 1.3rem;">Lleva tu <strong>HP ELITEBOOK 840 G5</strong> por solo <span style="font-size: 2.2rem; color: #ffeb3b;">250.000 FCFA</span></p>
-        <p>¡Solo quedan unidades limitadas hasta el 20 de julio!</p>
-        <a href="https://wa.me/240555391797?text=Hola%20Compra%20Ya%2C%20quiero%20aprovechar%20la%20oferta%20del%20G5%20de%20250.000%20FCFA%20⚡" 
-           class="btn-hero" style="background: white; color: #d31212; display: inline-block; margin-top: 25px; padding: 15px 40px; border-radius: 50px; font-weight: bold; text-decoration: none;">
-            👉 RESERVAR AHORA
-        </a>
-    </section>
+<!-- ══════════════════════════════════════
+     CATÁLOGO
+══════════════════════════════════════ -->
 
-    <!-- PRODUCTOS DESTACADOS (LO QUE VENDE MÁS) -->
-    <h2 style="text-align: center; font-size: 2.5rem; color: #d31212; margin: 60px 0 30px;">🔥 LO QUE VENDE MÁS</h2>
-    <div class="carousel-grid" id="carrusel-destacados">
-        <!-- Tarjeta 1 -->
-        <div class="tarjeta-premium">
-            <div class="badge-oferta">TOP VENTAS</div>
-            <img src="iphon.JPEG" alt="IPHONE" loading="lazy">
-            <div style="padding: 20px; text-align: center;">
-                <h3>IPhone / Samsung</h3>
-                <p>Última tecnología en tu mano.</p>
-                <div style="font-size: 1.8rem; font-weight: bold; color: #d31212; margin: 15px 0;">Desde 100.000 FCFA</div>
-                <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
-            </div>
-        </div>
+<section class="catalogo-section">
 
-        <!-- Tarjeta 2 -->
-        <div class="tarjeta-premium">
-            <img src="laptopi.JPEG" alt="HP TACTIL" loading="lazy">
-            <div style="padding: 20px; text-align: center;">
-                <h3>ORDENADORES PORTÁTILES</h3>
-                <p>Ideal para diseño y trabajos de clase.</p>
-                <div style="font-size: 1.8rem; font-weight: bold; color: #d31212; margin: 15px 0;">Desde 100.000 FCFA</div>
-                <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" class="btn-whatsapp">💬 ¡Lo quiero Ya!</a>
-            </div>
-        </div>
+```
+<!-- Encabezado -->
+<div style="text-align:center;margin-bottom:60px">
+    <h1 class="seccion-titulo">🛍️ NUESTRO CATÁLOGO</h1>
+    <p class="seccion-subtitulo">Desliza para ver todas las ofertas · Actualizado en Malabo</p>
+</div>
 
-        <!-- Tarjeta MacBook -->
-        <div class="tarjeta-premium">
-            <img src="makbook.JPG" alt="MacBook" loading="lazy">
-            <div style="padding: 20px; text-align: center;">
-                <h3>MacBook Pro / Air</h3>
-                <p>Potencia máxima para estudios y proyectos de ingeniería o diseño.</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">200.000 FCFA</p>
-                <a href="https://wa.me/+240555391797" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
+<!-- Oferta de la semana -->
+<div class="oferta-semana">
+    <h2>⚡ OFERTA DE LA SEMANA ⚡</h2>
+    <p>Lleva tu <strong>HP ELITEBOOK 840 G5</strong> por solo</p>
+    <span class="precio-oferta">250.000 FCFA</span>
+    <p>¡Solo quedan unidades limitadas!</p>
+    <a href="https://wa.me/240555391797?text=Hola%20quiero%20aprovechar%20la%20oferta%20del%20HP%20G5%20⚡"
+       class="btn-reservar">👉 RESERVAR AHORA</a>
+</div>
+
+<!-- ─── LO QUE VENDE MÁS ─── -->
+<div class="etiqueta-seccion">🔥 LO QUE VENDE MÁS</div>
+<div class="carousel-track" id="carrusel-destacados">
+
+    <!-- Tarjeta estática 1 -->
+    <div class="tarjeta">
+        <div class="badge">TOP VENTAS</div>
+        <img src="iphon.JPEG" alt="iPhone Samsung" loading="lazy">
+        <div class="tarjeta-body">
+            <h3>IPhone / Samsung</h3>
+            <p class="desc">Última tecnología en tu mano.</p>
+            <div class="precio">Desde 100.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20ver%20iPhones%20y%20Samsung%20📱" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
         </div>
     </div>
 
-    <!-- PLAN RENOVE - INTERCAMBIOS -->
-    <section id="intercambios" style="background-color: #f9f9f9; padding: 60px 20px; border-top: 3px solid red; margin: 80px 0;">
-        <div style="text-align: center; max-width: 800px; margin: auto;">
-            <h2 style="color: red; font-size: 2.4rem;">🔄 Plan Renove: Intercambio</h2>
-            <p style="font-size: 1.2rem;">¿Quieres un móvil nuevo?<br><strong>Trae tu móvil antiguo + algo de dinero.</strong></p>
-            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio" class="btn-whatsapp" style="max-width: 300px; margin: 25px auto; display: inline-block;">
-                Pedir por WhatsApp 📲
-            </a>
-        </div>
-    </section>
-
-    <!-- CATÁLOGO PRINCIPAL - LAPTOPS -->
-    <h2 style="background: #d31212; color: white; display: inline-block; padding: 12px 35px; border-radius: 0 50px 50px 0; margin: 40px 0 25px;">💻 LAPTOPS</h2>
-    <div class="carousel-grid" id="carrusel-laptops">
-        <div class="tarjeta-premium">
-            <img src="laptopd.JPEG" alt="DELL LATITUDE 3310">
-            <div style="padding: 20px; text-align: center;">
-                <h4>DELL LATITUDE 3310</h4>
-                <p style="color: #888;">8GB RAM - 256GB INTEL CORE</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">150.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20DELL%203310" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>
-
-        <div class="tarjeta-premium">
-            <img src="Dell.JPG" alt="Dell Laptop">
-            <div style="padding: 20px; text-align: center;">
-                <h4>DELL LATITUDE</h4>
-                <p style="color: #888;">Laptop Dell de alto rendimiento</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20Dell%20laptop%20de%20160.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>
-
-        <div class="tarjeta-premium">
-            <img src="G5.JPEG" alt="G5 Laptop">
-            <div style="padding: 20px; text-align: center;">
-                <h4>G5</h4>
-                <p style="color: #888;">Laptop G5 potente y moderna</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">250.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20G5%20de%20250.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>
-
-        <div class="tarjeta-premium">
-            <img src="probook.JPEG" alt="Probook Laptop">
-            <div style="padding: 20px; text-align: center;">
-                <h4>PROBOOK</h4>
-                <p style="color: #888;">HP ProBook confiable para trabajo</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">175.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20la%20Probook%20de%20175.000%20FCFA" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>
-
-        <div class="tarjeta-premium">
-            <img src="laptopi.JPEG" alt="HP Táctil">
-            <div style="padding: 20px; text-align: center;">
-                <h4>ORDENADORES PORTÁTILES</h4>
-                <p>Ideal para diseño y trabajos de clase</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">Desde 100.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20Laptops%20disponibles%20💻" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
+    <!-- Tarjeta estática 2 -->
+    <div class="tarjeta">
+        <img src="laptopi.JPEG" alt="Laptops" loading="lazy">
+        <div class="tarjeta-body">
+            <h3>Ordenadores Portátiles</h3>
+            <p class="desc">Ideal para diseño y trabajos de clase.</p>
+            <div class="precio">Desde 100.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20info%20sobre%20laptops%20💻" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
         </div>
     </div>
 
-    <!-- CATÁLOGO PRINCIPAL - MÓVILES -->
-    <h2 style="background: #d31212; color: white; display: inline-block; padding: 12px 35px; border-radius: 0 50px 50px 0; margin: 70px 0 25px;">📱 MÓVILES</h2>
-    <div class="carousel-grid" id="carrusel-moviles">
-        <div class="tarjeta-premium">
-            <img src="iphone.JPEG" alt="iPhone 11">
-            <div style="padding: 20px; text-align: center;">
-                <h4>iPhone 11</h4>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">160.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Info%20iPhone%2011" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>
-
-        <div class="tarjeta-premium">
-            <img src="Ip.JPG" alt="iPhone Última Generación">
-            <div style="padding: 20px; text-align: center;">
-                <h4>Iphone 16  de 128 GB </h4>
-                <p>Rendimiento excepcional y cámaras profesionales</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">350.000 FCFA</p>
-                <a href="https://wa.me/+240555391797" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>
-
-        <div class="tarjeta-premium">
-            <img src="iphon.JPEG" alt="iPhone / Samsung">
-            <div style="padding: 20px; text-align: center;">
-                <h4>IPhone / Samsung</h4>
-                <p>Última tecnología en tu mano</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">Desde 100.000 FCFA</p>
-                <a href="https://wa.me/240555391797?text=Hola%2C%20me%20gustar%C3%ADa%20ver%20el%20cat%C3%A1logo%20de%20iPhones%20y%20Samsung%20disponibles%20📱" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
-            </div>
+    <!-- Tarjeta estática 3 -->
+    <div class="tarjeta">
+        <img src="makbook.JPG" alt="MacBook" loading="lazy">
+        <div class="tarjeta-body">
+            <h3>MacBook Pro / Air</h3>
+            <p class="desc">Potencia máxima para ingeniería y diseño.</p>
+            <div class="precio">200.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20me%20interesa%20el%20MacBook" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
         </div>
     </div>
+
+    <!-- Productos dinámicos Firebase - destacados -->
+    <div id="firebase-destacados" style="display:contents"></div>
+</div>
+
+<!-- Plan Renove -->
+<div class="plan-renove" id="intercambios">
+    <h2>🔄 Plan Renove: Intercambio</h2>
+    <p>¿Quieres un móvil nuevo?<br><strong>Trae tu móvil antiguo + algo de dinero.</strong></p>
+    <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20intercambio"
+       class="btn-whatsapp" style="margin-top:24px;font-size:1rem;padding:14px 30px;">
+        Pedir por WhatsApp 📲
+    </a>
+</div>
+
+<!-- ─── LAPTOPS ─── -->
+<div class="etiqueta-seccion">💻 LAPTOPS</div>
+<div class="carousel-track" id="carrusel-laptops">
+
+    <div class="tarjeta">
+        <img src="laptopd.JPEG" alt="Dell 3310">
+        <div class="tarjeta-body">
+            <h4>DELL LATITUDE 3310</h4>
+            <p class="desc">8GB RAM · 256GB · Intel Core</p>
+            <div class="precio">150.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%20me%20interesa%20la%20Dell%203310" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="Dell.JPG" alt="Dell Latitude">
+        <div class="tarjeta-body">
+            <h4>DELL LATITUDE</h4>
+            <p class="desc">Laptop Dell de alto rendimiento</p>
+            <div class="precio">160.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%20me%20interesa%20la%20Dell%20de%20160k" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="G5.JPEG" alt="HP G5">
+        <div class="tarjeta-body">
+            <h4>HP ELITEBOOK G5</h4>
+            <p class="desc">Laptop G5 potente y moderna</p>
+            <div class="precio">250.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%20me%20interesa%20la%20G5" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="probook.JPEG" alt="ProBook">
+        <div class="tarjeta-body">
+            <h4>HP PROBOOK</h4>
+            <p class="desc">Confiable para trabajo y estudio</p>
+            <div class="precio">175.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%20me%20interesa%20la%20ProBook" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="laptopi.JPEG" alt="HP Táctil">
+        <div class="tarjeta-body">
+            <h4>HP TÁCTIL</h4>
+            <p class="desc">Ideal para diseño y trabajos creativos</p>
+            <div class="precio">Desde 100.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20info%20sobre%20laptops%20💻" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <!-- Productos dinámicos Firebase - laptops -->
+    <div id="firebase-laptops" style="display:contents"></div>
+</div>
+
+<!-- ─── MÓVILES ─── -->
+<div class="etiqueta-seccion">📱 MÓVILES</div>
+<div class="carousel-track" id="carrusel-moviles">
+
+    <div class="tarjeta">
+        <img src="iphone.JPEG" alt="iPhone 11">
+        <div class="tarjeta-body">
+            <h4>iPhone 11</h4>
+            <p class="desc">Cámara dual · iOS actualizado</p>
+            <div class="precio">160.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Info%20iPhone%2011" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="Ip.JPG" alt="iPhone 16">
+        <div class="tarjeta-body">
+            <h4>iPhone 16 · 128 GB</h4>
+            <p class="desc">Rendimiento excepcional · Cámaras pro</p>
+            <div class="precio">350.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20me%20interesa%20el%20iPhone%2016" class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="iphon.JPEG" alt="iPhone Samsung">
+        <div class="tarjeta-body">
+            <h4>IPhone / Samsung</h4>
+            <p class="desc">Última tecnología en tu mano</p>
+            <div class="precio">Desde 100.000 FCFA</div>
+            <a href="https://wa.me/240555391797?text=Hola%2C%20quiero%20ver%20el%20catálogo%20📱" class="btn-whatsapp">💬 ¡Lo quiero YA!</a>
+        </div>
+    </div>
+
+    <!-- Productos dinámicos Firebase - móviles -->
+    <div id="firebase-moviles" style="display:contents"></div>
+</div>
+```
 
 </section>
 
-<!-- ====================== ESTILOS Y SCRIPT DEL CARRUSEL ====================== -->
-<style>
-    .carousel-grid {
-        display: flex;
-        gap: 25px;
-        overflow-x: auto;
-        padding: 20px 0;
-        scrollbar-width: none;
-    }
-    .carousel-grid::-webkit-scrollbar { display: none; }
+<!-- Toast de notificación -->
 
-    .tarjeta-premium {
-        flex: 0 0 320px;
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
-        transition: all 0.4s ease;
-        position: relative;
-    }
-    .tarjeta-premium:hover {
-        transform: scale(1.08) translateY(-12px);
-        box-shadow: 0 20px 40px rgba(211, 18, 18, 0.25);
-    }
-    .badge-oferta {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: #ffd700;
-        color: #d31212;
-        padding: 5px 14px;
-        border-radius: 20px;
-        font-weight: bold;
-        font-size: 0.95rem;
-    }
-    .btn-whatsapp {
-        background: #25D366;
-        color: white;
-        padding: 12px 22px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-block;
-        margin-top: 10px;
-    }
-</style>
+<div id="toast"></div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+
+<footer>
+    <div style="margin-bottom:30px">
+        <a href="index.html" style="background:var(--rojo);color:white;padding:15px 35px;text-decoration:none;border-radius:50px;font-weight:700;font-size:1rem;display:inline-block;">
+            🏠 Volver a la página principal
+        </a>
+    </div>
+    <div class="footer-grid">
+        <div>
+            <h3>COMPRA YA !!</h3>
+            <p>Tu aliado estratégico en tecnología<br>en Malabo. Calidad garantizada<br>al mejor precio del mercado.</p>
+        </div>
+        <div>
+            <h3>Contacto Directo</h3>
+            <p>📍 Malabo, Guinea Ecuatorial<br>📱 WhatsApp: Pedidos Inmediatos<br>📧 Soporte al Cliente</p>
+        </div>
+    </div>
+    <p class="footer-copy">© 2026 COMPRA YA!! · Todos los derechos reservados.</p>
+</footer>
+
+<!-- ══════════════════════════════════════
+     FIREBASE + LÓGICA PRINCIPAL
+══════════════════════════════════════ -->
 
 <script>
-// Función para eliminar el formulario principal
-function eliminarFormulario() {
-    const formulario = document.getElementById('formulario-publicacion');
-    if (formulario) {
-        formulario.style.display = 'none';
-        alert('Formulario eliminado. Ahora puedes ver el catálogo completo.');
-    }
+// ─────────────────────────────────────
+// 1. INICIALIZAR FIREBASE
+// ─────────────────────────────────────
+const firebaseConfig = {
+    apiKey: "AIzaSyCcEo0GFr3217G0_OnPhNCkTGYH9yJRJSY",
+    authDomain: "compra-ya-79cd5.firebaseapp.com",
+    projectId: "compra-ya-79cd5",
+    storageBucket: "compra-ya-79cd5.firebasestorage.app",
+    messagingSenderId: "860045754628",
+    appId: "1:860045754628:web:d076f386957d8de5f95051",
+    measurementId: "G-HZH2QMWJPX"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db      = firebase.firestore();
+const storage = firebase.storage();
+
+// ─────────────────────────────────────
+// 2. ESTADO GLOBAL
+// ─────────────────────────────────────
+let imagenUrlSubida = '';   // URL de Firebase Storage tras subir
+let subiendoImagen  = false;
+
+// ─────────────────────────────────────
+// 3. FORMULARIO: ABRIR / CERRAR
+// ─────────────────────────────────────
+function abrirFormulario() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('modal-formulario').style.display = 'block';
+}
+function cerrarFormulario() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('modal-formulario').style.display = 'none';
 }
 
-// Script de subida automática de imágenes (ImgBB)
-const fileInput = document.getElementById('archivo-imagen');
-const statusText = document.getElementById('status');
-const urlOutput = document.getElementById('imagen');
-const apiKey = '74d11d0588be8361d7ccd4812a9cb112';
-
-fileInput.addEventListener('change', function() {
+// ─────────────────────────────────────
+// 4. SUBIR IMAGEN A FIREBASE STORAGE
+// ─────────────────────────────────────
+document.getElementById('archivo-imagen').addEventListener('change', async function () {
     const file = this.files[0];
     if (!file) return;
 
-    statusText.innerText = "Subiendo imagen...";
-    statusText.style.color = "#007bff";
-
-    const formData = new FormData();
-    formData.append("image", file);
-
-    fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            const imageUrl = result.data.url;
-            urlOutput.value = imageUrl;
-            statusText.innerText = "¡Imagen subida correctamente!";
-            statusText.style.color = "#28a745";
-        } else {
-            statusText.innerText = "Error al subir la imagen.";
-            statusText.style.color = "#dc3545";
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        statusText.innerText = "Error de conexión. Inténtalo de nuevo.";
-        statusText.style.color = "#dc3545";
-    });
-});
-
-// Auto-publicar en el catálogo
-document.getElementById('form-publicar').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const categoria = document.getElementById('categoria').value;
-    const nombre = document.getElementById('nombre').value.trim();
-    const precio = document.getElementById('precio').value.trim();
-    const descripcion = document.getElementById('descripcion').value.trim();
-    const imagen = document.getElementById('imagen').value.trim();
-
-    if (!imagen) {
-        alert("Por favor, sube una imagen antes de publicar.");
+    // Validar tamaño (máx 10 MB)
+    if (file.size > 10 * 1024 * 1024) {
+        mostrarToast('❌ La imagen supera 10 MB. Elige una más pequeña.', 'error');
         return;
     }
 
-    const nuevaTarjeta = `
-        <div class="tarjeta-premium">
-            <img src="${imagen}" alt="${nombre}" loading="lazy">
-            <div style="padding: 20px; text-align: center;">
-                <h4>${nombre}</h4>
-                <p style="color: #888; font-size: 0.9rem;">${descripcion}</p>
-                <p style="color: #d31212; font-weight: bold; font-size: 1.4rem;">${precio}</p>
-                <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20${encodeURIComponent(nombre)}" 
-                   class="btn-whatsapp">Pedir por WhatsApp 📲</a>
-            </div>
-        </div>`;
+    // Vista previa local instantánea
+    const reader = new FileReader();
+    reader.onload = e => {
+        const prev = document.getElementById('preview-img');
+        prev.src = e.target.result;
+        prev.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
 
-    let carrusel;
-    if (categoria === 'laptops') carrusel = document.getElementById('carrusel-laptops');
-    else if (categoria === 'moviles') carrusel = document.getElementById('carrusel-moviles');
-    else carrusel = document.getElementById('carrusel-destacados');
+    // Subir a Firebase Storage
+    subiendoImagen = true;
+    imagenUrlSubida = '';
+    document.getElementById('imagen-url').value = '';
+    document.getElementById('barra-progreso-wrap').style.display = 'block';
+    document.getElementById('barra-progreso').style.width = '0%';
+    setStatus('⬆️ Subiendo imagen a la nube...', '#2196F3');
 
-    if (carrusel) {
-        carrusel.innerHTML += nuevaTarjeta;
-        carrusel.scrollLeft = carrusel.scrollWidth;
+    const nombreArchivo = `productos/${Date.now()}_${file.name}`;
+    const ref = storage.ref(nombreArchivo);
+    const tarea = ref.put(file);
+
+    tarea.on('state_changed',
+        snapshot => {
+            const pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            document.getElementById('barra-progreso').style.width = pct + '%';
+            setStatus(`⬆️ Subiendo... ${pct}%`, '#2196F3');
+        },
+        error => {
+            console.error('Error subida:', error);
+            setStatus('❌ Error al subir la imagen. Intenta de nuevo.', '#e53935');
+            subiendoImagen = false;
+        },
+        async () => {
+            // Obtener URL pública automáticamente
+            imagenUrlSubida = await tarea.snapshot.ref.getDownloadURL();
+            document.getElementById('imagen-url').value = imagenUrlSubida;
+            setStatus('✅ Imagen subida y lista. Puedes publicar.', '#27ae60');
+            subiendoImagen = false;
+        }
+    );
+});
+
+function setStatus(texto, color) {
+    const el = document.getElementById('status-img');
+    el.textContent = texto;
+    el.style.color = color;
+}
+
+// ─────────────────────────────────────
+// 5. PUBLICAR PRODUCTO EN FIRESTORE
+// ─────────────────────────────────────
+async function publicarProducto(e) {
+    e.preventDefault();
+
+    if (subiendoImagen) {
+        mostrarToast('⏳ Espera a que termine de subirse la imagen.', 'error');
+        return;
+    }
+    if (!imagenUrlSubida) {
+        mostrarToast('📷 Debes seleccionar y subir una imagen primero.', 'error');
+        return;
     }
 
-    alert(`✅ ¡Producto "${nombre}" publicado automáticamente en la sección "${categoria}"!`);
+    const nombre     = document.getElementById('nombre').value.trim();
+    const precio     = document.getElementById('precio').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+    const categoria  = document.getElementById('categoria').value;
 
-    // Limpiar formulario
-    this.reset();
-    statusText.innerText = '';
+    if (!nombre || !precio) {
+        mostrarToast('⚠️ Completa el nombre y el precio.', 'error');
+        return;
+    }
+
+    // Deshabilitar botón mientras guarda
+    const btnSubmit = document.getElementById('btn-submit');
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = '⏳ Publicando...';
+
+    try {
+        await db.collection('productos').add({
+            nombre,
+            precio,
+            descripcion: descripcion || 'Sin descripción',
+            categoria,
+            imagen: imagenUrlSubida,
+            fecha: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        mostrarToast(`✅ "${nombre}" publicado con éxito.`, 'success');
+        cerrarFormulario();
+        document.getElementById('form-publicar').reset();
+        document.getElementById('preview-img').style.display = 'none';
+        document.getElementById('barra-progreso-wrap').style.display = 'none';
+        setStatus('', '#000');
+        imagenUrlSubida = '';
+
+    } catch (error) {
+        console.error('Error guardando en Firestore:', error);
+        mostrarToast('❌ Error al publicar. Intenta de nuevo.', 'error');
+    }
+
+    btnSubmit.disabled = false;
+    btnSubmit.innerHTML = '🚀 PUBLICAR EN LA WEB AHORA';
+}
+
+// ─────────────────────────────────────
+// 6. ESCUCHAR PRODUCTOS EN TIEMPO REAL
+// ─────────────────────────────────────
+function crearTarjetaHTML(doc) {
+    const d = doc.data();
+    const nombreEnc = encodeURIComponent(d.nombre);
+    return `
+    <div class="tarjeta" id="prod-${doc.id}">
+        <div class="badge badge-nuevo">NUEVO</div>
+        <img src="${d.imagen}" alt="${d.nombre}" loading="lazy"
+             onerror="this.src='https://via.placeholder.com/300x210?text=Sin+imagen'">
+        <div class="tarjeta-body">
+            <h4>${d.nombre}</h4>
+            <p class="desc">${d.descripcion}</p>
+            <div class="precio">${d.precio}</div>
+            <a href="https://wa.me/240555391797?text=Hola%20estoy%20interesado%20en%20${nombreEnc}"
+               class="btn-whatsapp">Pedir por WhatsApp 📲</a>
+        </div>
+    </div>`;
+}
+
+// Listener en tiempo real: reacciona a cualquier cambio en Firestore
+db.collection('productos')
+  .orderBy('fecha', 'desc')
+  .onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+          const doc  = change.doc;
+          const data = doc.data();
+          const cat  = data.categoria;
+
+          if (change.type === 'added') {
+              const zona = {
+                  destacados: document.getElementById('firebase-destacados'),
+                  laptops:    document.getElementById('firebase-laptops'),
+                  moviles:    document.getElementById('firebase-moviles')
+              }[cat] || document.getElementById('firebase-destacados');
+
+              const div = document.createElement('div');
+              div.innerHTML = crearTarjetaHTML(doc);
+              zona.appendChild(div.firstElementChild);
+          }
+
+          if (change.type === 'removed') {
+              const el = document.getElementById('prod-' + doc.id);
+              if (el) el.remove();
+          }
+      });
+  }, error => {
+      console.error('Error Firestore onSnapshot:', error);
+      mostrarToast('⚠️ No se pudieron cargar los productos.', 'error');
+  });
+
+// ─────────────────────────────────────
+// 7. DRAG & DROP EN ZONA DE IMAGEN
+// ─────────────────────────────────────
+const zonaImg = document.getElementById('zona-imagen');
+zonaImg.addEventListener('dragover', e => { e.preventDefault(); zonaImg.classList.add('drag-over'); });
+zonaImg.addEventListener('dragleave', () => zonaImg.classList.remove('drag-over'));
+zonaImg.addEventListener('drop', e => {
+    e.preventDefault();
+    zonaImg.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+        const input = document.getElementById('archivo-imagen');
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        input.files = dt.files;
+        input.dispatchEvent(new Event('change'));
+    }
 });
-</script>
 
-<!-- ====================== CARRUSELES AUTOMÁTICOS ====================== -->
-<script>
-// Carrusel automático infinito
-function iniciarCarruseles() {
-    document.querySelectorAll('.carousel-grid').forEach(carrusel => {
-        let scrollPos = 0;
-        let velocidad = 1.7;
+// ─────────────────────────────────────
+// 8. TOAST DE NOTIFICACIONES
+// ─────────────────────────────────────
+let toastTimer;
+function mostrarToast(mensaje, tipo = '') {
+    const toast = document.getElementById('toast');
+    toast.textContent = mensaje;
+    toast.className = 'visible ' + tipo;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.className = ''; }, 3500);
+}
+
+// ─────────────────────────────────────
+// 9. CARRUSEL AUTOMÁTICO INFINITO
+// ─────────────────────────────────────
+window.addEventListener('load', () => {
+    document.querySelectorAll('.carousel-track').forEach(carrusel => {
+        let pos = 0;
         let pausado = false;
+        let velocidad = 1.5;
+        let rafId;
 
-        const original = carrusel.innerHTML;
-        carrusel.innerHTML += original;   // Duplicar para scroll infinito
+        // Solo duplicar los hijos ESTÁTICOS (no los contenedores firebase-*)
+        const staticItems = [...carrusel.children].filter(c =>
+            !c.id.startsWith('firebase-')
+        );
+        staticItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            // Insertar antes del contenedor firebase
+            const fbZone = carrusel.querySelector('[id^="firebase-"]');
+            if (fbZone) carrusel.insertBefore(clone, fbZone);
+            else carrusel.appendChild(clone);
+        });
 
         function animar() {
             if (!pausado) {
-                scrollPos += velocidad;
-                carrusel.scrollLeft = scrollPos;
-                if (scrollPos >= carrusel.scrollWidth / 2) scrollPos = 0;
+                pos += velocidad;
+                carrusel.scrollLeft = pos;
+                const mitad = (carrusel.scrollWidth - carrusel.clientWidth) / 2;
+                if (pos >= mitad) pos = 0;
             }
-            requestAnimationFrame(animar);
+            rafId = requestAnimationFrame(animar);
         }
         animar();
 
         carrusel.addEventListener('mouseenter', () => pausado = true);
         carrusel.addEventListener('mouseleave', () => pausado = false);
+        carrusel.addEventListener('touchstart',  () => pausado = true,  { passive: true });
+        carrusel.addEventListener('touchend',    () => {
+            setTimeout(() => pausado = false, 2000);
+        }, { passive: true });
     });
-}
-
-window.addEventListener('load', iniciarCarruseles);
-</script>
-<script>
-// Array para guardar todos los productos (persiste mientras la página esté abierta)
-let productos = [];
-
-// Función para mostrar el formulario flotante
-function mostrarFormulario() {
-    document.getElementById('formulario-publicacion').style.display = 'block';
-}
-
-// Función para cerrar el formulario
-function cerrarFormulario() {
-    document.getElementById('formulario-publicacion').style.display = 'none';
-}
-
-// Convertir imagen a Base64
-document.getElementById('archivo-imagen').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    const status = document.getElementById('status');
-    
-    if (file) {
-        status.textContent = 'Procesando imagen...';
-        const reader = new FileReader();
-        
-        reader.onload = function(event) {
-            document.getElementById('imagen').value = event.target.result;
-            status.textContent = '✅ Imagen lista para subir';
-            status.style.color = '#28a745';
-        };
-        
-        reader.readAsDataURL(file);
-    }
 });
-
-// Manejar el envío del formulario
-document.getElementById('form-publicar').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const nombre = document.getElementById('nombre').value;
-    const precio = document.getElementById('precio').value;
-    const descripcion = document.getElementById('descripcion').value;
-    const categoria = document.getElementById('categoria').value;
-    const imagenBase64 = document.getElementById('imagen').value;
-
-    if (!nombre || !precio || !imagenBase64) {
-        alert("Por favor completa todos los campos y selecciona una imagen");
-        return;
-    }
-
-    // Crear nuevo producto
-    const nuevoProducto = {
-        id: Date.now(),
-        nombre: nombre,
-        precio: precio,
-        descripcion: descripcion || "Sin descripción",
-        categoria: categoria,
-        imagen: imagenBase64,
-        fecha: new Date().toLocaleDateString('es-ES')
-    };
-
-    // Agregar al array
-    productos.unshift(nuevoProducto); // poner el nuevo primero
-
-    // Mostrar inmediatamente en el catálogo
-    renderizarProductos();
-
-    // Limpiar formulario y cerrar
-    this.reset();
-    document.getElementById('imagen').value = '';
-    document.getElementById('status').textContent = '';
-    
-    cerrarFormulario();
-
-    alert("✅ ¡Producto publicado con éxito! Ya aparece en el catálogo.");
-});
-
-// Función para renderizar todos los productos
-function renderizarProductos() {
-    const container = document.getElementById('productos-container');
-    container.innerHTML = '';
-
-    if (productos.length === 0) {
-        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; font-size: 1.2rem;">Aún no hay productos publicados.</p>';
-        return;
-    }
-
-    productos.forEach(producto => {
-        const card = document.createElement('div');
-        card.style.cssText = `
-            background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        `;
-        card.innerHTML = `
-            <img src="${producto.imagen}" style="width: 100%; height: 220px; object-fit: cover;">
-            <div style="padding: 18px;">
-                <h3 style="margin: 0 0 8px 0; color: #222;">${producto.nombre}</h3>
-                <p style="color: #d31212; font-size: 1.4rem; font-weight: bold; margin: 8px 0;">
-                    ${producto.precio}
-                </p>
-                <p style="color: #555; font-size: 0.95rem; margin: 12px 0;">${producto.descripcion}</p>
-                <small style="color: #888;">Publicado: ${producto.fecha}</small>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
-
-// Inicializar
-window.onload = function() {
-    renderizarProductos();
-};
 </script>
-  <footer style="background: #222; color: #fff; padding: 60px 20px; text-align: center; font-family: sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <div style="margin-bottom: 40px;">
-            <a href="index.html" style="background: #d31212; color: white; padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; transition: 0.3s; display: inline-block; border: 2px solid #d31212;">
-                🏠 Volver a la página principal
-            </a>
-        </div>
 
-        <hr style="border: 0; border-top: 1px solid #444; margin: 40px 0;">
-
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left;">
-            <div style="min-width: 250px;">
-                <h3 style="color: #d31212;">COMPRA YA!!</h3>
-                <p style="color: #bbb; line-height: 1.6;">Tu aliado estratégico en tecnología y electrodomésticos en Malabo. Calidad garantizada al mejor precio del mercado.</p>
-            </div>
-
-            <div style="min-width: 250px;">
-                <h3 style="color: #fff;">Contacto Directo</h3>
-                <p style="color: #bbb; margin: 5px 0;">📍 Malabo, Guinea Ecuatorial</p>
-                <p style="color: #bbb; margin: 5px 0;">📱 WhatsApp: Pedidos Inmediatos</p>
-                <p style="color: #bbb; margin: 5px 0;">📧 Soporte al Cliente</p>
-            </div>
-        </div>
-
-        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #333; color: #777; font-size: 0.9rem;">
-            <p>&copy; 2026 COMPRA YA!! - Todos los derechos reservados.</p>
-        </div>
-    </div>
-</footer>  
 </body>
 </html>
